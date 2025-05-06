@@ -2,7 +2,6 @@ using System.Globalization;
 using System.Collections;
 using UnityEngine;
 using TMPro;
-using UnityEditor.Animations;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 using static System.Net.WebRequestMethods;
@@ -19,7 +18,6 @@ public class Main: MonoBehaviour
     public GameObject thirdButton;
     public GameObject fourthButton;
     public GameObject continueButton;
-    public TMP_Text mainTextObject;
 
     public TMP_Text yesButtonText;
     public TMP_Text noButtonText;
@@ -72,20 +70,27 @@ public class Main: MonoBehaviour
     public GameObject bigTownLeftMiddleSignHover;
     public GameObject bigTownRightMiddleSignHover;
 
-    public GameObject mainTextReference;
-
     public AudioSource voiceClip;
 
     public GameObject scrollClosed;
     public GameObject scrollOpened;
     public GameObject linkText;
     public TMP_Text linkTextText;
+    public GameObject clickHereText;
+
+    public GameObject startButton;
+    public GameObject creditsButton;
+    public GameObject exitButton;
+    public GameObject backButton;
+    public GameObject creditsText;
+    public GameObject startButtonHover;
+    public GameObject creditsButtonHover;
+    public GameObject exitButtonHover;
+    public GameObject backButtonHover;
 
     private void Awake()
     {
         linkTextText = linkText.GetComponent<TMP_Text>();
-        mainTextObject.text = "Welcome to the Educational Support Wizard";
-        continueButton.SetActive(true);
         yesButtonText = yesButton.GetComponentInChildren<TMP_Text>();
         noButtonText = noButton.GetComponentInChildren<TMP_Text>();
         thirdButtonText = thirdButton.GetComponentInChildren<TMP_Text>();
@@ -112,8 +117,6 @@ public class Main: MonoBehaviour
         {
             if (numberOfDecisions == 0)
             {
-                mainTextReference.SetActive(false);
-                mainTextObject.text = "LTD Zone: Q4a: Which of the following does your question best align to?";
                 yesButton.SetActive(false);
                 noButton.SetActive(false);
                 thirdButton.SetActive(false);
@@ -130,7 +133,6 @@ public class Main: MonoBehaviour
                 noButton.transform.localPosition = new Vector3(500, -390, 0);
                 thirdButton.transform.localPosition = new Vector3(50, -160, 0);
                 fourthButton.transform.localPosition = new Vector3(805, -380, 0);
-                mainTextObject.rectTransform.localPosition = new Vector3(0, 305, 0);
                 noButtonText.fontSize = 11;
                 thirdButtonText.fontSize = 11;
                 thirdButtonText.margin = new Vector4(47, 0, 50, 0);
@@ -158,7 +160,6 @@ public class Main: MonoBehaviour
             }
             if (numberOfDecisions == 1 && onBPath == true && fourPathActive != true)
             {
-                mainTextReference.SetActive(false);
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(true);
                 guyHappySprite.SetActive(false);
@@ -172,8 +173,6 @@ public class Main: MonoBehaviour
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
-                mainTextObject.rectTransform.localPosition = new Vector3(0, -85, 0);
-                mainTextObject.text = "LTD/EdTech Zone: Q6a: Are you still in need of deciding an appropriate tool?";
                 numberOfDecisions++;
                 yesButtonText.text = "Yes, I need help selecting.";
                 noButtonText.text = "No, I need use assistance.";
@@ -193,7 +192,6 @@ public class Main: MonoBehaviour
             }
             if (numberOfDecisions == 1 && onBPath != true && fourPathActive != true)
             {
-                mainTextReference.SetActive(false);
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(true);
                 guyHappySprite.SetActive(false);
@@ -207,8 +205,6 @@ public class Main: MonoBehaviour
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
-                mainTextObject.rectTransform.localPosition = new Vector3(0, -85, 0);
-                mainTextObject.text = "LTD/CTLI Zone: Q6b: Were you looking for a workshop style training or a one-on-one consultation?";
                 numberOfDecisions++;
                 yesButtonText.text = "One-on-one";
                 noButtonText.text = "Workshop";
@@ -230,7 +226,6 @@ public class Main: MonoBehaviour
             }
             if (numberOfDecisions == 2 && fourPathActive != true && onBPath == true)
             {
-                mainTextReference.SetActive(false);
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
                 guyHappySprite.SetActive(false);
@@ -239,11 +234,9 @@ public class Main: MonoBehaviour
                 textBubble.SetActive(true);
                 textBubbleText.text = "Need help selecting an appropriate tool for your course?";
                 matthiasTextAmount = 14;
-                mainTextObject.rectTransform.localPosition = new Vector3(0, -85, 0);
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
-                mainTextObject.text = "Contact the LTD team: You will be linked to the Contact Us Page.";
                 numberOfDecisions++;
                 yesButton.SetActive(false);
                 noButton.SetActive(false);
@@ -259,13 +252,11 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
-                scrollClosed.SetActive(true);
                 StartCoroutine(TypeText());
                 return;
             }
             if (numberOfDecisions == 2 && fourPathActive != true && onBPath == false)
             {
-                mainTextReference.SetActive(false);
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
                 guyHappySprite.SetActive(true);
@@ -274,11 +265,9 @@ public class Main: MonoBehaviour
                 textBubble.SetActive(true);
                 textBubbleText.text = "Looking for a one-on-one style consultation?";
                 matthiasTextAmount = 26;
-                mainTextObject.rectTransform.localPosition = new Vector3(0, -85, 0);
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
-                mainTextObject.text = "Contact the LTD team.";
                 numberOfDecisions++;
                 yesButton.SetActive(false);
                 noButton.SetActive(false);
@@ -294,14 +283,11 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
-                scrollClosed.SetActive(true);
                 StartCoroutine(TypeText());
                 return;
             }
             if (fourPathActive == true)
             {
-                mainTextReference.SetActive(false);
-                mainTextObject.text = "Please contact our Multimedia Coordinator for this question (insert Andy email here?)";
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
                 guyHappySprite.SetActive(true);
@@ -310,7 +296,6 @@ public class Main: MonoBehaviour
                 textBubble.SetActive(true);
                 textBubbleText.text = "Looks like you will need to contact LTD’s Multimedia Coordinator about that question!";
                 matthiasTextAmount = 10;
-                mainTextObject.rectTransform.localPosition = new Vector3(0, 173, 0);
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
@@ -339,7 +324,6 @@ public class Main: MonoBehaviour
                 bigTownLeftMiddleSignHover.SetActive(false);
                 bigTownRightMiddleSignHover.SetActive(false);
                 bigTownRightMostSignHover.SetActive(false);
-                scrollClosed.SetActive(true);
                 StartCoroutine(TypeText());
                 return;
             }
@@ -352,7 +336,6 @@ public class Main: MonoBehaviour
         {
             if (numberOfDecisions == 0)
             {
-                mainTextReference.SetActive(false);
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
                 guyHappySprite.SetActive(false);
@@ -370,7 +353,6 @@ public class Main: MonoBehaviour
                 yesButton.SetActive(false);
                 noButton.SetActive(false);
                 thirdButton.SetActive(false);
-                mainTextObject.text = "";
                 yesButtonText.text = "A: Is your question about how to select and us the appropriate technology?";
                 noButtonText.text = "B: Is your question related to solving classroom tech installation?";
                 thirdButtonText.text = "C: Is your question related to solving a general tech issue?";
@@ -389,7 +371,6 @@ public class Main: MonoBehaviour
             }
             if (numberOfDecisions == 1 && onBPath == true && fourPathActive != true)
             {
-                mainTextReference.SetActive(false);
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(true);
                 guyHappySprite.SetActive(false);
@@ -398,11 +379,9 @@ public class Main: MonoBehaviour
                 textBubble.SetActive(true);
                 textBubbleText.text = "You will need to contact the MSU IT Team about your inquiry.";
                 matthiasTextAmount = 20;
-                mainTextObject.rectTransform.localPosition = new Vector3(0, -85, 0);
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
-                mainTextObject.text = "Contact the MSU IT Team.";
                 yesButton.SetActive(false);
                 noButton.SetActive(false);
                 thirdButton.SetActive(false);
@@ -417,14 +396,12 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
-                scrollClosed.SetActive(true);
                 linkTextText.text = "https://tech.msu.edu/help-and-support/";
                 StartCoroutine(TypeText());
                 return;
             }
             if (numberOfDecisions == 1 && onBPath != true && fourPathActive != true)
             {
-                mainTextReference.SetActive(false);
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(true);
                 guyHappySprite.SetActive(false);
@@ -433,13 +410,11 @@ public class Main: MonoBehaviour
                 textBubble.SetActive(true);
                 textBubbleText.text = "Were you looking for a workshop style training or a one-on-one consultation?";
                 matthiasTextAmount = 35;
-                mainTextObject.rectTransform.localPosition = new Vector3(0, -85, 0);
                 yesButton.transform.localPosition = new Vector3(0, 240, 0);
                 noButton.transform.localPosition = new Vector3(825, -120, 0);
                 twoPathSign.SetActive(true);
                 threePathSign.SetActive(false);
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                mainTextObject.text = "LTD/CTLI Zone: Q6b: Were you looking for a workshop style training or a one-on-one consultation?";
                 numberOfDecisions++;
                 yesButtonText.text = "One-on-one";
                 noButtonText.text = "Workshop";
@@ -461,7 +436,6 @@ public class Main: MonoBehaviour
             }
             if (numberOfDecisions == 2 && fourPathActive != true && onBPath == true)
             {
-                mainTextReference.SetActive(false);
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
                 guyHappySprite.SetActive(true);
@@ -470,11 +444,9 @@ public class Main: MonoBehaviour
                 textBubble.SetActive(true);
                 textBubbleText.text = "Need use assistance with your teaching tool?";
                 matthiasTextAmount = 17;
-                mainTextObject.rectTransform.localPosition = new Vector3(0, -85, 0);
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
-                mainTextObject.text = "Please contact MSU EdTech about this Question.";
                 numberOfDecisions++;
                 yesButton.SetActive(false);
                 noButton.SetActive(false);
@@ -490,14 +462,12 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
-                scrollClosed.SetActive(true);
                 linkTextText.text = "https://tinyurl.com/msuITEdTech";
                 StartCoroutine(TypeText());
                 return;
             }
             if (numberOfDecisions == 2 && fourPathActive != true && onBPath == false)
             {
-                mainTextReference.SetActive(false);
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
                 guyHappySprite.SetActive(false);
@@ -506,11 +476,9 @@ public class Main: MonoBehaviour
                 textBubble.SetActive(true);
                 textBubbleText.text = "Looking for workshop-style training?";
                 matthiasTextAmount = 29;
-                mainTextObject.rectTransform.localPosition = new Vector3(0, -85, 0);
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
-                mainTextObject.text = "Please contact CTLI about this question.";
                 numberOfDecisions++;
                 yesButton.SetActive(false);
                 noButton.SetActive(false);
@@ -532,7 +500,6 @@ public class Main: MonoBehaviour
             }
             if (fourPathActive == true)
             {
-                mainTextReference.SetActive(false);
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
                 guyHappySprite.SetActive(true);
@@ -541,11 +508,9 @@ public class Main: MonoBehaviour
                 textBubble.SetActive(true);
                 textBubbleText.text = "Looks like you will need to contact LTD’s D2L Specialist about your inquiry!";
                 matthiasTextAmount = 10;
-                mainTextObject.rectTransform.localPosition = new Vector3(0, 173, 0);
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
-                mainTextObject.text = "Please contact our D2L specialist for this question (insert Sue email here?)";
                 yesButton.SetActive(false);
                 noButton.SetActive(false);
                 thirdButton.SetActive(false);
@@ -571,7 +536,6 @@ public class Main: MonoBehaviour
                 bigTownLeftMiddleSignHover.SetActive(false);
                 bigTownRightMiddleSignHover.SetActive(false);
                 bigTownRightMostSignHover.SetActive(false);
-                scrollClosed.SetActive(true);
                 StartCoroutine(TypeText());
                 return;
             }
@@ -580,20 +544,19 @@ public class Main: MonoBehaviour
 
     public void Continue()
     {
-        if (mainTextObject.text == "Welcome to the Educational Support Wizard")
-        {
-            continueButton.SetActive(true);
-            mainTextObject.text = "Brief explanation goes here";
-            return;
-        }
-        if (mainTextObject.text == "Brief explanation goes here")
-        {
-            typingTextBubbleText.text = "";
+        startButton.SetActive(false);
+        creditsButton.SetActive(false);
+        exitButton.SetActive(false);
+        backButton.SetActive(false);
+        startButtonHover.SetActive(false);
+        creditsButtonHover.SetActive(false);
+        exitButtonHover.SetActive(false);
+        backButtonHover.SetActive(false);
+        typingTextBubbleText.text = "";
             guyHappySprite.SetActive(true);
             textBubble.SetActive(true);
             textBubbleText.text = "Greetings traveler!";
             matthiasTextAmount++;
-            mainTextObject.text = "";
             yesButton.transform.localPosition = new Vector3(-10, 200, 0);
             noButton.transform.localPosition = new Vector3(615, -180, 0);
             thirdButton.transform.localPosition = new Vector3(-265, -30, 0);
@@ -612,7 +575,6 @@ public class Main: MonoBehaviour
             threePathSignSecond.SetActive(false);
             threePathSignThird.SetActive(false);
             StartCoroutine(TypeText());
-        }
     }
 
     public void Third()
@@ -621,7 +583,6 @@ public class Main: MonoBehaviour
         {
             if (fourPathActive == true)
             {
-                mainTextReference.SetActive(false);
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
                 guyHappySprite.SetActive(true);
@@ -630,11 +591,9 @@ public class Main: MonoBehaviour
                 textBubble.SetActive(true);
                 textBubbleText.text = "Looks like you will need to contact LTD’s Learning Experience Manager about your questions!";
                 matthiasTextAmount = 10;
-                mainTextObject.rectTransform.localPosition = new Vector3(0, 173, 0);
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
-                mainTextObject.text = "Please contact our Learning Experience Manager for this question (insert Matt email)";
                 yesButton.SetActive(false);
                 noButton.SetActive(false);
                 thirdButton.SetActive(false);
@@ -660,13 +619,11 @@ public class Main: MonoBehaviour
                 bigTownLeftMiddleSignHover.SetActive(false);
                 bigTownRightMiddleSignHover.SetActive(false);
                 bigTownRightMostSignHover.SetActive(false);
-                scrollClosed.SetActive(true);
                 StartCoroutine(TypeText());
                 return;
             }
             if (numberOfDecisions == 0 && fourPathActive != true)
             {
-                mainTextReference.SetActive(false);
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
                 guyHappySprite.SetActive(false);
@@ -681,8 +638,6 @@ public class Main: MonoBehaviour
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, -16); ;
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
-                mainTextObject.rectTransform.localPosition = new Vector3(0, -85, 0);
-                mainTextObject.text = "";
                 yesButtonText.text = "A: Are you exploring new teaching practices";
                 noButtonText.text = "B: Are you trying to evaluate student feedback?";
                 thirdButtonText.text = "C: Are you trying to gain feedback on your existing course?";
@@ -704,7 +659,6 @@ public class Main: MonoBehaviour
             }
             if (numberOfDecisions == 1 && fourPathActive != true && onBPath == true)
             {
-                mainTextReference.SetActive(false);
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(true);
                 guyHappySprite.SetActive(false);
@@ -713,11 +667,9 @@ public class Main: MonoBehaviour
                 textBubble.SetActive(true);
                 textBubbleText.text = "You will need to contact the MSU IT Team about your concerns.";
                 matthiasTextAmount = 20;
-                mainTextObject.rectTransform.localPosition = new Vector3(0, -85, 0);
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
-                mainTextObject.text = "Contact the MSU IT Team";
                 yesButton.SetActive(false);
                 noButton.SetActive(false);
                 thirdButton.SetActive(false);
@@ -732,14 +684,12 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
-                scrollClosed.SetActive(true);
                 linkTextText.text = "https://tech.msu.edu/help-and-support/";
                 StartCoroutine(TypeText());
                 return;
             }
             if (numberOfDecisions == 1 && fourPathActive != true && onBPath == false)
             {
-                mainTextReference.SetActive(false);
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
                 guyHappySprite.SetActive(true);
@@ -748,11 +698,9 @@ public class Main: MonoBehaviour
                 textBubble.SetActive(true);
                 textBubbleText.text = "Looking to gain feedback on your existing course?";
                 matthiasTextAmount = 32;
-                mainTextObject.rectTransform.localPosition = new Vector3(0, -85, 0);
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
-                mainTextObject.text = "Contact the CTLI";
                 yesButton.SetActive(false);
                 noButton.SetActive(false);
                 thirdButton.SetActive(false);
@@ -767,7 +715,6 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
-                scrollClosed.SetActive(true);
                 linkTextText.text = "https://teachingcenter.msu.edu/consultations";
                 StartCoroutine(TypeText());
                 return;
@@ -779,7 +726,6 @@ public class Main: MonoBehaviour
     {
         if (guySprite.activeSelf == false && guyHappySprite.activeSelf == false && guyCastingSprite.activeSelf == false && guyHoldingStaffSprite.activeSelf == false)
         {
-            mainTextReference.SetActive(false);
             typingTextBubbleText.text = "";
             guySprite.SetActive(false);
             guyHappySprite.SetActive(true);
@@ -787,11 +733,9 @@ public class Main: MonoBehaviour
             guyHoldingStaffSprite.SetActive(false); textBubble.SetActive(true);
             textBubbleText.text = "Looks like you will need to contact LTD’s Accessibility and Quality Matters expert about your Inquiry!";
             matthiasTextAmount = 10;
-            mainTextObject.rectTransform.localPosition = new Vector3(0, 173, 0);
             yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
             twoPathSign.SetActive(false);
             threePathSign.SetActive(false);
-            mainTextObject.text = "Please contact our Accessibility and QM Expert (insert Sarah email here?)";
             yesButton.SetActive(false);
             noButton.SetActive(false);
             thirdButton.SetActive(false);
@@ -817,7 +761,6 @@ public class Main: MonoBehaviour
             bigTownLeftMiddleSignHover.SetActive(false);
             bigTownRightMiddleSignHover.SetActive(false);
             bigTownRightMostSignHover.SetActive(false);
-            scrollClosed.SetActive(true);
             StartCoroutine(TypeText());
             return;
         }
@@ -938,7 +881,8 @@ public class Main: MonoBehaviour
         {
             scrollClosed.SetActive(false);
             scrollOpened.SetActive(true);
-            linkText.SetActive(true);
+            //linkText.SetActive(true);
+            clickHereText.SetActive(true);
         }
     }
 
@@ -949,6 +893,7 @@ public class Main: MonoBehaviour
             scrollClosed.SetActive(true);
             scrollOpened.SetActive(false);
             linkText.SetActive(false);
+            clickHereText.SetActive(false);
         }
     }
 
@@ -962,7 +907,80 @@ public class Main: MonoBehaviour
         Application.OpenURL(url);
     }
 
-public void UpdateMatthiasText()
+    public void Credits()
+    {
+        startButton.SetActive(false);
+        creditsButton.SetActive(false);
+        exitButton.SetActive(false);
+        backButton.SetActive(true);
+        creditsText.SetActive(true);
+        startButtonHover.SetActive(false);
+        creditsButtonHover.SetActive(false);
+        exitButtonHover.SetActive(false);
+    }
+
+    public void Back()
+    {
+        startButton.SetActive(true);
+        creditsButton.SetActive(true);
+        exitButton.SetActive(true);
+        backButton.SetActive(false);
+        creditsText.SetActive(false);
+        backButtonHover.SetActive(false);
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
+    public void StartHover()
+    {
+        startButton.SetActive(false);
+        startButtonHover.SetActive(true);
+    }
+
+    public void CreditsHover()
+    {
+        creditsButton.SetActive(false);
+        creditsButtonHover.SetActive(true);
+    }
+
+    public void ExitHover()
+    {
+        exitButton.SetActive(false);
+        exitButtonHover.SetActive(true);
+    }
+
+    public void BackHover()
+    {
+        backButton.SetActive(false);
+        backButtonHover.SetActive(true);
+    }
+
+    public void TitleButtonDehover()
+    {
+        if (!creditsText.activeSelf)
+        {
+            startButton.SetActive(true);
+            creditsButton.SetActive(true);
+            exitButton.SetActive(true);
+            startButtonHover.SetActive(false);
+            creditsButtonHover.SetActive(false);
+            exitButtonHover.SetActive(false);
+        }
+    }
+
+    public void BackButtonDehover()
+    {
+        if (creditsText.activeSelf)
+        {
+            backButton.SetActive(true);
+            backButtonHover.SetActive(false);
+        }
+    }
+
+    public void UpdateMatthiasText()
     {
         if (matthiasTextAmount == 1)
         {
@@ -1021,7 +1039,6 @@ public void UpdateMatthiasText()
             guyHoldingStaffSprite.SetActive(false);
             textBubbleText.text = "Click which sign best aligns with your inquiry.";
             StartCoroutine(TypeText());
-            mainTextReference.SetActive(true);
             matthiasTextAmount++;
             return;
         }
@@ -1082,7 +1099,6 @@ public void UpdateMatthiasText()
             noButton.SetActive(true);
             thirdButton.SetActive(true);
             fourthButton.SetActive(true);
-            mainTextReference.SetActive(true);
             matthiasTextAmount++;
             return;
         }
@@ -1108,8 +1124,8 @@ public void UpdateMatthiasText()
             guySprite.SetActive(false);
             textBubble.SetActive(false);
             textBubbleText.text = "";
-            mainTextReference.SetActive(true);
             matthiasTextAmount++;
+            scrollClosed.SetActive(true);
             return;
         }
         if (matthiasTextAmount == 12)
@@ -1173,8 +1189,8 @@ public void UpdateMatthiasText()
             guyHoldingStaffSprite.SetActive(false); 
             textBubble.SetActive(false);
             textBubbleText.text = "";
-            mainTextReference.SetActive(true);
             matthiasTextAmount++;
+            scrollClosed.SetActive(true);
             return;
         }
         if (matthiasTextAmount == 17)
@@ -1210,8 +1226,8 @@ public void UpdateMatthiasText()
             guyHoldingStaffSprite.SetActive(false);
             textBubble.SetActive(false);
             textBubbleText.text = "";
-            mainTextReference.SetActive(true);
             matthiasTextAmount++;
+            scrollClosed.SetActive(true);
             return;
         }
         if (matthiasTextAmount == 20)
@@ -1247,8 +1263,8 @@ public void UpdateMatthiasText()
             guyHoldingStaffSprite.SetActive(false);
             textBubble.SetActive(false);
             textBubbleText.text = "";
-            mainTextReference.SetActive(true);
             matthiasTextAmount++;
+            scrollClosed.SetActive(true);
             return;
         }
         if (matthiasTextAmount == 23)
@@ -1277,7 +1293,7 @@ public void UpdateMatthiasText()
             textBubble.SetActive(false);
             textBubbleText.text = "";
             matthiasTextAmount++;
-            mainTextReference.SetActive(true);
+            scrollClosed.SetActive(true);
             return;
         }
         if (matthiasTextAmount == 26)
@@ -1313,8 +1329,8 @@ public void UpdateMatthiasText()
             guyHoldingStaffSprite.SetActive(false);
             textBubble.SetActive(false);
             textBubbleText.text = "";
-            mainTextReference.SetActive(true);
             matthiasTextAmount++;
+            scrollClosed.SetActive(true);
             return;
         }
         if (matthiasTextAmount == 29)
@@ -1350,8 +1366,8 @@ public void UpdateMatthiasText()
             guyHoldingStaffSprite.SetActive(false);
             textBubble.SetActive(false);
             textBubbleText.text = "";
-            mainTextReference.SetActive(true);
             matthiasTextAmount++;
+            scrollClosed.SetActive(true);
             return;
         }
         if (matthiasTextAmount == 32)
@@ -1387,8 +1403,8 @@ public void UpdateMatthiasText()
             guyHoldingStaffSprite.SetActive(false);
             textBubble.SetActive(false);
             textBubbleText.text = "";
-            mainTextReference.SetActive(true);
             matthiasTextAmount++;
+            scrollClosed.SetActive(true);
             return;
         }
         if (matthiasTextAmount == 35) // Where all one-liners go
@@ -1403,7 +1419,6 @@ public void UpdateMatthiasText()
             twoPathSign.SetActive(true);
             yesButton.SetActive(true);
             noButton.SetActive(true);
-            mainTextReference.SetActive(true);
             matthiasTextAmount++;
             return;
         }
