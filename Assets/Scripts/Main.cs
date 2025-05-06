@@ -5,6 +5,7 @@ using TMPro;
 using UnityEditor.Animations;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
+using static System.Net.WebRequestMethods;
 
 public class Main: MonoBehaviour
 {
@@ -75,8 +76,14 @@ public class Main: MonoBehaviour
 
     public AudioSource voiceClip;
 
+    public GameObject scrollClosed;
+    public GameObject scrollOpened;
+    public GameObject linkText;
+    public TMP_Text linkTextText;
+
     private void Awake()
     {
+        linkTextText = linkText.GetComponent<TMP_Text>();
         mainTextObject.text = "Welcome to the Educational Support Wizard";
         continueButton.SetActive(true);
         yesButtonText = yesButton.GetComponentInChildren<TMP_Text>();
@@ -252,6 +259,7 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                scrollClosed.SetActive(true);
                 StartCoroutine(TypeText());
                 return;
             }
@@ -286,6 +294,7 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                scrollClosed.SetActive(true);
                 StartCoroutine(TypeText());
                 return;
             }
@@ -330,6 +339,7 @@ public class Main: MonoBehaviour
                 bigTownLeftMiddleSignHover.SetActive(false);
                 bigTownRightMiddleSignHover.SetActive(false);
                 bigTownRightMostSignHover.SetActive(false);
+                scrollClosed.SetActive(true);
                 StartCoroutine(TypeText());
                 return;
             }
@@ -407,6 +417,8 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                scrollClosed.SetActive(true);
+                linkTextText.text = "https://tech.msu.edu/help-and-support/";
                 StartCoroutine(TypeText());
                 return;
             }
@@ -478,6 +490,8 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                scrollClosed.SetActive(true);
+                linkTextText.text = "https://tinyurl.com/msuITEdTech";
                 StartCoroutine(TypeText());
                 return;
             }
@@ -512,6 +526,7 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                linkTextText.text = "https://teachingcenter.msu.edu/consultations";
                 StartCoroutine(TypeText());
                 return;
             }
@@ -556,6 +571,7 @@ public class Main: MonoBehaviour
                 bigTownLeftMiddleSignHover.SetActive(false);
                 bigTownRightMiddleSignHover.SetActive(false);
                 bigTownRightMostSignHover.SetActive(false);
+                scrollClosed.SetActive(true);
                 StartCoroutine(TypeText());
                 return;
             }
@@ -644,6 +660,7 @@ public class Main: MonoBehaviour
                 bigTownLeftMiddleSignHover.SetActive(false);
                 bigTownRightMiddleSignHover.SetActive(false);
                 bigTownRightMostSignHover.SetActive(false);
+                scrollClosed.SetActive(true);
                 StartCoroutine(TypeText());
                 return;
             }
@@ -715,6 +732,8 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                scrollClosed.SetActive(true);
+                linkTextText.text = "https://tech.msu.edu/help-and-support/";
                 StartCoroutine(TypeText());
                 return;
             }
@@ -748,6 +767,8 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                scrollClosed.SetActive(true);
+                linkTextText.text = "https://teachingcenter.msu.edu/consultations";
                 StartCoroutine(TypeText());
                 return;
             }
@@ -796,6 +817,7 @@ public class Main: MonoBehaviour
             bigTownLeftMiddleSignHover.SetActive(false);
             bigTownRightMiddleSignHover.SetActive(false);
             bigTownRightMostSignHover.SetActive(false);
+            scrollClosed.SetActive(true);
             StartCoroutine(TypeText());
             return;
         }
@@ -910,7 +932,37 @@ public class Main: MonoBehaviour
         }
     }
 
-    public void UpdateMatthiasText()
+    public void ScrollHovered()
+    {
+        if (scrollClosed.activeSelf == true && scrollOpened.activeSelf == false)
+        {
+            scrollClosed.SetActive(false);
+            scrollOpened.SetActive(true);
+            linkText.SetActive(true);
+        }
+    }
+
+    public void ScrollDehovered()
+    {
+        if (scrollClosed.activeSelf == false && scrollOpened.activeSelf == true)
+        {
+            scrollClosed.SetActive(true);
+            scrollOpened.SetActive(false);
+            linkText.SetActive(false);
+        }
+    }
+
+    public void ScrollClicked()
+    {
+        OpenWebsite(linkTextText.text);
+    }
+
+    public void OpenWebsite(string url)
+    {
+        Application.OpenURL(url);
+    }
+
+public void UpdateMatthiasText()
     {
         if (matthiasTextAmount == 1)
         {
