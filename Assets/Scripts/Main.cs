@@ -5,6 +5,10 @@ using TMPro;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 using static System.Net.WebRequestMethods;
+using System.Collections.Generic;
+using System.Linq;
+using static Unity.VisualScripting.Member;
+using UnityEngine.Video;
 
 public class Main: MonoBehaviour
 {
@@ -56,7 +60,7 @@ public class Main: MonoBehaviour
     public int matthiasTextAmount;
 
     public Coroutine typingCoroutine;
-    public float typingSpeed = 0.05f; // 0.05f is base
+    public float typingSpeed = 0.1f; // 0.05f is base
     public bool isTyping = false;
     public TMP_Text typingTextBubbleText;
 
@@ -88,6 +92,20 @@ public class Main: MonoBehaviour
     public GameObject exitButtonHover;
     public GameObject backButtonHover;
 
+    public string previousPath;
+    public GameObject prevButton;
+    public GameObject prevButtonHover;
+
+    public int prevChoiceID = 0;
+    public int prevChoiceIDHolder = 0;
+    public List<int> prevPathList = new List<int>();
+    public bool wentBack = false;
+    public VideoClip transitionIntoTown;
+    public GameObject mainCameraReference;
+    public VideoPlayer mainCameraVideoPlayer;
+    public bool didVideoPlay = false;
+    public string prevPathForVideo = "";
+
     private void Awake()
     {
         linkTextText = linkText.GetComponent<TMP_Text>();
@@ -111,12 +129,45 @@ public class Main: MonoBehaviour
         }
     }
 
+    void OnVideoFinished(VideoPlayer vp)
+    {
+        mainCameraVideoPlayer.loopPointReached -= OnVideoFinished;
+        mainCameraVideoPlayer.Stop();
+        didVideoPlay = true;
+        if (prevPathForVideo == "yes")
+        {
+            Yes();
+        }
+        if (prevPathForVideo == "no")
+        {
+            No();
+        }
+        if (prevPathForVideo == "third")
+        {
+            Third();
+        }
+        if (prevPathForVideo == "fourth")
+        {
+            Fourth();
+        }
+    }
+
     public void Yes()
     {
         if (guySprite.activeSelf == false && guyHappySprite.activeSelf == false && guyCastingSprite.activeSelf == false && guyHoldingStaffSprite.activeSelf == false)
         {
-            if (numberOfDecisions == 0)
+            if (numberOfDecisions == 0 && onBPath != true)
             {
+                if (!didVideoPlay)
+                {
+                    mainCameraReference = GameObject.Find("Main Camera");
+                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
+                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
+                    prevPathForVideo = "yes";
+                    mainCameraVideoPlayer.Play();
+                    return;
+                }
+                didVideoPlay = false;
                 yesButton.SetActive(false);
                 noButton.SetActive(false);
                 thirdButton.SetActive(false);
@@ -129,22 +180,22 @@ public class Main: MonoBehaviour
                 textBubble.SetActive(true);
                 textBubbleText.text = "Looks like you want to contact someone from the Learning Technology and Development team.";
                 matthiasTextAmount = 7;
-                yesButton.transform.localPosition = new Vector3(-740, -250, 0);
+                yesButton.transform.localPosition = new Vector3(-727, -246, 0);
                 noButton.transform.localPosition = new Vector3(500, -390, 0);
-                thirdButton.transform.localPosition = new Vector3(50, -160, 0);
+                thirdButton.transform.localPosition = new Vector3(56, -164, 0);
                 fourthButton.transform.localPosition = new Vector3(805, -380, 0);
                 noButtonText.fontSize = 11;
-                thirdButtonText.fontSize = 11;
+                yesButtonText.fontSize = 11;
                 thirdButtonText.margin = new Vector4(47, 0, 50, 0);
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
                 numberOfDecisions++;
                 fourPathActive = true;
-                yesButtonText.text = "Audio/Video Creation";
+                yesButtonText.text = "Redeveloping your course"; 
                 noButtonText.text = "D2L course building";
-                thirdButtonText.text = "Redeveloping your course";
-                fourthButtonText.text = "The accessibility of your existing course";
+                thirdButtonText.text = "Audio/Video Creation";
+                fourthButtonText.text = "Course Quality Review";
                 twoPathImage.SetActive(false);
                 threePathImage.SetActive(false);
                 threePathImage.SetActive(false);
@@ -155,6 +206,17 @@ public class Main: MonoBehaviour
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
                 bigTownBackground.SetActive(true);
+                previousPath = "A";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 1;
                 StartCoroutine(TypeText());
                 return;
             }
@@ -187,6 +249,20 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                twoPathSign.SetActive(true);
+                yesButton.SetActive(true);
+                noButton.SetActive(true);
+                previousPath = "A";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 2;
                 StartCoroutine(TypeText());
                 return;
             }
@@ -221,11 +297,35 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                twoPathSign.SetActive(true);
+                yesButton.SetActive(true);
+                noButton.SetActive(true);
+                previousPath = "A";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 3;
                 StartCoroutine(TypeText());
                 return;
             }
             if (numberOfDecisions == 2 && fourPathActive != true && onBPath == true)
             {
+                if (!didVideoPlay)
+                {
+                    mainCameraReference = GameObject.Find("Main Camera");
+                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
+                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
+                    prevPathForVideo = "yes";
+                    mainCameraVideoPlayer.Play();
+                    return;
+                }
+                didVideoPlay = false;
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
                 guyHappySprite.SetActive(false);
@@ -252,11 +352,32 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                previousPath = "A";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 4;
                 StartCoroutine(TypeText());
                 return;
             }
             if (numberOfDecisions == 2 && fourPathActive != true && onBPath == false)
             {
+                if (!didVideoPlay)
+                {
+                    mainCameraReference = GameObject.Find("Main Camera");
+                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
+                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
+                    prevPathForVideo = "yes";
+                    mainCameraVideoPlayer.Play();
+                    return;
+                }
+                didVideoPlay = false;
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
                 guyHappySprite.SetActive(true);
@@ -283,6 +404,17 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                previousPath = "A";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 5;
                 StartCoroutine(TypeText());
                 return;
             }
@@ -294,7 +426,7 @@ public class Main: MonoBehaviour
                 guyCastingSprite.SetActive(false);
                 guyHoldingStaffSprite.SetActive(false);
                 textBubble.SetActive(true);
-                textBubbleText.text = "Looks like you will need to contact LTD’s Multimedia Coordinator about that question!";
+                textBubbleText.text = "Looks like you will need to contact LTD’s Learning Experience Manager about your questions!";
                 matthiasTextAmount = 10;
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
@@ -324,6 +456,18 @@ public class Main: MonoBehaviour
                 bigTownLeftMiddleSignHover.SetActive(false);
                 bigTownRightMiddleSignHover.SetActive(false);
                 bigTownRightMostSignHover.SetActive(false);
+                numberOfDecisions++;
+                previousPath = "A";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 6;
                 StartCoroutine(TypeText());
                 return;
             }
@@ -334,7 +478,7 @@ public class Main: MonoBehaviour
     {
         if (guySprite.activeSelf == false && guyHappySprite.activeSelf == false && guyCastingSprite.activeSelf == false && guyHoldingStaffSprite.activeSelf == false)
         {
-            if (numberOfDecisions == 0)
+            if (numberOfDecisions == 0 && fourPathActive != true)
             {
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
@@ -366,11 +510,32 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                previousPath = "B";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 7;
                 StartCoroutine(TypeText());
                 return;
             }
             if (numberOfDecisions == 1 && onBPath == true && fourPathActive != true)
             {
+                if (!didVideoPlay)
+                {
+                    mainCameraReference = GameObject.Find("Main Camera");
+                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
+                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
+                    prevPathForVideo = "no";
+                    mainCameraVideoPlayer.Play();
+                    return;
+                }
+                didVideoPlay = false;
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(true);
                 guyHappySprite.SetActive(false);
@@ -397,6 +562,17 @@ public class Main: MonoBehaviour
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
                 linkTextText.text = "https://tech.msu.edu/help-and-support/";
+                previousPath = "B";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 8;
                 StartCoroutine(TypeText());
                 return;
             }
@@ -431,11 +607,34 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                twoPathSign.SetActive(true);
+                yesButton.SetActive(true);
+                noButton.SetActive(true);
+                previousPath = "B";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 9;
                 StartCoroutine(TypeText());
                 return;
             }
             if (numberOfDecisions == 2 && fourPathActive != true && onBPath == true)
             {
+                if (!didVideoPlay)
+                {
+                    mainCameraReference = GameObject.Find("Main Camera");
+                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
+                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
+                    prevPathForVideo = "no";
+                    mainCameraVideoPlayer.Play();
+                    return;
+                }
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
                 guyHappySprite.SetActive(true);
@@ -463,11 +662,31 @@ public class Main: MonoBehaviour
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
                 linkTextText.text = "https://tinyurl.com/msuITEdTech";
+                previousPath = "B";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 10;
                 StartCoroutine(TypeText());
                 return;
             }
             if (numberOfDecisions == 2 && fourPathActive != true && onBPath == false)
             {
+                if (!didVideoPlay)
+                {
+                    mainCameraReference = GameObject.Find("Main Camera");
+                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
+                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
+                    prevPathForVideo = "no";
+                    mainCameraVideoPlayer.Play();
+                    return;
+                }
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
                 guyHappySprite.SetActive(false);
@@ -495,6 +714,17 @@ public class Main: MonoBehaviour
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
                 linkTextText.text = "https://teachingcenter.msu.edu/consultations";
+                previousPath = "B";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 11;
                 StartCoroutine(TypeText());
                 return;
             }
@@ -536,6 +766,18 @@ public class Main: MonoBehaviour
                 bigTownLeftMiddleSignHover.SetActive(false);
                 bigTownRightMiddleSignHover.SetActive(false);
                 bigTownRightMostSignHover.SetActive(false);
+                numberOfDecisions++;
+                previousPath = "B";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 12;
                 StartCoroutine(TypeText());
                 return;
             }
@@ -556,6 +798,7 @@ public class Main: MonoBehaviour
             guyHappySprite.SetActive(true);
             textBubble.SetActive(true);
             textBubbleText.text = "Greetings traveler!";
+            matthiasTextAmount = 0;
             matthiasTextAmount++;
             yesButton.transform.localPosition = new Vector3(-10, 200, 0);
             noButton.transform.localPosition = new Vector3(615, -180, 0);
@@ -574,7 +817,16 @@ public class Main: MonoBehaviour
             threePathSignFirst.SetActive(false);
             threePathSignSecond.SetActive(false);
             threePathSignThird.SetActive(false);
-            StartCoroutine(TypeText());
+        noButtonText.fontSize = 13;
+        yesButtonText.fontSize = 13;
+        thirdButtonText.margin = new Vector4(0, 0, 0, 0);
+        numberOfDecisions = 0;
+        onBPath = false;
+        fourPathActive = false;
+        wentBack = false;
+        prevChoiceID = 0;
+        prevChoiceIDHolder = 0;
+        StartCoroutine(TypeText());
     }
 
     public void Third()
@@ -589,7 +841,7 @@ public class Main: MonoBehaviour
                 guyCastingSprite.SetActive(false);
                 guyHoldingStaffSprite.SetActive(false); 
                 textBubble.SetActive(true);
-                textBubbleText.text = "Looks like you will need to contact LTD’s Learning Experience Manager about your questions!";
+                textBubbleText.text = "Looks like you will need to contact LTD’s Multimedia Coordinator about that question!";
                 matthiasTextAmount = 10;
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
@@ -619,10 +871,22 @@ public class Main: MonoBehaviour
                 bigTownLeftMiddleSignHover.SetActive(false);
                 bigTownRightMiddleSignHover.SetActive(false);
                 bigTownRightMostSignHover.SetActive(false);
+                numberOfDecisions++;
+                previousPath = "C";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 13;
                 StartCoroutine(TypeText());
                 return;
             }
-            if (numberOfDecisions == 0 && fourPathActive != true)
+            if (numberOfDecisions == 0 && fourPathActive != true && onBPath != true)
             {
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
@@ -654,11 +918,31 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                previousPath = "C";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 14;
                 StartCoroutine(TypeText());
                 return;
             }
             if (numberOfDecisions == 1 && fourPathActive != true && onBPath == true)
             {
+                if (!didVideoPlay)
+                {
+                    mainCameraReference = GameObject.Find("Main Camera");
+                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
+                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
+                    prevPathForVideo = "third";
+                    mainCameraVideoPlayer.Play();
+                    return;
+                }
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(true);
                 guyHappySprite.SetActive(false);
@@ -685,11 +969,31 @@ public class Main: MonoBehaviour
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
                 linkTextText.text = "https://tech.msu.edu/help-and-support/";
+                previousPath = "C";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 15;
                 StartCoroutine(TypeText());
                 return;
             }
             if (numberOfDecisions == 1 && fourPathActive != true && onBPath == false)
             {
+                if (!didVideoPlay)
+                {
+                    mainCameraReference = GameObject.Find("Main Camera");
+                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
+                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
+                    prevPathForVideo = "third";
+                    mainCameraVideoPlayer.Play();
+                    return;
+                }
                 typingTextBubbleText.text = "";
                 guySprite.SetActive(false);
                 guyHappySprite.SetActive(true);
@@ -716,6 +1020,17 @@ public class Main: MonoBehaviour
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
                 linkTextText.text = "https://teachingcenter.msu.edu/consultations";
+                previousPath = "C";
+                if (wentBack == false)
+                {
+                    prevChoiceIDHolder = prevChoiceID;
+                    prevPathList.Add(prevChoiceIDHolder);
+                }
+                else
+                {
+                    wentBack = false;
+                }
+                prevChoiceID = 16;
                 StartCoroutine(TypeText());
                 return;
             }
@@ -761,6 +1076,18 @@ public class Main: MonoBehaviour
             bigTownLeftMiddleSignHover.SetActive(false);
             bigTownRightMiddleSignHover.SetActive(false);
             bigTownRightMostSignHover.SetActive(false);
+            numberOfDecisions++;
+            previousPath = "D";
+            if (wentBack == false)
+            {
+                prevChoiceIDHolder = prevChoiceID;
+                prevPathList.Add(prevChoiceIDHolder);
+            }
+            else
+            {
+                wentBack = false;
+            }
+            prevChoiceID = 17;
             StartCoroutine(TypeText());
             return;
         }
@@ -980,6 +1307,400 @@ public class Main: MonoBehaviour
         }
     }
 
+    //public void PreviousDecision()
+    //{
+    //    if (numberOfDecisions-1 == 0)
+    //    {
+    //        numberOfDecisions--;
+    //        twoPathSign.SetActive(false);
+    //        threePathSign.SetActive(false);
+    //        yesButton.SetActive(false);
+    //        noButton.SetActive(false);
+    //        thirdButton.SetActive(false);
+    //        fourthButton.SetActive(false);
+    //        twoPathImage.SetActive(false);
+    //        threePathImage.SetActive(false);
+    //        placeHolderBackground.SetActive(false);
+    //        MSUITZoneImage.SetActive(false);
+    //        LTDZoneImage.SetActive(false);
+    //        EdTechZoneImage.SetActive(false);
+    //        CTLIZoneImage.SetActive(false);
+    //        d2LCourseBuildHouse.SetActive(false);
+    //        accessibilityHouse.SetActive(false);
+    //        multimediaHouse.SetActive(false);
+    //        redevelopCourseHouse.SetActive(false);
+    //        twoPathSignFirst.SetActive(false);
+    //        twoPathSignSecond.SetActive(false);
+    //        threePathSignFirst.SetActive(false);
+    //        threePathSignSecond.SetActive(false);
+    //        threePathSignThird.SetActive(false);
+    //        bigTownBackground.SetActive(false);
+    //        bigTownLeftMostSign.SetActive(false);
+    //        bigTownLeftMiddleSign.SetActive(false);
+    //        bigTownRightMiddleSign.SetActive(false);
+    //        bigTownRightMostSign.SetActive(false);
+    //        bigTownLeftMostSignHover.SetActive(false);
+    //        bigTownLeftMiddleSignHover.SetActive(false);
+    //        bigTownRightMiddleSignHover.SetActive(false);
+    //        bigTownRightMostSignHover.SetActive(false);
+    //        scrollClosed.SetActive(false);
+    //        fourPathActive = false;
+    //        onBPath = false;
+    //        Continue();
+    //        return;
+    //    }
+    //    if (previousPath == "A" && numberOfDecisions > 0)
+    //    {
+    //        numberOfDecisions-= 2;
+    //        twoPathSign.SetActive(false);
+    //        threePathSign.SetActive(false);
+    //        yesButton.SetActive(false);
+    //        noButton.SetActive(false);
+    //        thirdButton.SetActive(false);
+    //        fourthButton.SetActive(false);
+    //        twoPathImage.SetActive(false);
+    //        threePathImage.SetActive(false);
+    //        placeHolderBackground.SetActive(false);
+    //        MSUITZoneImage.SetActive(false);
+    //        LTDZoneImage.SetActive(false);
+    //        EdTechZoneImage.SetActive(false);
+    //        CTLIZoneImage.SetActive(false);
+    //        d2LCourseBuildHouse.SetActive(false);
+    //        accessibilityHouse.SetActive(false);
+    //        multimediaHouse.SetActive(false);
+    //        redevelopCourseHouse.SetActive(false);
+    //        twoPathSignFirst.SetActive(false);
+    //        twoPathSignSecond.SetActive(false);
+    //        threePathSignFirst.SetActive(false);
+    //        threePathSignSecond.SetActive(false);
+    //        threePathSignThird.SetActive(false);
+    //        bigTownBackground.SetActive(false);
+    //        bigTownLeftMostSign.SetActive(false);
+    //        bigTownLeftMiddleSign.SetActive(false);
+    //        bigTownRightMiddleSign.SetActive(false);
+    //        bigTownRightMostSign.SetActive(false);
+    //        bigTownLeftMostSignHover.SetActive(false);
+    //        bigTownLeftMiddleSignHover.SetActive(false);
+    //        bigTownRightMiddleSignHover.SetActive(false);
+    //        bigTownRightMostSignHover.SetActive(false);
+    //        scrollClosed.SetActive(false);
+    //        if (onBPath)
+    //        {
+    //            No();
+    //        }
+    //        else
+    //        {
+    //            Yes();
+    //        }
+    //        return;
+    //    }
+    //    if (previousPath == "B" && numberOfDecisions > 0)
+    //    {
+    //        numberOfDecisions-= 2;
+    //        twoPathSign.SetActive(false);
+    //        threePathSign.SetActive(false);
+    //        yesButton.SetActive(false);
+    //        noButton.SetActive(false);
+    //        thirdButton.SetActive(false);
+    //        fourthButton.SetActive(false);
+    //        twoPathImage.SetActive(false);
+    //        threePathImage.SetActive(false);
+    //        placeHolderBackground.SetActive(false);
+    //        d2LCourseBuildHouse.SetActive(false);
+    //        MSUITZoneImage.SetActive(false);
+    //        LTDZoneImage.SetActive(false);
+    //        EdTechZoneImage.SetActive(false);
+    //        CTLIZoneImage.SetActive(false);
+    //        accessibilityHouse.SetActive(false);
+    //        multimediaHouse.SetActive(false);
+    //        redevelopCourseHouse.SetActive(false);
+    //        twoPathSignFirst.SetActive(false);
+    //        twoPathSignSecond.SetActive(false);
+    //        threePathSignFirst.SetActive(false);
+    //        threePathSignSecond.SetActive(false);
+    //        threePathSignThird.SetActive(false);
+    //        bigTownBackground.SetActive(false);
+    //        bigTownLeftMostSign.SetActive(false);
+    //        bigTownLeftMiddleSign.SetActive(false);
+    //        bigTownRightMiddleSign.SetActive(false);
+    //        bigTownRightMostSign.SetActive(false);
+    //        bigTownLeftMostSignHover.SetActive(false);
+    //        bigTownLeftMiddleSignHover.SetActive(false);
+    //        bigTownRightMiddleSignHover.SetActive(false);
+    //        bigTownRightMostSignHover.SetActive(false);
+    //        scrollClosed.SetActive(false);
+    //        if (fourPathActive)
+    //        {
+    //            Yes();
+    //        }
+    //        else
+    //        {
+    //            No();
+    //        }
+    //        return;
+    //    }
+    //    if (previousPath == "C" && numberOfDecisions > 0)
+    //    {
+    //        numberOfDecisions -= 2;
+    //        twoPathSign.SetActive(false);
+    //        threePathSign.SetActive(false);
+    //        yesButton.SetActive(false);
+    //        noButton.SetActive(false);
+    //        thirdButton.SetActive(false);
+    //        fourthButton.SetActive(false);
+    //        twoPathImage.SetActive(false);
+    //        threePathImage.SetActive(false);
+    //        placeHolderBackground.SetActive(false);
+    //        MSUITZoneImage.SetActive(false);
+    //        LTDZoneImage.SetActive(false);
+    //        EdTechZoneImage.SetActive(false);
+    //        CTLIZoneImage.SetActive(false);
+    //        d2LCourseBuildHouse.SetActive(false);
+    //        accessibilityHouse.SetActive(false);
+    //        multimediaHouse.SetActive(false);
+    //        redevelopCourseHouse.SetActive(false);
+    //        twoPathSignFirst.SetActive(false);
+    //        twoPathSignSecond.SetActive(false);
+    //        threePathSignFirst.SetActive(false);
+    //        threePathSignSecond.SetActive(false);
+    //        threePathSignThird.SetActive(false);
+    //        bigTownBackground.SetActive(false);
+    //        bigTownLeftMostSign.SetActive(false);
+    //        bigTownLeftMiddleSign.SetActive(false);
+    //        bigTownRightMiddleSign.SetActive(false);
+    //        bigTownRightMostSign.SetActive(false);
+    //        bigTownLeftMostSignHover.SetActive(false);
+    //        bigTownLeftMiddleSignHover.SetActive(false);
+    //        bigTownRightMiddleSignHover.SetActive(false);
+    //        bigTownRightMostSignHover.SetActive(false);
+    //        scrollClosed.SetActive(false);
+    //        if (onBPath)
+    //        {
+    //            No();
+    //        }
+    //        if (fourPathActive)
+    //        {
+    //            Yes();
+    //        }
+    //        else
+    //        {
+    //            Third();
+    //        }
+    //        return;
+    //    }
+    //    if (previousPath == "D" && numberOfDecisions > 0)
+    //    {
+    //        numberOfDecisions -= 2;
+    //        twoPathSign.SetActive(false);
+    //        threePathSign.SetActive(false);
+    //        yesButton.SetActive(false);
+    //        noButton.SetActive(false);
+    //        thirdButton.SetActive(false);
+    //        fourthButton.SetActive(false);
+    //        twoPathImage.SetActive(false);
+    //        threePathImage.SetActive(false);
+    //        placeHolderBackground.SetActive(false);
+    //        MSUITZoneImage.SetActive(false);
+    //        LTDZoneImage.SetActive(false);
+    //        EdTechZoneImage.SetActive(false);
+    //        CTLIZoneImage.SetActive(false);
+    //        d2LCourseBuildHouse.SetActive(false);
+    //        accessibilityHouse.SetActive(false);
+    //        multimediaHouse.SetActive(false);
+    //        redevelopCourseHouse.SetActive(false);
+    //        twoPathSignFirst.SetActive(false);
+    //        twoPathSignSecond.SetActive(false);
+    //        threePathSignFirst.SetActive(false);
+    //        threePathSignSecond.SetActive(false);
+    //        threePathSignThird.SetActive(false);
+    //        bigTownBackground.SetActive(false);
+    //        bigTownLeftMostSign.SetActive(false);
+    //        bigTownLeftMiddleSign.SetActive(false);
+    //        bigTownRightMiddleSign.SetActive(false);
+    //        bigTownRightMostSign.SetActive(false);
+    //        bigTownLeftMostSignHover.SetActive(false);
+    //        bigTownLeftMiddleSignHover.SetActive(false);
+    //        bigTownRightMiddleSignHover.SetActive(false);
+    //        bigTownRightMostSignHover.SetActive(false);
+    //        scrollClosed.SetActive(false);
+    //        Yes();
+    //        return;
+    //    }
+    //    if (previousPath == null)
+    //    {
+    //        return;
+    //    }
+    //}
+
+    public void GoBack()
+    {
+        if (numberOfDecisions != 0)
+        {
+            twoPathSign.SetActive(false);
+            threePathSign.SetActive(false);
+            yesButton.SetActive(false);
+            noButton.SetActive(false);
+            thirdButton.SetActive(false);
+            fourthButton.SetActive(false);
+            twoPathImage.SetActive(false);
+            threePathImage.SetActive(false);
+            placeHolderBackground.SetActive(false);
+            MSUITZoneImage.SetActive(false);
+            LTDZoneImage.SetActive(false);
+            EdTechZoneImage.SetActive(false);
+            CTLIZoneImage.SetActive(false);
+            d2LCourseBuildHouse.SetActive(false);
+            accessibilityHouse.SetActive(false);
+            multimediaHouse.SetActive(false);
+            redevelopCourseHouse.SetActive(false);
+            twoPathSignFirst.SetActive(false);
+            twoPathSignSecond.SetActive(false);
+            threePathSignFirst.SetActive(false);
+            threePathSignSecond.SetActive(false);
+            threePathSignThird.SetActive(false);
+            bigTownBackground.SetActive(false);
+            bigTownLeftMostSign.SetActive(false);
+            bigTownLeftMiddleSign.SetActive(false);
+            bigTownRightMiddleSign.SetActive(false);
+            bigTownRightMostSign.SetActive(false);
+            bigTownLeftMostSignHover.SetActive(false);
+            bigTownLeftMiddleSignHover.SetActive(false);
+            bigTownRightMiddleSignHover.SetActive(false);
+            bigTownRightMostSignHover.SetActive(false);
+            scrollClosed.SetActive(false);
+            wentBack = true;
+        }
+        else
+        {
+            return;
+        }
+        if (prevPathList.Count > 0)
+        {
+            int lastValue = prevPathList[prevPathList.Count - 1];
+            prevPathList.RemoveAt(prevPathList.Count - 1);
+            switch (lastValue)
+            {
+                case 0:
+                    Continue();
+                    break;
+                case 1:
+                    numberOfDecisions = 0;
+                    onBPath = false;
+                    Yes();
+                    break;
+                case 2:
+                    numberOfDecisions = 1;
+                    onBPath = true;
+                    fourPathActive = false;
+                    Yes();
+                    break;
+                case 3:
+                    numberOfDecisions = 1;
+                    onBPath = false;
+                    fourPathActive = false;
+                    Yes();
+                    break;
+                case 4:
+                    numberOfDecisions = 2;
+                    onBPath = true;
+                    fourPathActive = false;
+                    Yes();
+                    break;
+                case 5:
+                    numberOfDecisions = 2;
+                    onBPath = false;
+                    fourPathActive = false;
+                    Yes();
+                    break;
+                case 6:
+                    numberOfDecisions = 2;
+                    fourPathActive = true;
+                    Yes();
+                    break;
+                case 7:
+                    numberOfDecisions = 0;
+                    fourPathActive = false;
+                    No();
+                    break;
+                case 8:
+                    numberOfDecisions = 1;
+                    onBPath = true;
+                    fourPathActive = false;
+                    No();
+                    break;
+                case 9:
+                    numberOfDecisions = 1;
+                    onBPath = false;
+                    fourPathActive = false;
+                    No();
+                    break;
+                case 10:
+                    numberOfDecisions = 2;
+                    onBPath = true;
+                    fourPathActive = false;
+                    No();
+                    break;
+                case 11:
+                    numberOfDecisions = 2;
+                    onBPath = false;
+                    fourPathActive = false;
+                    No();
+                    break;
+                case 12:
+                    numberOfDecisions = 2;
+                    fourPathActive = true;
+                    No();
+                    break;
+                case 13:
+                    numberOfDecisions = 2;
+                    fourPathActive = true;
+                    Third();
+                    break;
+                case 14:
+                    numberOfDecisions = 0;
+                    onBPath = false;
+                    fourPathActive = false;
+                    Third();
+                    break;
+                case 15:
+                    numberOfDecisions = 1;
+                    onBPath = true;
+                    fourPathActive = false;
+                    Third();
+                    break;
+                case 16:
+                    numberOfDecisions = 1;
+                    onBPath = false;
+                    fourPathActive = false;
+                    Third();
+                    break;
+                case 17:
+                    numberOfDecisions = 2;
+                    Fourth();
+                    break;
+                default:
+                    Debug.LogWarning("Unknown backtrack value: " + lastValue);
+                    break;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Tried to GoBack() but prevPathList is empty.");
+        }
+    }
+
+    public void PreviousDecisionButtonHovered()
+    {
+        prevButton.SetActive(false);
+        prevButtonHover.SetActive(true);
+    }
+
+    public void PreviousDecisionButtonDehovered()
+    {
+        prevButton.SetActive(true);
+        prevButtonHover.SetActive(false);
+    }
+
     public void UpdateMatthiasText()
     {
         if (matthiasTextAmount == 1)
@@ -1037,6 +1758,10 @@ public class Main: MonoBehaviour
             guyHappySprite.SetActive(false);
             guyCastingSprite.SetActive(false);
             guyHoldingStaffSprite.SetActive(false);
+            threePathSign.SetActive(true);
+            yesButton.SetActive(true);
+            noButton.SetActive(true);
+            thirdButton.SetActive(true);
             textBubbleText.text = "Click which sign best aligns with your inquiry.";
             StartCoroutine(TypeText());
             matthiasTextAmount++;
@@ -1050,12 +1775,9 @@ public class Main: MonoBehaviour
             guyCastingSprite.SetActive(false);
             guyHoldingStaffSprite.SetActive(false); 
             textBubble.SetActive(false);
-            threePathSign.SetActive(true);
-            yesButton.SetActive(true);
-            noButton.SetActive(true);
-            thirdButton.SetActive(true);
             textBubbleText.text = "";
             matthiasTextAmount++;
+            prevButton.SetActive(true);
             return;
         }
         if (matthiasTextAmount == 7)
@@ -1078,6 +1800,10 @@ public class Main: MonoBehaviour
             guyCastingSprite.SetActive(false);
             guyHoldingStaffSprite.SetActive(false);
             textBubbleText.text = "Which of the following does your question best align to?";
+            bigTownLeftMostSign.SetActive(true);
+            bigTownLeftMiddleSign.SetActive(true);
+            bigTownRightMiddleSign.SetActive(true);
+            bigTownRightMostSign.SetActive(true);
             StartCoroutine(TypeText());
             matthiasTextAmount++;
             return;
@@ -1091,10 +1817,6 @@ public class Main: MonoBehaviour
             guyHoldingStaffSprite.SetActive(false); 
             textBubble.SetActive(false);
             textBubbleText.text = "";
-            bigTownLeftMostSign.SetActive(true);
-            bigTownLeftMiddleSign.SetActive(true);
-            bigTownRightMiddleSign.SetActive(true);
-            bigTownRightMostSign.SetActive(true);
             yesButton.SetActive(true);
             noButton.SetActive(true);
             thirdButton.SetActive(true);
@@ -1136,6 +1858,10 @@ public class Main: MonoBehaviour
             guyCastingSprite.SetActive(false);
             guyHoldingStaffSprite.SetActive(false);
             textBubbleText.text = "But we can get more specific!";
+            threePathSign.SetActive(true);
+            yesButton.SetActive(true);
+            noButton.SetActive(true);
+            thirdButton.SetActive(true);
             StartCoroutine(TypeText());
             matthiasTextAmount++;
             return;
@@ -1149,10 +1875,6 @@ public class Main: MonoBehaviour
             guyHoldingStaffSprite.SetActive(false); 
             textBubble.SetActive(false);
             textBubbleText.text = "";
-            threePathSign.SetActive(true);
-            yesButton.SetActive(true);
-            noButton.SetActive(true);
-            thirdButton.SetActive(true);
             matthiasTextAmount++;
             return;
         }
@@ -1416,9 +2138,6 @@ public class Main: MonoBehaviour
             guyHoldingStaffSprite.SetActive(false);
             textBubble.SetActive(false);
             textBubbleText.text = "";
-            twoPathSign.SetActive(true);
-            yesButton.SetActive(true);
-            noButton.SetActive(true);
             matthiasTextAmount++;
             return;
         }
