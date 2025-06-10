@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using static Unity.VisualScripting.Member;
 using UnityEngine.Video;
+using System;
 
 public class Main: MonoBehaviour
 {
@@ -1534,158 +1535,161 @@ public class Main: MonoBehaviour
 
     public void GoBack()
     {
-        if (numberOfDecisions != 0)
+        if (guySprite.activeSelf == false && guyHappySprite.activeSelf == false && guyCastingSprite.activeSelf == false && guyHoldingStaffSprite.activeSelf == false)
         {
-            twoPathSign.SetActive(false);
-            threePathSign.SetActive(false);
-            yesButton.SetActive(false);
-            noButton.SetActive(false);
-            thirdButton.SetActive(false);
-            fourthButton.SetActive(false);
-            twoPathImage.SetActive(false);
-            threePathImage.SetActive(false);
-            placeHolderBackground.SetActive(false);
-            MSUITZoneImage.SetActive(false);
-            LTDZoneImage.SetActive(false);
-            EdTechZoneImage.SetActive(false);
-            CTLIZoneImage.SetActive(false);
-            d2LCourseBuildHouse.SetActive(false);
-            accessibilityHouse.SetActive(false);
-            multimediaHouse.SetActive(false);
-            redevelopCourseHouse.SetActive(false);
-            twoPathSignFirst.SetActive(false);
-            twoPathSignSecond.SetActive(false);
-            threePathSignFirst.SetActive(false);
-            threePathSignSecond.SetActive(false);
-            threePathSignThird.SetActive(false);
-            bigTownBackground.SetActive(false);
-            bigTownLeftMostSign.SetActive(false);
-            bigTownLeftMiddleSign.SetActive(false);
-            bigTownRightMiddleSign.SetActive(false);
-            bigTownRightMostSign.SetActive(false);
-            bigTownLeftMostSignHover.SetActive(false);
-            bigTownLeftMiddleSignHover.SetActive(false);
-            bigTownRightMiddleSignHover.SetActive(false);
-            bigTownRightMostSignHover.SetActive(false);
-            scrollClosed.SetActive(false);
-            wentBack = true;
-        }
-        else
-        {
-            return;
-        }
-        if (prevPathList.Count > 0)
-        {
-            int lastValue = prevPathList[prevPathList.Count - 1];
-            prevPathList.RemoveAt(prevPathList.Count - 1);
-            switch (lastValue)
+            if (numberOfDecisions != 0)
             {
-                case 0:
-                    Continue();
-                    break;
-                case 1:
-                    numberOfDecisions = 0;
-                    onBPath = false;
-                    Yes();
-                    break;
-                case 2:
-                    numberOfDecisions = 1;
-                    onBPath = true;
-                    fourPathActive = false;
-                    Yes();
-                    break;
-                case 3:
-                    numberOfDecisions = 1;
-                    onBPath = false;
-                    fourPathActive = false;
-                    Yes();
-                    break;
-                case 4:
-                    numberOfDecisions = 2;
-                    onBPath = true;
-                    fourPathActive = false;
-                    Yes();
-                    break;
-                case 5:
-                    numberOfDecisions = 2;
-                    onBPath = false;
-                    fourPathActive = false;
-                    Yes();
-                    break;
-                case 6:
-                    numberOfDecisions = 2;
-                    fourPathActive = true;
-                    Yes();
-                    break;
-                case 7:
-                    numberOfDecisions = 0;
-                    fourPathActive = false;
-                    No();
-                    break;
-                case 8:
-                    numberOfDecisions = 1;
-                    onBPath = true;
-                    fourPathActive = false;
-                    No();
-                    break;
-                case 9:
-                    numberOfDecisions = 1;
-                    onBPath = false;
-                    fourPathActive = false;
-                    No();
-                    break;
-                case 10:
-                    numberOfDecisions = 2;
-                    onBPath = true;
-                    fourPathActive = false;
-                    No();
-                    break;
-                case 11:
-                    numberOfDecisions = 2;
-                    onBPath = false;
-                    fourPathActive = false;
-                    No();
-                    break;
-                case 12:
-                    numberOfDecisions = 2;
-                    fourPathActive = true;
-                    No();
-                    break;
-                case 13:
-                    numberOfDecisions = 2;
-                    fourPathActive = true;
-                    Third();
-                    break;
-                case 14:
-                    numberOfDecisions = 0;
-                    onBPath = false;
-                    fourPathActive = false;
-                    Third();
-                    break;
-                case 15:
-                    numberOfDecisions = 1;
-                    onBPath = true;
-                    fourPathActive = false;
-                    Third();
-                    break;
-                case 16:
-                    numberOfDecisions = 1;
-                    onBPath = false;
-                    fourPathActive = false;
-                    Third();
-                    break;
-                case 17:
-                    numberOfDecisions = 2;
-                    Fourth();
-                    break;
-                default:
-                    Debug.LogWarning("Unknown backtrack value: " + lastValue);
-                    break;
+                twoPathSign.SetActive(false);
+                threePathSign.SetActive(false);
+                yesButton.SetActive(false);
+                noButton.SetActive(false);
+                thirdButton.SetActive(false);
+                fourthButton.SetActive(false);
+                twoPathImage.SetActive(false);
+                threePathImage.SetActive(false);
+                placeHolderBackground.SetActive(false);
+                MSUITZoneImage.SetActive(false);
+                LTDZoneImage.SetActive(false);
+                EdTechZoneImage.SetActive(false);
+                CTLIZoneImage.SetActive(false);
+                d2LCourseBuildHouse.SetActive(false);
+                accessibilityHouse.SetActive(false);
+                multimediaHouse.SetActive(false);
+                redevelopCourseHouse.SetActive(false);
+                twoPathSignFirst.SetActive(false);
+                twoPathSignSecond.SetActive(false);
+                threePathSignFirst.SetActive(false);
+                threePathSignSecond.SetActive(false);
+                threePathSignThird.SetActive(false);
+                bigTownBackground.SetActive(false);
+                bigTownLeftMostSign.SetActive(false);
+                bigTownLeftMiddleSign.SetActive(false);
+                bigTownRightMiddleSign.SetActive(false);
+                bigTownRightMostSign.SetActive(false);
+                bigTownLeftMostSignHover.SetActive(false);
+                bigTownLeftMiddleSignHover.SetActive(false);
+                bigTownRightMiddleSignHover.SetActive(false);
+                bigTownRightMostSignHover.SetActive(false);
+                scrollClosed.SetActive(false);
+                wentBack = true;
             }
-        }
-        else
-        {
-            Debug.LogWarning("Tried to GoBack() but prevPathList is empty.");
+            else
+            {
+                return;
+            }
+            if (prevPathList.Count > 0)
+            {
+                int lastValue = prevPathList[prevPathList.Count - 1];
+                prevPathList.RemoveAt(prevPathList.Count - 1);
+                switch (lastValue)
+                {
+                    case 0:
+                        Continue();
+                        break;
+                    case 1:
+                        numberOfDecisions = 0;
+                        onBPath = false;
+                        Yes();
+                        break;
+                    case 2:
+                        numberOfDecisions = 1;
+                        onBPath = true;
+                        fourPathActive = false;
+                        Yes();
+                        break;
+                    case 3:
+                        numberOfDecisions = 1;
+                        onBPath = false;
+                        fourPathActive = false;
+                        Yes();
+                        break;
+                    case 4:
+                        numberOfDecisions = 2;
+                        onBPath = true;
+                        fourPathActive = false;
+                        Yes();
+                        break;
+                    case 5:
+                        numberOfDecisions = 2;
+                        onBPath = false;
+                        fourPathActive = false;
+                        Yes();
+                        break;
+                    case 6:
+                        numberOfDecisions = 2;
+                        fourPathActive = true;
+                        Yes();
+                        break;
+                    case 7:
+                        numberOfDecisions = 0;
+                        fourPathActive = false;
+                        No();
+                        break;
+                    case 8:
+                        numberOfDecisions = 1;
+                        onBPath = true;
+                        fourPathActive = false;
+                        No();
+                        break;
+                    case 9:
+                        numberOfDecisions = 1;
+                        onBPath = false;
+                        fourPathActive = false;
+                        No();
+                        break;
+                    case 10:
+                        numberOfDecisions = 2;
+                        onBPath = true;
+                        fourPathActive = false;
+                        No();
+                        break;
+                    case 11:
+                        numberOfDecisions = 2;
+                        onBPath = false;
+                        fourPathActive = false;
+                        No();
+                        break;
+                    case 12:
+                        numberOfDecisions = 2;
+                        fourPathActive = true;
+                        No();
+                        break;
+                    case 13:
+                        numberOfDecisions = 2;
+                        fourPathActive = true;
+                        Third();
+                        break;
+                    case 14:
+                        numberOfDecisions = 0;
+                        onBPath = false;
+                        fourPathActive = false;
+                        Third();
+                        break;
+                    case 15:
+                        numberOfDecisions = 1;
+                        onBPath = true;
+                        fourPathActive = false;
+                        Third();
+                        break;
+                    case 16:
+                        numberOfDecisions = 1;
+                        onBPath = false;
+                        fourPathActive = false;
+                        Third();
+                        break;
+                    case 17:
+                        numberOfDecisions = 2;
+                        Fourth();
+                        break;
+                    default:
+                        Debug.LogWarning("Unknown backtrack value: " + lastValue);
+                        break;
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Tried to GoBack() but prevPathList is empty.");
+            }
         }
     }
 
@@ -1773,7 +1777,7 @@ public class Main: MonoBehaviour
             guySprite.SetActive(false);
             guyHappySprite.SetActive(false);
             guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false); 
+            guyHoldingStaffSprite.SetActive(false);
             textBubble.SetActive(false);
             textBubbleText.text = "";
             matthiasTextAmount++;
@@ -1814,7 +1818,7 @@ public class Main: MonoBehaviour
             guySprite.SetActive(false);
             guyHappySprite.SetActive(false);
             guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false); 
+            guyHoldingStaffSprite.SetActive(false);
             textBubble.SetActive(false);
             textBubbleText.text = "";
             yesButton.SetActive(true);
@@ -1872,7 +1876,7 @@ public class Main: MonoBehaviour
             guySprite.SetActive(false);
             guyHappySprite.SetActive(false);
             guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false); 
+            guyHoldingStaffSprite.SetActive(false);
             textBubble.SetActive(false);
             textBubbleText.text = "";
             matthiasTextAmount++;
@@ -1908,7 +1912,7 @@ public class Main: MonoBehaviour
             guySprite.SetActive(false);
             guyHappySprite.SetActive(false);
             guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false); 
+            guyHoldingStaffSprite.SetActive(false);
             textBubble.SetActive(false);
             textBubbleText.text = "";
             matthiasTextAmount++;
@@ -2141,6 +2145,17 @@ public class Main: MonoBehaviour
             matthiasTextAmount++;
             return;
         }
+    }
+
+    public void SendEmail()
+    {
+        string email = "recipient@example.com";
+        string subject = Uri.EscapeDataString("Your Subject Here");
+        string body = Uri.EscapeDataString("Hello, this is the body of the email.");
+
+        string mailto = $"mailto:{email}?subject={subject}&body={body}";
+
+        Application.OpenURL(mailto);
     }
 
     public IEnumerator TypeText()
