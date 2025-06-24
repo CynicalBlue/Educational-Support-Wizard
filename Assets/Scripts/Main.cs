@@ -108,6 +108,8 @@ public class Main: MonoBehaviour
     public string prevPathForVideo = "";
 
     public string currentEmailPath = "FailSafePlaceholder@example.com";
+    public bool cutsceneBlocker = false;
+    public AudioSource forestMusic;
 
     private void Awake()
     {
@@ -161,13 +163,14 @@ public class Main: MonoBehaviour
         {
             if (numberOfDecisions == 0 && onBPath != true)
             {
-                if (!didVideoPlay)
+                if (!didVideoPlay && !cutsceneBlocker)
                 {
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
                     prevPathForVideo = "yes";
                     mainCameraVideoPlayer.Play();
+                    cutsceneBlocker = true;
                     return;
                 }
                 didVideoPlay = false;
@@ -319,13 +322,14 @@ public class Main: MonoBehaviour
             }
             if (numberOfDecisions == 2 && fourPathActive != true && onBPath == true)
             {
-                if (!didVideoPlay)
+                if (!didVideoPlay && !cutsceneBlocker)
                 {
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
                     prevPathForVideo = "yes";
                     mainCameraVideoPlayer.Play();
+                    cutsceneBlocker = true;
                     return;
                 }
                 didVideoPlay = false;
@@ -355,6 +359,7 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                linkTextText.text = "https://broad.msu.edu/lxd/";
                 previousPath = "A";
                 if (wentBack == false)
                 {
@@ -371,13 +376,14 @@ public class Main: MonoBehaviour
             }
             if (numberOfDecisions == 2 && fourPathActive != true && onBPath == false)
             {
-                if (!didVideoPlay)
+                if (!didVideoPlay && !cutsceneBlocker)
                 {
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
                     prevPathForVideo = "yes";
                     mainCameraVideoPlayer.Play();
+                    cutsceneBlocker = true;
                     return;
                 }
                 didVideoPlay = false;
@@ -407,6 +413,7 @@ public class Main: MonoBehaviour
                 threePathSignFirst.SetActive(false);
                 threePathSignSecond.SetActive(false);
                 threePathSignThird.SetActive(false);
+                linkTextText.text = "https://broad.msu.edu/lxd/";
                 previousPath = "A";
                 if (wentBack == false)
                 {
@@ -432,7 +439,7 @@ public class Main: MonoBehaviour
                 textBubbleText.text = "Looks like you will need to contact LTD’s Learning Experience Manager about your questions!";
                 matthiasTextAmount = 10;
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                currentEmailPath = "benne784@broad.msu.edu";
+                currentEmailPath = "ltd.broad@msu.edu";
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
                 yesButton.SetActive(false);
@@ -530,13 +537,14 @@ public class Main: MonoBehaviour
             }
             if (numberOfDecisions == 1 && onBPath == true && fourPathActive != true)
             {
-                if (!didVideoPlay)
+                if (!didVideoPlay && !cutsceneBlocker)
                 {
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "no";
+                    prevPathForVideo = "yes";
                     mainCameraVideoPlayer.Play();
+                    cutsceneBlocker = true;
                     return;
                 }
                 didVideoPlay = false;
@@ -630,13 +638,14 @@ public class Main: MonoBehaviour
             }
             if (numberOfDecisions == 2 && fourPathActive != true && onBPath == true)
             {
-                if (!didVideoPlay)
+                if (!didVideoPlay && !cutsceneBlocker)
                 {
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "no";
+                    prevPathForVideo = "yes";
                     mainCameraVideoPlayer.Play();
+                    cutsceneBlocker = true;
                     return;
                 }
                 typingTextBubbleText.text = "";
@@ -682,13 +691,14 @@ public class Main: MonoBehaviour
             }
             if (numberOfDecisions == 2 && fourPathActive != true && onBPath == false)
             {
-                if (!didVideoPlay)
+                if (!didVideoPlay && !cutsceneBlocker)
                 {
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "no";
+                    prevPathForVideo = "yes";
                     mainCameraVideoPlayer.Play();
+                    cutsceneBlocker = true;
                     return;
                 }
                 typingTextBubbleText.text = "";
@@ -743,7 +753,7 @@ public class Main: MonoBehaviour
                 textBubbleText.text = "Looks like you will need to contact LTD’s D2L Specialist about your inquiry!";
                 matthiasTextAmount = 10;
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                currentEmailPath = "halicks@broad.msu.edu";
+                currentEmailPath = "ltd.broad@msu.edu";
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
                 yesButton.SetActive(false);
@@ -831,6 +841,10 @@ public class Main: MonoBehaviour
         wentBack = false;
         prevChoiceID = 0;
         prevChoiceIDHolder = 0;
+        if (!forestMusic.isPlaying)
+        {
+            forestMusic.Play();
+        }
         StartCoroutine(TypeText());
     }
 
@@ -847,7 +861,7 @@ public class Main: MonoBehaviour
                 guyHoldingStaffSprite.SetActive(false); 
                 textBubble.SetActive(true);
                 textBubbleText.text = "Looks like you will need to contact LTD’s Multimedia Coordinator about that question!";
-                currentEmailPath = "basset44@msu.edu";
+                currentEmailPath = "ltd.broad@msu.edu";
                 matthiasTextAmount = 10;
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
@@ -940,13 +954,14 @@ public class Main: MonoBehaviour
             }
             if (numberOfDecisions == 1 && fourPathActive != true && onBPath == true)
             {
-                if (!didVideoPlay)
+                if (!didVideoPlay && !cutsceneBlocker)
                 {
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "third";
+                    prevPathForVideo = "yes";
                     mainCameraVideoPlayer.Play();
+                    cutsceneBlocker = true;
                     return;
                 }
                 typingTextBubbleText.text = "";
@@ -991,13 +1006,14 @@ public class Main: MonoBehaviour
             }
             if (numberOfDecisions == 1 && fourPathActive != true && onBPath == false)
             {
-                if (!didVideoPlay)
+                if (!didVideoPlay && !cutsceneBlocker)
                 {
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "third";
+                    prevPathForVideo = "yes";
                     mainCameraVideoPlayer.Play();
+                    cutsceneBlocker = true;
                     return;
                 }
                 typingTextBubbleText.text = "";
@@ -1053,7 +1069,7 @@ public class Main: MonoBehaviour
             guyCastingSprite.SetActive(false);
             guyHoldingStaffSprite.SetActive(false); textBubble.SetActive(true);
             textBubbleText.text = "Looks like you will need to contact LTD’s Accessibility and Quality Matters expert about your Inquiry!";
-            currentEmailPath = "wellman9@msu.edu";
+            currentEmailPath = "ltd.broad@msu.edu";
             matthiasTextAmount = 10;
             yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
             twoPathSign.SetActive(false);
