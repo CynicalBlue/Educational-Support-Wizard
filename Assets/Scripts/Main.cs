@@ -110,7 +110,7 @@ public class Main: MonoBehaviour
     public string currentEmailPath = "FailSafePlaceholder@example.com";
     public bool cutsceneBlocker = false;
     public AudioSource forestMusic;
-
+    public AudioSource scrollOpenSound;
     private void Awake()
     {
         linkTextText = linkText.GetComponent<TMP_Text>();
@@ -439,7 +439,7 @@ public class Main: MonoBehaviour
                 textBubbleText.text = "Looks like you will need to contact LTD’s Learning Experience Manager about your questions!";
                 matthiasTextAmount = 10;
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                currentEmailPath = "ltd.broad@msu.edu";
+                currentEmailPath = "benne784@broad.msu.edu";
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
                 yesButton.SetActive(false);
@@ -542,7 +542,7 @@ public class Main: MonoBehaviour
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "yes";
+                    prevPathForVideo = "no";
                     mainCameraVideoPlayer.Play();
                     cutsceneBlocker = true;
                     return;
@@ -643,7 +643,7 @@ public class Main: MonoBehaviour
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "yes";
+                    prevPathForVideo = "no";
                     mainCameraVideoPlayer.Play();
                     cutsceneBlocker = true;
                     return;
@@ -696,7 +696,7 @@ public class Main: MonoBehaviour
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "yes";
+                    prevPathForVideo = "no";
                     mainCameraVideoPlayer.Play();
                     cutsceneBlocker = true;
                     return;
@@ -753,7 +753,7 @@ public class Main: MonoBehaviour
                 textBubbleText.text = "Looks like you will need to contact LTD’s D2L Specialist about your inquiry!";
                 matthiasTextAmount = 10;
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                currentEmailPath = "ltd.broad@msu.edu";
+                currentEmailPath = "halicks@broad.msu.edu";
                 twoPathSign.SetActive(false);
                 threePathSign.SetActive(false);
                 yesButton.SetActive(false);
@@ -861,7 +861,7 @@ public class Main: MonoBehaviour
                 guyHoldingStaffSprite.SetActive(false); 
                 textBubble.SetActive(true);
                 textBubbleText.text = "Looks like you will need to contact LTD’s Multimedia Coordinator about that question!";
-                currentEmailPath = "ltd.broad@msu.edu";
+                currentEmailPath = "basset44@msu.edu";
                 matthiasTextAmount = 10;
                 yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
                 twoPathSign.SetActive(false);
@@ -959,7 +959,7 @@ public class Main: MonoBehaviour
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "yes";
+                    prevPathForVideo = "third";
                     mainCameraVideoPlayer.Play();
                     cutsceneBlocker = true;
                     return;
@@ -1011,7 +1011,7 @@ public class Main: MonoBehaviour
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "yes";
+                    prevPathForVideo = "thirdws";
                     mainCameraVideoPlayer.Play();
                     cutsceneBlocker = true;
                     return;
@@ -1069,7 +1069,7 @@ public class Main: MonoBehaviour
             guyCastingSprite.SetActive(false);
             guyHoldingStaffSprite.SetActive(false); textBubble.SetActive(true);
             textBubbleText.text = "Looks like you will need to contact LTD’s Accessibility and Quality Matters expert about your Inquiry!";
-            currentEmailPath = "ltd.broad@msu.edu";
+            currentEmailPath = "wellman9@msu.edu";
             matthiasTextAmount = 10;
             yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
             twoPathSign.SetActive(false);
@@ -1233,6 +1233,7 @@ public class Main: MonoBehaviour
             scrollOpened.SetActive(true);
             //linkText.SetActive(true);
             clickHereText.SetActive(true);
+                scrollOpenSound.Play();
         }
     }
 
@@ -1255,7 +1256,10 @@ public class Main: MonoBehaviour
 
     public void OpenWebsite(string url)
     {
-        Application.OpenURL(url);
+        if (url != "")
+        {
+            Application.OpenURL(url);
+        }
     }
 
     public void Credits()
@@ -1806,6 +1810,7 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             prevButton.SetActive(true);
+            forestMusic.volume = 1;
             return;
         }
         if (matthiasTextAmount == 7)
@@ -1850,6 +1855,7 @@ public class Main: MonoBehaviour
             thirdButton.SetActive(true);
             fourthButton.SetActive(true);
             matthiasTextAmount++;
+            forestMusic.volume = 1;
             return;
         }
         if (matthiasTextAmount == 10)
@@ -1876,6 +1882,7 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
+            forestMusic.volume = 1;
             return;
         }
         if (matthiasTextAmount == 12)
@@ -1904,6 +1911,7 @@ public class Main: MonoBehaviour
             textBubble.SetActive(false);
             textBubbleText.text = "";
             matthiasTextAmount++;
+            forestMusic.volume = 1;
             return;
         }
         if (matthiasTextAmount == 14)
@@ -1941,6 +1949,7 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
+            forestMusic.volume = 1;
             return;
         }
         if (matthiasTextAmount == 17)
@@ -1978,6 +1987,7 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
+            forestMusic.volume = 1;
             return;
         }
         if (matthiasTextAmount == 20)
@@ -2015,6 +2025,7 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
+            forestMusic.volume = 1;
             return;
         }
         if (matthiasTextAmount == 23)
@@ -2044,6 +2055,7 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
+            forestMusic.volume = 1;
             return;
         }
         if (matthiasTextAmount == 26)
@@ -2081,6 +2093,7 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
+            forestMusic.volume = 1;
             return;
         }
         if (matthiasTextAmount == 29)
@@ -2118,6 +2131,7 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
+            forestMusic.volume = 1;
             return;
         }
         if (matthiasTextAmount == 32)
@@ -2155,6 +2169,7 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
+            forestMusic.volume = 1;
             return;
         }
         if (matthiasTextAmount == 35) // Where all one-liners go
@@ -2167,6 +2182,7 @@ public class Main: MonoBehaviour
             textBubble.SetActive(false);
             textBubbleText.text = "";
             matthiasTextAmount++;
+                        forestMusic.volume = 1;
             return;
         }
     }
@@ -2178,25 +2194,25 @@ public class Main: MonoBehaviour
         if (emailEntered == "basset44@msu.edu")
         {
             subject = Uri.EscapeDataString("Support Request: Audio/Video Assistance");
-            body = Uri.EscapeDataString("Hi Andy, \r\nMy name is (insert name here). I selected the “Audio/Video” path in the Educational Support Wizard game on the LTD website; and would like your help creating video or audio content. Here some information about what I wish to do: \r\nWhat is this content for? [e.g., ENG 302: Advanced Composition, a podcast featuring my colleges, etc] \r\nDelivery Format: [e.g., Fully online, hybrid, asynchronous, etc.] \r\nI would like this by: [e.g., Fall 2025] \r\nCourse Link (if applicable): [Insert link to D2L or LMS shared site] \r\n \r\nI am curious if you could help me with... \r\n[ ] Recording audio/video \r\n[ ] Creating interactive modules for students/users \r\n[ ] Edit existing content \r\n[ ] Exploring content options (i.e.; animated videos, slides, interactive modules, etc) \r\n[ ] Other: [briefly describe] \r\nLet me know what next steps you'd recommend and what information you might need from me. I’d also be happy to set up a meeting with you, if that would help. \r\nThank you so much! \r\n \r\n[Faculty Name] \r\n[Department or Program] \r\n[Contact Info, if needed] ");
+            body = Uri.EscapeDataString("Hello, \r\n\r\nMy name is (insert name here). I selected the “Audio/Video” path in the Educational Support Wizard game on the LTD website; and would like your help creating video or audio content. Here some information about what I wish to do: \r\n\r\nWhat is this content for? [e.g., ENG 302: Advanced Composition, a podcast featuring my colleges, etc] \r\n\r\nDelivery Format: [e.g., Fully online, hybrid, asynchronous, etc.] \r\n\r\nI would like this by: [e.g., Fall 2025] \r\n\r\nCourse Link (if applicable): [Insert link to D2L or LMS shared site] \r\n\r\n \r\n\r\nI am curious if you could help me with... \r\n [ ] Recording audio/video \r\n\r\n [ ] Creating interactive modules for students/users \r\n [ ] Edit existing content \r\n [ ] Exploring content options (i.e.; animated videos, slides, interactive modules, etc) \r\n [ ] Other: [briefly describe] \r\n\r\nLet me know what next steps you'd recommend and what information you might need from me. I’d also be happy to set up a meeting with you, if that would help. \r\n\r\nThank you so much! \r\n\r\n \r\n [Faculty Name] \r\n [Department or Program] \r\n [Contact Info, if needed] ");
         }
         if (emailEntered == "wellman9@msu.edu")
         {
             subject = Uri.EscapeDataString("Support Request: Course Quality Review Assistance ");
-            body = Uri.EscapeDataString("Hi Sarah, \r\nMy name is (insert name here). I selected the “course quality” path in the Educational Support Wizard game on the LTD website; and would like your help reviewing a finished course. Here some information about the course: \r\nCourse Title and Code: [e.g., ENG 302: Advanced Composition] \r\nDelivery Format: [e.g., Fully online, hybrid, asynchronous, etc.] \r\nSemester/Term: [e.g., Fall 2025] \r\nCourse Link (if available): [Insert link to D2L or LMS shared site] \r\n \r\nI am curious if you could help me with... \r\n[ ] A general course quality review \r\n[ ] Alignment with [QM / internal rubric / accessibility standards] \r\n[ ] Suggestions before an external review \r\n[ ] Specific section(s) (e.g., assessments, alignment, accessibility) \r\n[ ] Other: [briefly describe] \r\nLet me know what next steps you'd recommend and what information you might need from me. I’d also be happy to set up a meeting with you, if that would help. \r\nThank you so much! ");
+            body = Uri.EscapeDataString("Hello, \r\n\r\nMy name is (insert name here). I selected the “course quality” path in the Educational Support Wizard game on the LTD website; and would like your help reviewing a finished course. Here some information about the course: \r\n\r\nCourse Title and Code: [e.g., ENG 302: Advanced Composition] \r\n\r\nDelivery Format: [e.g., Fully online, hybrid, asynchronous, etc.] \r\n\r\nSemester/Term: [e.g., Fall 2025] \r\n\r\nCourse Link (if available): [Insert link to D2L or LMS shared site] \r\n\r\n \r\n\r\nI am curious if you could help me with... \r\n [ ] A general course quality review \r\n [ ] Alignment with [QM / internal rubric / accessibility standards] \r\n [ ] Suggestions before an external review \r\n [ ] Specific section(s) (e.g., assessments, alignment, accessibility) \r\n [ ] Other: [briefly describe] \r\n\r\nLet me know what next steps you'd recommend and what information you might need from me. I’d also be happy to set up a meeting with you, if that would help. \r\n\r\nThank you so much! \r\n\r\n[Faculty Name]  \r\n[Department or Program]  \r\n[Contact Info, if needed] ");
         }
         if (emailEntered == "benne784@broad.msu.edu")
         {
             subject = Uri.EscapeDataString("Support Request: Interest Course Development");
-            body = Uri.EscapeDataString("Hi Matt, \r\nMy name is (insert name here). I selected the “Course Redevelopment” path in the Educational Support Wizard game on the LTD website; and would like your help in developing my course on D2L. Here some information about the course: \r\nCourse Title and Code? [e.g., ENG 302: Advanced Composition, a podcast featuring my colleges, etc] \r\nDelivery Format: [e.g., Fully online, hybrid, asynchronous, etc.] \r\nCourse start: [e.g., Fall 2025] \r\nCourse Link (if applicable): [Insert link to D2L or LMS shared site] \r\n \r\nI am curious if you could help me with... \r\n[ ] Interest Selecting/Learning about tools \r\n[ ] Interest in D2L training \r\n[ ] Exploring course material \r\n[ ] Other: [briefly describe] \r\nLet me know what next steps you'd recommend and what information you might need from me. I’d also be happy to set up a meeting with you, if that would help. \r\nThank you so much! \r\n \r\n[Faculty Name] \r\n[Department or Program] \r\n[Contact Info, if needed] ");
+            body = Uri.EscapeDataString("Hello, \r\n\r\nMy name is (insert name here). I selected the “Course Redevelopment” path in the Educational Support Wizard game on the LTD website; and would like your help in developing my course on D2L. Here some information about the course: \r\n\r\nCourse Title and Code? [e.g., ENG 302: Advanced Composition, a podcast featuring my colleges, etc] \r\n\r\nDelivery Format: [e.g., Fully online, hybrid, asynchronous, etc.] \r\n\r\nCourse start: [e.g., Fall 2025] \r\n\r\nCourse Link (if applicable): [Insert link to D2L or LMS shared site] \r\n\r\n \r\n\r\nI am curious if you could help me with... \r\n [ ] Interest Selecting/Learning about tools \r\n\r\n [ ] Interest in D2L training \r\n [ ] Exploring course material \r\n [ ] Other: [briefly describe] \r\n\r\nLet me know what next steps you'd recommend and what information you might need from me. I’d also be happy to set up a meeting with you, if that would help. \r\n\r\nThank you so much! \r\n\r\n[Faculty Name]  \r\n[Department or Program]  \r\n[Contact Info, if needed] ");
         }
-        //if (emailEntered == "basset44@msu.edu")
-        //{
-        //    subject = Uri.EscapeDataString("Support Request: Audio/Video Assistance");
-        //    body = Uri.EscapeDataString("Hello, this is the body of the email.");
-        //}
+        if (emailEntered == "halicks@broad.msu.edu")
+        {
+            subject = Uri.EscapeDataString("Support Request: D2L Assistance");
+            body = Uri.EscapeDataString("My name is (insert name here). I selected the “D2L” path in the Educational Support Wizard game on the LTD website; and would like D2L support. Here some information about the course(s) I am currently working on: \r\n\r\nCourse Title and Code: [e.g., ENG 302: Advanced Composition] \r\n\r\nDelivery Format: [e.g., Fully online, hybrid, asynchronous, etc.] \r\n\r\nSemester/Term: [e.g., Fall 2025] \r\n\r\nCourse Link (if available): [Insert link to D2L or LMS shared site] \r\n\r\n \r\n\r\nI am curious if you could help me with... \r\n [ ] Building this course in D2L \r\n\r\n [ ] Embedding a video into my D2L page \r\n [ ] Adding specific widgets to my pre-existing course \r\n [ ] Suggestions for my D2L page \r\n [ ] Other: [briefly describe] \r\n\r\nLet me know what next steps you'd recommend and what information you might need from me. I’d also be happy to set up a meeting with you, if that would help. \r\n\r\nThank you so much! \r\n\r\n[Faculty Name]  \r\n[Department or Program]  \r\n[Contact Info, if needed] ");
+        }
 
-        string mailto = $"mailto:{emailEntered}?subject={subject}&body={body}";
+        string mailto = $"mailto:{"ltd.broad@msu.edu"}?subject={subject}&body={body}";
 
         if (subject != Uri.EscapeDataString("Your Subject Here"))
         {
@@ -2208,6 +2224,7 @@ public class Main: MonoBehaviour
     {
         isTyping = true;
         voiceClip.Play();
+        forestMusic.volume = .5f;
         for (int i = 0; i < textBubbleText.text.Length; i++)
         {
             typingTextBubbleText.text = textBubbleText.text.Substring(0, i + 1);
