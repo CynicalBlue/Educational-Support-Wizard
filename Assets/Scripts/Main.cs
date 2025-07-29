@@ -110,7 +110,11 @@ public class Main: MonoBehaviour
     public string currentEmailPath = "FailSafePlaceholder@example.com";
     public bool cutsceneBlocker = false;
     public AudioSource forestMusic;
+    public AudioSource LTDMusic;
+    public AudioSource CTLIMusic;
+    public AudioSource ITAndEdTechMusic;
     public AudioSource scrollOpenSound;
+
     private void Awake()
     {
         linkTextText = linkText.GetComponent<TMP_Text>();
@@ -138,6 +142,7 @@ public class Main: MonoBehaviour
     {
         mainCameraVideoPlayer.loopPointReached -= OnVideoFinished;
         mainCameraVideoPlayer.Stop();
+        Cursor.lockState = CursorLockMode.None;
         didVideoPlay = true;
         if (prevPathForVideo == "yes")
         {
@@ -165,6 +170,7 @@ public class Main: MonoBehaviour
             {
                 if (!didVideoPlay && !cutsceneBlocker)
                 {
+                    Cursor.lockState = CursorLockMode.Locked;
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
@@ -213,6 +219,11 @@ public class Main: MonoBehaviour
                 threePathSignThird.SetActive(false);
                 bigTownBackground.SetActive(true);
                 previousPath = "A";
+                if (!LTDMusic.isPlaying)
+                {
+                    forestMusic.Stop();
+                    LTDMusic.Play();
+                }
                 if (wentBack == false)
                 {
                     prevChoiceIDHolder = prevChoiceID;
@@ -324,6 +335,7 @@ public class Main: MonoBehaviour
             {
                 if (!didVideoPlay && !cutsceneBlocker)
                 {
+                    Cursor.lockState = CursorLockMode.Locked;
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
@@ -361,6 +373,8 @@ public class Main: MonoBehaviour
                 threePathSignThird.SetActive(false);
                 linkTextText.text = "https://broad.msu.edu/lxd/";
                 previousPath = "A";
+                forestMusic.Stop();
+                LTDMusic.Play();
                 if (wentBack == false)
                 {
                     prevChoiceIDHolder = prevChoiceID;
@@ -378,6 +392,7 @@ public class Main: MonoBehaviour
             {
                 if (!didVideoPlay && !cutsceneBlocker)
                 {
+                    Cursor.lockState = CursorLockMode.Locked;
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
@@ -415,6 +430,8 @@ public class Main: MonoBehaviour
                 threePathSignThird.SetActive(false);
                 linkTextText.text = "https://broad.msu.edu/lxd/";
                 previousPath = "A";
+                forestMusic.Stop();
+                LTDMusic.Play();
                 if (wentBack == false)
                 {
                     prevChoiceIDHolder = prevChoiceID;
@@ -539,6 +556,7 @@ public class Main: MonoBehaviour
             {
                 if (!didVideoPlay && !cutsceneBlocker)
                 {
+                    Cursor.lockState = CursorLockMode.Locked;
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
@@ -575,6 +593,8 @@ public class Main: MonoBehaviour
                 threePathSignThird.SetActive(false);
                 linkTextText.text = "https://tech.msu.edu/help-and-support/";
                 previousPath = "B";
+                forestMusic.Stop();
+                ITAndEdTechMusic.Play();
                 if (wentBack == false)
                 {
                     prevChoiceIDHolder = prevChoiceID;
@@ -640,6 +660,7 @@ public class Main: MonoBehaviour
             {
                 if (!didVideoPlay && !cutsceneBlocker)
                 {
+                    Cursor.lockState = CursorLockMode.Locked;
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
@@ -676,6 +697,8 @@ public class Main: MonoBehaviour
                 threePathSignThird.SetActive(false);
                 linkTextText.text = "https://tinyurl.com/msuITEdTech";
                 previousPath = "B";
+                forestMusic.Stop();
+                ITAndEdTechMusic.Play();
                 if (wentBack == false)
                 {
                     prevChoiceIDHolder = prevChoiceID;
@@ -693,6 +716,7 @@ public class Main: MonoBehaviour
             {
                 if (!didVideoPlay && !cutsceneBlocker)
                 {
+                    Cursor.lockState = CursorLockMode.Locked;
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
@@ -729,6 +753,8 @@ public class Main: MonoBehaviour
                 threePathSignThird.SetActive(false);
                 linkTextText.text = "https://teachingcenter.msu.edu/consultations";
                 previousPath = "B";
+                forestMusic.Stop();
+                CTLIMusic.Play();
                 if (wentBack == false)
                 {
                     prevChoiceIDHolder = prevChoiceID;
@@ -844,6 +870,9 @@ public class Main: MonoBehaviour
         if (!forestMusic.isPlaying)
         {
             forestMusic.Play();
+            ITAndEdTechMusic.Stop();
+            CTLIMusic.Stop();
+            LTDMusic.Stop();
         }
         StartCoroutine(TypeText());
     }
@@ -956,6 +985,7 @@ public class Main: MonoBehaviour
             {
                 if (!didVideoPlay && !cutsceneBlocker)
                 {
+                    Cursor.lockState = CursorLockMode.Locked;
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
@@ -991,6 +1021,8 @@ public class Main: MonoBehaviour
                 threePathSignThird.SetActive(false);
                 linkTextText.text = "https://tech.msu.edu/help-and-support/";
                 previousPath = "C";
+                forestMusic.Stop();
+                ITAndEdTechMusic.Play();
                 if (wentBack == false)
                 {
                     prevChoiceIDHolder = prevChoiceID;
@@ -1008,10 +1040,11 @@ public class Main: MonoBehaviour
             {
                 if (!didVideoPlay && !cutsceneBlocker)
                 {
+                    Cursor.lockState = CursorLockMode.Locked;
                     mainCameraReference = GameObject.Find("Main Camera");
                     mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
                     mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "thirdws";
+                    prevPathForVideo = "third";
                     mainCameraVideoPlayer.Play();
                     cutsceneBlocker = true;
                     return;
@@ -1043,6 +1076,8 @@ public class Main: MonoBehaviour
                 threePathSignThird.SetActive(false);
                 linkTextText.text = "https://teachingcenter.msu.edu/consultations";
                 previousPath = "C";
+                forestMusic.Stop();
+                CTLIMusic.Play();
                 if (wentBack == false)
                 {
                     prevChoiceIDHolder = prevChoiceID;
@@ -1624,24 +1659,52 @@ public class Main: MonoBehaviour
                         onBPath = true;
                         fourPathActive = false;
                         Yes();
+                        if (!forestMusic.isPlaying)
+                        {
+                            forestMusic.Play();
+                            ITAndEdTechMusic.Stop();
+                            CTLIMusic.Stop();
+                            LTDMusic.Stop();
+                        }
                         break;
                     case 3:
                         numberOfDecisions = 1;
                         onBPath = false;
                         fourPathActive = false;
                         Yes();
+                        if (!forestMusic.isPlaying)
+                        {
+                            forestMusic.Play();
+                            ITAndEdTechMusic.Stop();
+                            CTLIMusic.Stop();
+                            LTDMusic.Stop();
+                        }
                         break;
                     case 4:
                         numberOfDecisions = 2;
                         onBPath = true;
                         fourPathActive = false;
                         Yes();
+                        if (!forestMusic.isPlaying)
+                        {
+                            forestMusic.Play();
+                            ITAndEdTechMusic.Stop();
+                            CTLIMusic.Stop();
+                            LTDMusic.Stop();
+                        }
                         break;
                     case 5:
                         numberOfDecisions = 2;
                         onBPath = false;
                         fourPathActive = false;
                         Yes();
+                        if (!forestMusic.isPlaying)
+                        {
+                            forestMusic.Play();
+                            ITAndEdTechMusic.Stop();
+                            CTLIMusic.Stop();
+                            LTDMusic.Stop();
+                        }
                         break;
                     case 6:
                         numberOfDecisions = 2;
@@ -1652,30 +1715,65 @@ public class Main: MonoBehaviour
                         numberOfDecisions = 0;
                         fourPathActive = false;
                         No();
+                        if (!forestMusic.isPlaying)
+                        {
+                            forestMusic.Play();
+                            ITAndEdTechMusic.Stop();
+                            CTLIMusic.Stop();
+                            LTDMusic.Stop();
+                        }
                         break;
                     case 8:
                         numberOfDecisions = 1;
                         onBPath = true;
                         fourPathActive = false;
                         No();
+                        if (!forestMusic.isPlaying)
+                        {
+                            forestMusic.Play();
+                            ITAndEdTechMusic.Stop();
+                            CTLIMusic.Stop();
+                            LTDMusic.Stop();
+                        }
                         break;
                     case 9:
                         numberOfDecisions = 1;
                         onBPath = false;
                         fourPathActive = false;
                         No();
+                        if (!forestMusic.isPlaying)
+                        {
+                            forestMusic.Play();
+                            ITAndEdTechMusic.Stop();
+                            CTLIMusic.Stop();
+                            LTDMusic.Stop();
+                        }
                         break;
                     case 10:
                         numberOfDecisions = 2;
                         onBPath = true;
                         fourPathActive = false;
                         No();
+                        if (!forestMusic.isPlaying)
+                        {
+                            forestMusic.Play();
+                            ITAndEdTechMusic.Stop();
+                            CTLIMusic.Stop();
+                            LTDMusic.Stop();
+                        }
                         break;
                     case 11:
                         numberOfDecisions = 2;
                         onBPath = false;
                         fourPathActive = false;
                         No();
+                        if (!forestMusic.isPlaying)
+                        {
+                            forestMusic.Play();
+                            ITAndEdTechMusic.Stop();
+                            CTLIMusic.Stop();
+                            LTDMusic.Stop();
+                        }
                         break;
                     case 12:
                         numberOfDecisions = 2;
@@ -1692,18 +1790,39 @@ public class Main: MonoBehaviour
                         onBPath = false;
                         fourPathActive = false;
                         Third();
+                        if (!forestMusic.isPlaying)
+                        {
+                            forestMusic.Play();
+                            ITAndEdTechMusic.Stop();
+                            CTLIMusic.Stop();
+                            LTDMusic.Stop();
+                        }
                         break;
                     case 15:
                         numberOfDecisions = 1;
                         onBPath = true;
                         fourPathActive = false;
                         Third();
+                        if (!forestMusic.isPlaying)
+                        {
+                            forestMusic.Play();
+                            ITAndEdTechMusic.Stop();
+                            CTLIMusic.Stop();
+                            LTDMusic.Stop();
+                        }
                         break;
                     case 16:
                         numberOfDecisions = 1;
                         onBPath = false;
                         fourPathActive = false;
                         Third();
+                        if (!forestMusic.isPlaying)
+                        {
+                            forestMusic.Play();
+                            ITAndEdTechMusic.Stop();
+                            CTLIMusic.Stop();
+                            LTDMusic.Stop();
+                        }
                         break;
                     case 17:
                         numberOfDecisions = 2;
@@ -1810,7 +1929,10 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             prevButton.SetActive(true);
-            forestMusic.volume = 1;
+            forestMusic.volume = .6f;
+            CTLIMusic.volume = .6f;
+            ITAndEdTechMusic.volume = .6f;
+            LTDMusic.volume = .6f;
             return;
         }
         if (matthiasTextAmount == 7)
@@ -1855,7 +1977,10 @@ public class Main: MonoBehaviour
             thirdButton.SetActive(true);
             fourthButton.SetActive(true);
             matthiasTextAmount++;
-            forestMusic.volume = 1;
+            forestMusic.volume = .6f;
+            CTLIMusic.volume = .6f;
+            ITAndEdTechMusic.volume = .6f;
+            LTDMusic.volume = .6f;
             return;
         }
         if (matthiasTextAmount == 10)
@@ -1882,7 +2007,10 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
-            forestMusic.volume = 1;
+            forestMusic.volume = .6f;
+            CTLIMusic.volume = .6f;
+            ITAndEdTechMusic.volume = .6f;
+            LTDMusic.volume = .6f;
             return;
         }
         if (matthiasTextAmount == 12)
@@ -1911,7 +2039,10 @@ public class Main: MonoBehaviour
             textBubble.SetActive(false);
             textBubbleText.text = "";
             matthiasTextAmount++;
-            forestMusic.volume = 1;
+            forestMusic.volume = .6f;
+            CTLIMusic.volume = .6f;
+            ITAndEdTechMusic.volume = .6f;
+            LTDMusic.volume = .6f;
             return;
         }
         if (matthiasTextAmount == 14)
@@ -1949,7 +2080,10 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
-            forestMusic.volume = 1;
+            forestMusic.volume = .6f;
+            CTLIMusic.volume = .6f;
+            ITAndEdTechMusic.volume = .6f;
+            LTDMusic.volume = .6f;
             return;
         }
         if (matthiasTextAmount == 17)
@@ -1987,7 +2121,10 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
-            forestMusic.volume = 1;
+            forestMusic.volume = .6f;
+            CTLIMusic.volume = .6f;
+            ITAndEdTechMusic.volume = .6f;
+            LTDMusic.volume = .6f;
             return;
         }
         if (matthiasTextAmount == 20)
@@ -2025,7 +2162,10 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
-            forestMusic.volume = 1;
+            forestMusic.volume = .6f;
+            CTLIMusic.volume = .6f;
+            ITAndEdTechMusic.volume = .6f;
+            LTDMusic.volume = .6f;
             return;
         }
         if (matthiasTextAmount == 23)
@@ -2055,7 +2195,10 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
-            forestMusic.volume = 1;
+            forestMusic.volume = .6f;
+            CTLIMusic.volume = .6f;
+            ITAndEdTechMusic.volume = .6f;
+            LTDMusic.volume = .6f;
             return;
         }
         if (matthiasTextAmount == 26)
@@ -2093,7 +2236,10 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
-            forestMusic.volume = 1;
+            forestMusic.volume = .6f;
+            CTLIMusic.volume = .6f;
+            ITAndEdTechMusic.volume = .6f;
+            LTDMusic.volume = .6f;
             return;
         }
         if (matthiasTextAmount == 29)
@@ -2131,7 +2277,10 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
-            forestMusic.volume = 1;
+            forestMusic.volume = .6f;
+            CTLIMusic.volume = .6f;
+            ITAndEdTechMusic.volume = .6f;
+            LTDMusic.volume = .6f;
             return;
         }
         if (matthiasTextAmount == 32)
@@ -2169,7 +2318,10 @@ public class Main: MonoBehaviour
             textBubbleText.text = "";
             matthiasTextAmount++;
             scrollClosed.SetActive(true);
-            forestMusic.volume = 1;
+            forestMusic.volume = .6f;
+            CTLIMusic.volume = .6f;
+            ITAndEdTechMusic.volume = .6f;
+            LTDMusic.volume = .6f;
             return;
         }
         if (matthiasTextAmount == 35) // Where all one-liners go
@@ -2182,7 +2334,10 @@ public class Main: MonoBehaviour
             textBubble.SetActive(false);
             textBubbleText.text = "";
             matthiasTextAmount++;
-                        forestMusic.volume = 1;
+            forestMusic.volume = .6f;
+            CTLIMusic.volume = .6f;
+            ITAndEdTechMusic.volume = .6f;
+            LTDMusic.volume = .6f;
             return;
         }
     }
@@ -2224,7 +2379,10 @@ public class Main: MonoBehaviour
     {
         isTyping = true;
         voiceClip.Play();
-        forestMusic.volume = .5f;
+        forestMusic.volume = .3f;
+        CTLIMusic.volume = .3f;
+        ITAndEdTechMusic.volume = .3f;
+        LTDMusic.volume = .3f;
         for (int i = 0; i < textBubbleText.text.Length; i++)
         {
             typingTextBubbleText.text = textBubbleText.text.Substring(0, i + 1);
