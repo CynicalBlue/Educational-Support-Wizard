@@ -1,34 +1,32 @@
-using System.Globalization;
-using System.Collections;
-using UnityEngine;
-using TMPro;
-using UnityEngine.EventSystems;
-using Unity.VisualScripting;
-using static System.Net.WebRequestMethods;
-using System.Collections.Generic;
-using System.Linq;
-using static Unity.VisualScripting.Member;
-using UnityEngine.Video;
-using System;
+// Decompiled with JetBrains decompiler
+// Type: Main
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 7126F414-EEBF-4ED7-A2DC-424CB65E894B
+// Assembly location: C:\Users\weird\Downloads\9-9-2025_Educational_Support_Wizard\Educational_Support_Wizard_Data\Managed\Assembly-CSharp.dll
 
-public class Main: MonoBehaviour
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.Video;
+
+#nullable disable
+public class Main : MonoBehaviour
 {
-    public int numberOfDecisions = 0;
+    public int numberOfDecisions;
     public bool onBPath;
     public bool fourPathActive;
     public string currentPathName = "placeholder";
-
     public GameObject yesButton;
     public GameObject noButton;
     public GameObject thirdButton;
     public GameObject fourthButton;
     public GameObject continueButton;
-
     public TMP_Text yesButtonText;
     public TMP_Text noButtonText;
     public TMP_Text thirdButtonText;
     public TMP_Text fourthButtonText;
-
     public GameObject placeHolderBackground;
     public GameObject twoPathImage;
     public GameObject threePathImage;
@@ -36,35 +34,28 @@ public class Main: MonoBehaviour
     public GameObject CTLIZoneImage;
     public GameObject EdTechZoneImage;
     public GameObject MSUITZoneImage;
-
     public GameObject twoPathSign;
     public GameObject threePathSign;
-
     public GameObject d2LCourseBuildHouse;
     public GameObject multimediaHouse;
     public GameObject redevelopCourseHouse;
     public GameObject accessibilityHouse;
-
     public GameObject twoPathSignFirst;
     public GameObject twoPathSignSecond;
     public GameObject threePathSignFirst;
     public GameObject threePathSignSecond;
     public GameObject threePathSignThird;
-
     public GameObject guySprite;
     public GameObject guyHappySprite;
     public GameObject guyCastingSprite;
     public GameObject guyHoldingStaffSprite;
     public GameObject textBubble;
     public TMP_Text textBubbleText;
-
     public int matthiasTextAmount;
-
     public Coroutine typingCoroutine;
-    public float typingSpeed = 0.1f; // 0.05f is base
-    public bool isTyping = false;
+    public float typingSpeed = 0.1f;
+    public bool isTyping;
     public TMP_Text typingTextBubbleText;
-
     public GameObject bigTownBackground;
     public GameObject bigTownLeftMostSign;
     public GameObject bigTownRightMostSign;
@@ -74,15 +65,11 @@ public class Main: MonoBehaviour
     public GameObject bigTownRightMostSignHover;
     public GameObject bigTownLeftMiddleSignHover;
     public GameObject bigTownRightMiddleSignHover;
-
-    public AudioSource voiceClip;
-
     public GameObject scrollClosed;
     public GameObject scrollOpened;
     public GameObject linkText;
     public TMP_Text linkTextText;
     public GameObject clickHereText;
-
     public GameObject startButton;
     public GameObject creditsButton;
     public GameObject exitButton;
@@ -92,2314 +79,2254 @@ public class Main: MonoBehaviour
     public GameObject creditsButtonHover;
     public GameObject exitButtonHover;
     public GameObject backButtonHover;
-
     public string previousPath;
     public GameObject prevButton;
     public GameObject prevButtonHover;
-
-    public int prevChoiceID = 0;
-    public int prevChoiceIDHolder = 0;
+    public int prevChoiceID;
+    public int prevChoiceIDHolder;
     public List<int> prevPathList = new List<int>();
-    public bool wentBack = false;
+    public bool wentBack;
     public VideoClip transitionIntoTown;
     public GameObject mainCameraReference;
     public VideoPlayer mainCameraVideoPlayer;
-    public bool didVideoPlay = false;
+    public bool didVideoPlay;
     public string prevPathForVideo = "";
-
     public string currentEmailPath = "FailSafePlaceholder@example.com";
-    public bool cutsceneBlocker = false;
+    public bool cutsceneBlocker;
     public AudioSource forestMusic;
     public AudioSource LTDMusic;
     public AudioSource CTLIMusic;
     public AudioSource ITAndEdTechMusic;
     public AudioSource scrollOpenSound;
+    public GameObject yesSkipButton;
+    public GameObject yesSkipButtonHover;
+    public GameObject noSkipButton;
+    public GameObject noSkipButtonHover;
+    public GameObject textBoxYesNo;
+    public AudioSource ttsClip1;
+    public AudioSource ttsClip2;
+    public AudioSource ttsClip3;
+    public AudioSource ttsClip4;
+    public AudioSource ttsClip5;
+    public AudioSource ttsClip6;
+    public AudioSource ttsClip7;
+    public AudioSource ttsClipA1;
+    public AudioSource ttsClipA2;
+    public AudioSource ttsClipA3;
+    public AudioSource ttsClipRedev1;
+    public AudioSource ttsClipRedev2;
+    public AudioSource ttsClipD2LB1;
+    public AudioSource ttsClipD2LB2;
+    public AudioSource ttsClipMultimedia1;
+    public AudioSource ttsClipQM1;
+    public AudioSource ttsClipB1;
+    public AudioSource ttsClipB2;
+    public AudioSource ttsClipATool1;
+    public AudioSource ttsClipHelp1;
+    public AudioSource ttsClipHelp2;
+    public AudioSource ttsClipHelp3;
+    public AudioSource ttsClipAssistance1;
+    public AudioSource ttsClipAssistance2;
+    public AudioSource ttsClipAssistance3;
+    public AudioSource ttsClipBMSUIT1;
+    public AudioSource ttsClipBMSUIT2;
+    public AudioSource ttsClipCMSUIT1;
+    public AudioSource ttsClipCPathStart1;
+    public AudioSource ttsClipABTraining1;
+    public AudioSource ttsClipOneOnOne1;
+    public AudioSource ttsClipWorkshop1;
+    public AudioSource ttsClipWorkshop2;
+    public AudioSource ttsClipFeedback1;
+    public bool firstTTSClipPlayed;
 
     private void Awake()
     {
-        linkTextText = linkText.GetComponent<TMP_Text>();
-        yesButtonText = yesButton.GetComponentInChildren<TMP_Text>();
-        noButtonText = noButton.GetComponentInChildren<TMP_Text>();
-        thirdButtonText = thirdButton.GetComponentInChildren<TMP_Text>();
-        fourthButtonText = fourthButton.GetComponentInChildren<TMP_Text>();
+        this.linkTextText = this.linkText.GetComponent<TMP_Text>();
+        this.yesButtonText = this.yesButton.GetComponentInChildren<TMP_Text>();
+        this.noButtonText = this.noButton.GetComponentInChildren<TMP_Text>();
+        this.thirdButtonText = this.thirdButton.GetComponentInChildren<TMP_Text>();
+        this.fourthButtonText = this.fourthButton.GetComponentInChildren<TMP_Text>();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) == true && (guySprite.activeSelf == true || guyHappySprite.activeSelf == true || guyCastingSprite.activeSelf == true || guyHoldingStaffSprite.activeSelf == true) && isTyping)
+        if (Input.GetMouseButtonDown(0) && (this.guySprite.activeSelf || this.guyHappySprite.activeSelf || this.guyCastingSprite.activeSelf || this.guyHoldingStaffSprite.activeSelf) && this.isTyping)
         {
-            SkipTyping();
-            return;
+            this.SkipTyping();
         }
-        if (Input.GetMouseButtonDown(0) == true && (guySprite.activeSelf == true || guyHappySprite.activeSelf == true || guyCastingSprite.activeSelf == true || guyHoldingStaffSprite.activeSelf == true) && !isTyping)
+        else
         {
-            UpdateMatthiasText();
-            return;
+            if (!Input.GetMouseButtonDown(0) || !this.guySprite.activeSelf && !this.guyHappySprite.activeSelf && !this.guyCastingSprite.activeSelf && !this.guyHoldingStaffSprite.activeSelf || this.isTyping)
+                return;
+            this.UpdateMatthiasText();
         }
     }
 
-    void OnVideoFinished(VideoPlayer vp)
+    private void OnVideoFinished(VideoPlayer vp)
     {
-        mainCameraVideoPlayer.loopPointReached -= OnVideoFinished;
-        mainCameraVideoPlayer.Stop();
+        this.mainCameraVideoPlayer.loopPointReached -= new VideoPlayer.EventHandler(this.OnVideoFinished);
+        this.mainCameraVideoPlayer.Stop();
         Cursor.lockState = CursorLockMode.None;
-        didVideoPlay = true;
-        if (prevPathForVideo == "yes")
-        {
-            Yes();
-        }
-        if (prevPathForVideo == "no")
-        {
-            No();
-        }
-        if (prevPathForVideo == "third")
-        {
-            Third();
-        }
-        if (prevPathForVideo == "fourth")
-        {
-            Fourth();
-        }
+        this.didVideoPlay = true;
+        if (this.prevPathForVideo == "yes")
+            this.Yes();
+        if (this.prevPathForVideo == "no")
+            this.No();
+        if (this.prevPathForVideo == "third")
+            this.Third();
+        if (!(this.prevPathForVideo == "fourth"))
+            return;
+        this.Fourth();
     }
 
     public void Yes()
     {
-        if (guySprite.activeSelf == false && guyHappySprite.activeSelf == false && guyCastingSprite.activeSelf == false && guyHoldingStaffSprite.activeSelf == false)
+        if (this.guySprite.activeSelf || this.guyHappySprite.activeSelf || this.guyCastingSprite.activeSelf || this.guyHoldingStaffSprite.activeSelf)
+            return;
+        if (this.numberOfDecisions == 0 && !this.onBPath)
         {
-            if (numberOfDecisions == 0 && onBPath != true)
+            if (!this.didVideoPlay && !this.cutsceneBlocker)
             {
-                if (!didVideoPlay && !cutsceneBlocker)
+                Cursor.lockState = CursorLockMode.Locked;
+                this.mainCameraReference = GameObject.Find("Main Camera");
+                this.mainCameraVideoPlayer = this.mainCameraReference.GetComponent<VideoPlayer>();
+                this.mainCameraVideoPlayer.loopPointReached += new VideoPlayer.EventHandler(this.OnVideoFinished);
+                this.prevPathForVideo = "yes";
+                this.mainCameraVideoPlayer.Play();
+                this.cutsceneBlocker = true;
+            }
+            else
+            {
+                this.didVideoPlay = false;
+                this.yesButton.SetActive(false);
+                this.noButton.SetActive(false);
+                this.thirdButton.SetActive(false);
+                this.fourthButton.SetActive(false);
+                this.typingTextBubbleText.text = "";
+                this.guySprite.SetActive(false);
+                this.guyHappySprite.SetActive(false);
+                this.guyCastingSprite.SetActive(false);
+                this.guyHoldingStaffSprite.SetActive(true);
+                this.textBubble.SetActive(true);
+                this.StopCurrentAudioClips();
+                this.textBubbleText.text = "Looks like you want to contact someone from the Learning Technology and Development team.";
+                this.ttsClipA1.Play();
+                this.matthiasTextAmount = 7;
+                this.yesButton.transform.localPosition = new Vector3(-727f, -246f, 0.0f);
+                this.noButton.transform.localPosition = new Vector3(500f, -390f, 0.0f);
+                this.thirdButton.transform.localPosition = new Vector3(56f, -164f, 0.0f);
+                this.fourthButton.transform.localPosition = new Vector3(805f, -380f, 0.0f);
+                this.noButtonText.fontSize = 11f;
+                this.yesButtonText.fontSize = 11f;
+                this.thirdButtonText.margin = new Vector4(47f, 0.0f, 50f, 0.0f);
+                this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                this.twoPathSign.SetActive(false);
+                this.threePathSign.SetActive(false);
+                ++this.numberOfDecisions;
+                this.fourPathActive = true;
+                this.yesButtonText.text = "Redeveloping your course";
+                this.noButtonText.text = "D2L course building";
+                this.thirdButtonText.text = "Audio/Video Creation";
+                this.fourthButtonText.text = "Course Quality Review";
+                this.twoPathImage.SetActive(false);
+                this.threePathImage.SetActive(false);
+                this.threePathImage.SetActive(false);
+                this.placeHolderBackground.SetActive(false);
+                this.twoPathSignFirst.SetActive(false);
+                this.twoPathSignSecond.SetActive(false);
+                this.threePathSignFirst.SetActive(false);
+                this.threePathSignSecond.SetActive(false);
+                this.threePathSignThird.SetActive(false);
+                this.bigTownBackground.SetActive(true);
+                this.previousPath = "A";
+                if (!this.LTDMusic.isPlaying)
                 {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    mainCameraReference = GameObject.Find("Main Camera");
-                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
-                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "yes";
-                    mainCameraVideoPlayer.Play();
-                    cutsceneBlocker = true;
-                    return;
+                    this.forestMusic.Stop();
+                    this.LTDMusic.Play();
                 }
-                didVideoPlay = false;
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                fourthButton.SetActive(false);
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(false);
-                guyHappySprite.SetActive(false);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(true);
-                textBubble.SetActive(true);
-                textBubbleText.text = "Looks like you want to contact someone from the Learning Technology and Development team.";
-                matthiasTextAmount = 7;
-                yesButton.transform.localPosition = new Vector3(-727, -246, 0);
-                noButton.transform.localPosition = new Vector3(500, -390, 0);
-                thirdButton.transform.localPosition = new Vector3(56, -164, 0);
-                fourthButton.transform.localPosition = new Vector3(805, -380, 0);
-                noButtonText.fontSize = 11;
-                yesButtonText.fontSize = 11;
-                thirdButtonText.margin = new Vector4(47, 0, 50, 0);
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                numberOfDecisions++;
-                fourPathActive = true;
-                yesButtonText.text = "Redeveloping your course"; 
-                noButtonText.text = "D2L course building";
-                thirdButtonText.text = "Audio/Video Creation";
-                fourthButtonText.text = "Course Quality Review";
-                twoPathImage.SetActive(false);
-                threePathImage.SetActive(false);
-                threePathImage.SetActive(false);
-                placeHolderBackground.SetActive(false);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                bigTownBackground.SetActive(true);
-                previousPath = "A";
-                if (!LTDMusic.isPlaying)
+                if (!this.wentBack)
                 {
-                    forestMusic.Stop();
-                    LTDMusic.Play();
-                }
-                if (wentBack == false)
-                {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
+                    this.prevChoiceIDHolder = this.prevChoiceID;
+                    this.prevPathList.Add(this.prevChoiceIDHolder);
                 }
                 else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 1;
-                StartCoroutine(TypeText());
-                return;
+                    this.wentBack = false;
+                this.prevChoiceID = 1;
+                this.StartCoroutine((IEnumerator)this.TypeText());
             }
-            if (numberOfDecisions == 1 && onBPath == true && fourPathActive != true)
+        }
+        else if (this.numberOfDecisions == 1 && this.onBPath && !this.fourPathActive)
+        {
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(true);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(true);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Are you still in need of deciding an appropriate tool?";
+            this.ttsClipATool1.Play();
+            this.matthiasTextAmount = 35;
+            this.yesButton.transform.localPosition = new Vector3(0.0f, 240f, 0.0f);
+            this.noButton.transform.localPosition = new Vector3(825f, -120f, 0.0f);
+            this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            this.twoPathSign.SetActive(false);
+            this.threePathSign.SetActive(false);
+            ++this.numberOfDecisions;
+            this.yesButtonText.text = "Yes, I need help selecting.";
+            this.noButtonText.text = "No, I need use assistance.";
+            this.yesButton.SetActive(false);
+            this.noButton.SetActive(false);
+            this.thirdButton.SetActive(false);
+            this.twoPathImage.SetActive(true);
+            this.threePathImage.SetActive(false);
+            this.placeHolderBackground.SetActive(false);
+            this.twoPathSignFirst.SetActive(false);
+            this.twoPathSignSecond.SetActive(false);
+            this.threePathSignFirst.SetActive(false);
+            this.threePathSignSecond.SetActive(false);
+            this.threePathSignThird.SetActive(false);
+            this.twoPathSign.SetActive(true);
+            this.yesButton.SetActive(true);
+            this.noButton.SetActive(true);
+            this.previousPath = "A";
+            if (!this.wentBack)
             {
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(true);
-                guyHappySprite.SetActive(false);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(false);
-                textBubble.SetActive(true);
-                textBubbleText.text = "Are you still in need of deciding an appropriate tool?";
-                matthiasTextAmount = 35;
-                yesButton.transform.localPosition = new Vector3(0, 240, 0);
-                noButton.transform.localPosition = new Vector3(825, -120, 0);
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                numberOfDecisions++;
-                yesButtonText.text = "Yes, I need help selecting.";
-                noButtonText.text = "No, I need use assistance.";
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                twoPathImage.SetActive(true);
-                threePathImage.SetActive(false);
-                placeHolderBackground.SetActive(false);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                twoPathSign.SetActive(true);
-                yesButton.SetActive(true);
-                noButton.SetActive(true);
-                previousPath = "A";
-                if (wentBack == false)
+                this.prevChoiceIDHolder = this.prevChoiceID;
+                this.prevPathList.Add(this.prevChoiceIDHolder);
+            }
+            else
+                this.wentBack = false;
+            this.prevChoiceID = 2;
+            this.StartCoroutine((IEnumerator)this.TypeText());
+        }
+        else if (this.numberOfDecisions == 1 && !this.onBPath && !this.fourPathActive)
+        {
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(true);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(true);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Were you looking for a workshop style training or a one-on-one consultation?";
+            this.ttsClipABTraining1.Play();
+            this.matthiasTextAmount = 35;
+            this.yesButton.transform.localPosition = new Vector3(0.0f, 240f, 0.0f);
+            this.noButton.transform.localPosition = new Vector3(825f, -120f, 0.0f);
+            this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            this.twoPathSign.SetActive(false);
+            this.threePathSign.SetActive(false);
+            ++this.numberOfDecisions;
+            this.yesButtonText.text = "One-on-one";
+            this.noButtonText.text = "Workshop";
+            this.yesButton.SetActive(false);
+            this.noButton.SetActive(false);
+            this.thirdButton.SetActive(false);
+            this.fourthButton.SetActive(false);
+            this.thirdButton.SetActive(false);
+            this.twoPathImage.SetActive(true);
+            this.threePathImage.SetActive(false);
+            this.placeHolderBackground.SetActive(false);
+            this.twoPathSignFirst.SetActive(false);
+            this.twoPathSignSecond.SetActive(false);
+            this.threePathSignFirst.SetActive(false);
+            this.threePathSignSecond.SetActive(false);
+            this.threePathSignThird.SetActive(false);
+            this.twoPathSign.SetActive(true);
+            this.yesButton.SetActive(true);
+            this.noButton.SetActive(true);
+            this.previousPath = "A";
+            if (!this.wentBack)
+            {
+                this.prevChoiceIDHolder = this.prevChoiceID;
+                this.prevPathList.Add(this.prevChoiceIDHolder);
+            }
+            else
+                this.wentBack = false;
+            this.prevChoiceID = 3;
+            this.StartCoroutine((IEnumerator)this.TypeText());
+        }
+        else if (this.numberOfDecisions == 2 && !this.fourPathActive && this.onBPath)
+        {
+            if (!this.didVideoPlay && !this.cutsceneBlocker)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                this.mainCameraReference = GameObject.Find("Main Camera");
+                this.mainCameraVideoPlayer = this.mainCameraReference.GetComponent<VideoPlayer>();
+                this.mainCameraVideoPlayer.loopPointReached += new VideoPlayer.EventHandler(this.OnVideoFinished);
+                this.prevPathForVideo = "yes";
+                this.mainCameraVideoPlayer.Play();
+                this.cutsceneBlocker = true;
+            }
+            else
+            {
+                this.didVideoPlay = false;
+                this.typingTextBubbleText.text = "";
+                this.guySprite.SetActive(false);
+                this.guyHappySprite.SetActive(false);
+                this.guyCastingSprite.SetActive(false);
+                this.guyHoldingStaffSprite.SetActive(true);
+                this.textBubble.SetActive(true);
+                this.StopCurrentAudioClips();
+                this.textBubbleText.text = "Need help selecting an appropriate tool for your course?";
+                this.ttsClipHelp1.Play();
+                this.matthiasTextAmount = 14;
+                this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                this.twoPathSign.SetActive(false);
+                this.threePathSign.SetActive(false);
+                ++this.numberOfDecisions;
+                this.yesButton.SetActive(false);
+                this.noButton.SetActive(false);
+                this.thirdButton.SetActive(false);
+                this.fourthButton.SetActive(false);
+                this.thirdButton.SetActive(false);
+                this.twoPathImage.SetActive(false);
+                this.threePathImage.SetActive(false);
+                this.placeHolderBackground.SetActive(false);
+                this.LTDZoneImage.SetActive(true);
+                this.twoPathSignFirst.SetActive(false);
+                this.twoPathSignSecond.SetActive(false);
+                this.threePathSignFirst.SetActive(false);
+                this.threePathSignSecond.SetActive(false);
+                this.threePathSignThird.SetActive(false);
+                this.linkTextText.text = "https://broad.msu.edu/lxd/";
+                this.previousPath = "A";
+                this.forestMusic.Stop();
+                this.LTDMusic.Play();
+                if (!this.wentBack)
                 {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
+                    this.prevChoiceIDHolder = this.prevChoiceID;
+                    this.prevPathList.Add(this.prevChoiceIDHolder);
                 }
                 else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 2;
-                StartCoroutine(TypeText());
-                return;
+                    this.wentBack = false;
+                this.prevChoiceID = 4;
+                this.StartCoroutine((IEnumerator)this.TypeText());
             }
-            if (numberOfDecisions == 1 && onBPath != true && fourPathActive != true)
+        }
+        else if (this.numberOfDecisions == 2 && !this.fourPathActive && !this.onBPath)
+        {
+            if (!this.didVideoPlay && !this.cutsceneBlocker)
             {
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(true);
-                guyHappySprite.SetActive(false);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(false);
-                textBubble.SetActive(true);
-                textBubbleText.text = "Were you looking for a workshop style training or a one-on-one consultation?";
-                matthiasTextAmount = 35;
-                yesButton.transform.localPosition = new Vector3(0, 240, 0);
-                noButton.transform.localPosition = new Vector3(825, -120, 0);
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                numberOfDecisions++;
-                yesButtonText.text = "One-on-one";
-                noButtonText.text = "Workshop";
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                fourthButton.SetActive(false);
-                thirdButton.SetActive(false);
-                twoPathImage.SetActive(true);
-                threePathImage.SetActive(false);
-                placeHolderBackground.SetActive(false);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                twoPathSign.SetActive(true);
-                yesButton.SetActive(true);
-                noButton.SetActive(true);
-                previousPath = "A";
-                if (wentBack == false)
+                Cursor.lockState = CursorLockMode.Locked;
+                this.mainCameraReference = GameObject.Find("Main Camera");
+                this.mainCameraVideoPlayer = this.mainCameraReference.GetComponent<VideoPlayer>();
+                this.mainCameraVideoPlayer.loopPointReached += new VideoPlayer.EventHandler(this.OnVideoFinished);
+                this.prevPathForVideo = "yes";
+                this.mainCameraVideoPlayer.Play();
+                this.cutsceneBlocker = true;
+            }
+            else
+            {
+                this.didVideoPlay = false;
+                this.typingTextBubbleText.text = "";
+                this.guySprite.SetActive(false);
+                this.guyHappySprite.SetActive(true);
+                this.guyCastingSprite.SetActive(false);
+                this.guyHoldingStaffSprite.SetActive(false);
+                this.textBubble.SetActive(true);
+                this.StopCurrentAudioClips();
+                this.textBubbleText.text = "Looking for a one-on-one style consultation?";
+                this.ttsClipOneOnOne1.Play();
+                this.matthiasTextAmount = 26;
+                this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                this.twoPathSign.SetActive(false);
+                this.threePathSign.SetActive(false);
+                ++this.numberOfDecisions;
+                this.yesButton.SetActive(false);
+                this.noButton.SetActive(false);
+                this.thirdButton.SetActive(false);
+                this.fourthButton.SetActive(false);
+                this.thirdButton.SetActive(false);
+                this.twoPathImage.SetActive(false);
+                this.threePathImage.SetActive(false);
+                this.placeHolderBackground.SetActive(false);
+                this.LTDZoneImage.SetActive(true);
+                this.twoPathSignFirst.SetActive(false);
+                this.twoPathSignSecond.SetActive(false);
+                this.threePathSignFirst.SetActive(false);
+                this.threePathSignSecond.SetActive(false);
+                this.threePathSignThird.SetActive(false);
+                this.linkTextText.text = "https://broad.msu.edu/lxd/";
+                this.previousPath = "A";
+                this.forestMusic.Stop();
+                this.LTDMusic.Play();
+                if (!this.wentBack)
                 {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
+                    this.prevChoiceIDHolder = this.prevChoiceID;
+                    this.prevPathList.Add(this.prevChoiceIDHolder);
                 }
                 else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 3;
-                StartCoroutine(TypeText());
-                return;
+                    this.wentBack = false;
+                this.prevChoiceID = 5;
+                this.StartCoroutine((IEnumerator)this.TypeText());
             }
-            if (numberOfDecisions == 2 && fourPathActive != true && onBPath == true)
+        }
+        else
+        {
+            if (!this.fourPathActive)
+                return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(true);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(true);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Looks like you will need to contact LTD’s Learning Experience Manager about your questions!";
+            this.ttsClipRedev1.Play();
+            this.matthiasTextAmount = 10;
+            this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            this.currentEmailPath = "benne784@broad.msu.edu";
+            this.twoPathSign.SetActive(false);
+            this.threePathSign.SetActive(false);
+            this.yesButton.SetActive(false);
+            this.noButton.SetActive(false);
+            this.thirdButton.SetActive(false);
+            this.fourthButton.SetActive(false);
+            this.twoPathImage.SetActive(false);
+            this.threePathImage.SetActive(false);
+            this.placeHolderBackground.SetActive(false);
+            this.d2LCourseBuildHouse.SetActive(false);
+            this.accessibilityHouse.SetActive(false);
+            this.multimediaHouse.SetActive(true);
+            this.redevelopCourseHouse.SetActive(false);
+            this.twoPathSignFirst.SetActive(false);
+            this.twoPathSignSecond.SetActive(false);
+            this.threePathSignFirst.SetActive(false);
+            this.threePathSignSecond.SetActive(false);
+            this.threePathSignThird.SetActive(false);
+            this.bigTownBackground.SetActive(false);
+            this.bigTownLeftMostSign.SetActive(false);
+            this.bigTownLeftMiddleSign.SetActive(false);
+            this.bigTownRightMiddleSign.SetActive(false);
+            this.bigTownRightMostSign.SetActive(false);
+            this.bigTownLeftMostSignHover.SetActive(false);
+            this.bigTownLeftMiddleSignHover.SetActive(false);
+            this.bigTownRightMiddleSignHover.SetActive(false);
+            this.bigTownRightMostSignHover.SetActive(false);
+            ++this.numberOfDecisions;
+            this.previousPath = "A";
+            if (!this.wentBack)
             {
-                if (!didVideoPlay && !cutsceneBlocker)
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    mainCameraReference = GameObject.Find("Main Camera");
-                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
-                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "yes";
-                    mainCameraVideoPlayer.Play();
-                    cutsceneBlocker = true;
-                    return;
-                }
-                didVideoPlay = false;
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(false);
-                guyHappySprite.SetActive(false);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(true);
-                textBubble.SetActive(true);
-                textBubbleText.text = "Need help selecting an appropriate tool for your course?";
-                matthiasTextAmount = 14;
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                numberOfDecisions++;
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                fourthButton.SetActive(false);
-                thirdButton.SetActive(false);
-                twoPathImage.SetActive(false);
-                threePathImage.SetActive(false);
-                placeHolderBackground.SetActive(false);
-                LTDZoneImage.SetActive(true);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                linkTextText.text = "https://broad.msu.edu/lxd/";
-                previousPath = "A";
-                forestMusic.Stop();
-                LTDMusic.Play();
-                if (wentBack == false)
-                {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
-                }
-                else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 4;
-                StartCoroutine(TypeText());
-                return;
+                this.prevChoiceIDHolder = this.prevChoiceID;
+                this.prevPathList.Add(this.prevChoiceIDHolder);
             }
-            if (numberOfDecisions == 2 && fourPathActive != true && onBPath == false)
-            {
-                if (!didVideoPlay && !cutsceneBlocker)
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    mainCameraReference = GameObject.Find("Main Camera");
-                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
-                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "yes";
-                    mainCameraVideoPlayer.Play();
-                    cutsceneBlocker = true;
-                    return;
-                }
-                didVideoPlay = false;
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(false);
-                guyHappySprite.SetActive(true);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(false);
-                textBubble.SetActive(true);
-                textBubbleText.text = "Looking for a one-on-one style consultation?";
-                matthiasTextAmount = 26;
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                numberOfDecisions++;
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                fourthButton.SetActive(false);
-                thirdButton.SetActive(false);
-                twoPathImage.SetActive(false);
-                threePathImage.SetActive(false);
-                placeHolderBackground.SetActive(false);
-                LTDZoneImage.SetActive(true);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                linkTextText.text = "https://broad.msu.edu/lxd/";
-                previousPath = "A";
-                forestMusic.Stop();
-                LTDMusic.Play();
-                if (wentBack == false)
-                {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
-                }
-                else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 5;
-                StartCoroutine(TypeText());
-                return;
-            }
-            if (fourPathActive == true)
-            {
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(false);
-                guyHappySprite.SetActive(true);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(false);
-                textBubble.SetActive(true);
-                textBubbleText.text = "Looks like you will need to contact LTD’s Learning Experience Manager about your questions!";
-                matthiasTextAmount = 10;
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                currentEmailPath = "benne784@broad.msu.edu";
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                fourthButton.SetActive(false);
-                twoPathImage.SetActive(false);
-                threePathImage.SetActive(false);
-                placeHolderBackground.SetActive(false);
-                d2LCourseBuildHouse.SetActive(false);
-                accessibilityHouse.SetActive(false);
-                multimediaHouse.SetActive(true);
-                redevelopCourseHouse.SetActive(false);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                bigTownBackground.SetActive(false);
-                bigTownLeftMostSign.SetActive(false);
-                bigTownLeftMiddleSign.SetActive(false);
-                bigTownRightMiddleSign.SetActive(false);
-                bigTownRightMostSign.SetActive(false);
-                bigTownLeftMostSignHover.SetActive(false);
-                bigTownLeftMiddleSignHover.SetActive(false);
-                bigTownRightMiddleSignHover.SetActive(false);
-                bigTownRightMostSignHover.SetActive(false);
-                numberOfDecisions++;
-                previousPath = "A";
-                if (wentBack == false)
-                {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
-                }
-                else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 6;
-                StartCoroutine(TypeText());
-                return;
-            }
+            else
+                this.wentBack = false;
+            this.prevChoiceID = 6;
+            this.StartCoroutine((IEnumerator)this.TypeText());
         }
     }
 
     public void No()
     {
-        if (guySprite.activeSelf == false && guyHappySprite.activeSelf == false && guyCastingSprite.activeSelf == false && guyHoldingStaffSprite.activeSelf == false)
+        if (this.guySprite.activeSelf || this.guyHappySprite.activeSelf || this.guyCastingSprite.activeSelf || this.guyHoldingStaffSprite.activeSelf)
+            return;
+        if (this.numberOfDecisions == 0 && !this.fourPathActive)
         {
-            if (numberOfDecisions == 0 && fourPathActive != true)
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(true);
+            this.textBubble.SetActive(true);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Ahh technology, there’s quite a few talents who can help with that.";
+            this.ttsClipB1.Play();
+            this.matthiasTextAmount = 12;
+            this.yesButton.transform.localPosition = new Vector3(-10f, 200f, 0.0f);
+            this.noButton.transform.localPosition = new Vector3(615f, -180f, 0.0f);
+            this.thirdButton.transform.localPosition = new Vector3(-265f, -30f, 0.0f);
+            this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, -16f);
+            this.twoPathSign.SetActive(false);
+            this.threePathSign.SetActive(false);
+            this.yesButton.SetActive(false);
+            this.noButton.SetActive(false);
+            this.thirdButton.SetActive(false);
+            this.yesButtonText.text = "A: Is your question about how to select and us the appropriate technology?";
+            this.noButtonText.text = "B: Is your question related to solving classroom tech installation?";
+            this.thirdButtonText.text = "C: Is your question related to solving a general tech issue?";
+            ++this.numberOfDecisions;
+            this.onBPath = true;
+            this.twoPathImage.SetActive(false);
+            this.threePathImage.SetActive(true);
+            this.placeHolderBackground.SetActive(false);
+            this.twoPathSignFirst.SetActive(false);
+            this.twoPathSignSecond.SetActive(false);
+            this.threePathSignFirst.SetActive(false);
+            this.threePathSignSecond.SetActive(false);
+            this.threePathSignThird.SetActive(false);
+            this.previousPath = "B";
+            if (!this.wentBack)
             {
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(false);
-                guyHappySprite.SetActive(false);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(true); 
-                textBubble.SetActive(true);
-                textBubbleText.text = "Ahh technology, there’s quite a few talents who can help with that.";
-                matthiasTextAmount = 12;
-                yesButton.transform.localPosition = new Vector3(-10, 200, 0);
-                noButton.transform.localPosition = new Vector3(615, -180, 0);
-                thirdButton.transform.localPosition = new Vector3(-265, -30, 0);
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, -16); ;
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                yesButtonText.text = "A: Is your question about how to select and us the appropriate technology?";
-                noButtonText.text = "B: Is your question related to solving classroom tech installation?";
-                thirdButtonText.text = "C: Is your question related to solving a general tech issue?";
-                numberOfDecisions++;
-                onBPath = true;
-                twoPathImage.SetActive(false);
-                threePathImage.SetActive(true);
-                placeHolderBackground.SetActive(false);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                previousPath = "B";
-                if (wentBack == false)
+                this.prevChoiceIDHolder = this.prevChoiceID;
+                this.prevPathList.Add(this.prevChoiceIDHolder);
+            }
+            else
+                this.wentBack = false;
+            this.prevChoiceID = 7;
+            this.StartCoroutine((IEnumerator)this.TypeText());
+        }
+        else if (this.numberOfDecisions == 1 && this.onBPath && !this.fourPathActive)
+        {
+            if (!this.didVideoPlay && !this.cutsceneBlocker)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                this.mainCameraReference = GameObject.Find("Main Camera");
+                this.mainCameraVideoPlayer = this.mainCameraReference.GetComponent<VideoPlayer>();
+                this.mainCameraVideoPlayer.loopPointReached += new VideoPlayer.EventHandler(this.OnVideoFinished);
+                this.prevPathForVideo = "no";
+                this.mainCameraVideoPlayer.Play();
+                this.cutsceneBlocker = true;
+            }
+            else
+            {
+                this.didVideoPlay = false;
+                this.typingTextBubbleText.text = "";
+                this.guySprite.SetActive(true);
+                this.guyHappySprite.SetActive(false);
+                this.guyCastingSprite.SetActive(false);
+                this.guyHoldingStaffSprite.SetActive(false);
+                this.textBubble.SetActive(true);
+                this.StopCurrentAudioClips();
+                this.textBubbleText.text = "You will need to contact the MSU IT Team about your inquiry.";
+                this.ttsClipBMSUIT1.Play();
+                this.matthiasTextAmount = 20;
+                this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                this.twoPathSign.SetActive(false);
+                this.threePathSign.SetActive(false);
+                this.yesButton.SetActive(false);
+                this.noButton.SetActive(false);
+                this.thirdButton.SetActive(false);
+                this.fourthButton.SetActive(false);
+                ++this.numberOfDecisions;
+                this.twoPathImage.SetActive(false);
+                this.threePathImage.SetActive(false);
+                this.placeHolderBackground.SetActive(false);
+                this.MSUITZoneImage.SetActive(true);
+                this.twoPathSignFirst.SetActive(false);
+                this.twoPathSignSecond.SetActive(false);
+                this.threePathSignFirst.SetActive(false);
+                this.threePathSignSecond.SetActive(false);
+                this.threePathSignThird.SetActive(false);
+                this.linkTextText.text = "https://tech.msu.edu/help-and-support/";
+                this.previousPath = "B";
+                this.forestMusic.Stop();
+                this.ITAndEdTechMusic.Play();
+                if (!this.wentBack)
                 {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
+                    this.prevChoiceIDHolder = this.prevChoiceID;
+                    this.prevPathList.Add(this.prevChoiceIDHolder);
                 }
                 else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 7;
-                StartCoroutine(TypeText());
-                return;
+                    this.wentBack = false;
+                this.prevChoiceID = 8;
+                this.StartCoroutine((IEnumerator)this.TypeText());
             }
-            if (numberOfDecisions == 1 && onBPath == true && fourPathActive != true)
+        }
+        else if (this.numberOfDecisions == 1 && !this.onBPath && !this.fourPathActive)
+        {
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(true);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(true);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Were you looking for a workshop style training or a one-on-one consultation?";
+            this.ttsClipABTraining1.Play();
+            this.matthiasTextAmount = 35;
+            this.yesButton.transform.localPosition = new Vector3(0.0f, 240f, 0.0f);
+            this.noButton.transform.localPosition = new Vector3(825f, -120f, 0.0f);
+            this.twoPathSign.SetActive(true);
+            this.threePathSign.SetActive(false);
+            this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            ++this.numberOfDecisions;
+            this.yesButtonText.text = "One-on-one";
+            this.noButtonText.text = "Workshop";
+            this.yesButton.SetActive(true);
+            this.noButton.SetActive(true);
+            this.thirdButton.SetActive(false);
+            this.fourthButton.SetActive(false);
+            this.thirdButton.SetActive(false);
+            this.twoPathImage.SetActive(true);
+            this.threePathImage.SetActive(false);
+            this.placeHolderBackground.SetActive(false);
+            this.twoPathSignFirst.SetActive(false);
+            this.twoPathSignSecond.SetActive(false);
+            this.threePathSignFirst.SetActive(false);
+            this.threePathSignSecond.SetActive(false);
+            this.threePathSignThird.SetActive(false);
+            this.twoPathSign.SetActive(true);
+            this.yesButton.SetActive(true);
+            this.noButton.SetActive(true);
+            this.previousPath = "B";
+            if (!this.wentBack)
             {
-                if (!didVideoPlay && !cutsceneBlocker)
+                this.prevChoiceIDHolder = this.prevChoiceID;
+                this.prevPathList.Add(this.prevChoiceIDHolder);
+            }
+            else
+                this.wentBack = false;
+            this.prevChoiceID = 9;
+            this.StartCoroutine((IEnumerator)this.TypeText());
+        }
+        else if (this.numberOfDecisions == 2 && !this.fourPathActive && this.onBPath)
+        {
+            if (!this.didVideoPlay && !this.cutsceneBlocker)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                this.mainCameraReference = GameObject.Find("Main Camera");
+                this.mainCameraVideoPlayer = this.mainCameraReference.GetComponent<VideoPlayer>();
+                this.mainCameraVideoPlayer.loopPointReached += new VideoPlayer.EventHandler(this.OnVideoFinished);
+                this.prevPathForVideo = "no";
+                this.mainCameraVideoPlayer.Play();
+                this.cutsceneBlocker = true;
+            }
+            else
+            {
+                this.typingTextBubbleText.text = "";
+                this.guySprite.SetActive(false);
+                this.guyHappySprite.SetActive(true);
+                this.guyCastingSprite.SetActive(false);
+                this.guyHoldingStaffSprite.SetActive(false);
+                this.textBubble.SetActive(true);
+                this.StopCurrentAudioClips();
+                this.textBubbleText.text = "Need use assistance with your teaching tool?";
+                this.ttsClipAssistance1.Play();
+                this.matthiasTextAmount = 17;
+                this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                this.twoPathSign.SetActive(false);
+                this.threePathSign.SetActive(false);
+                ++this.numberOfDecisions;
+                this.yesButton.SetActive(false);
+                this.noButton.SetActive(false);
+                this.thirdButton.SetActive(false);
+                this.fourthButton.SetActive(false);
+                this.thirdButton.SetActive(false);
+                this.twoPathImage.SetActive(false);
+                this.threePathImage.SetActive(false);
+                this.placeHolderBackground.SetActive(false);
+                this.EdTechZoneImage.SetActive(true);
+                this.twoPathSignFirst.SetActive(false);
+                this.twoPathSignSecond.SetActive(false);
+                this.threePathSignFirst.SetActive(false);
+                this.threePathSignSecond.SetActive(false);
+                this.threePathSignThird.SetActive(false);
+                this.linkTextText.text = "https://tinyurl.com/msuITEdTech";
+                this.previousPath = "B";
+                this.forestMusic.Stop();
+                this.ITAndEdTechMusic.Play();
+                if (!this.wentBack)
                 {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    mainCameraReference = GameObject.Find("Main Camera");
-                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
-                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "no";
-                    mainCameraVideoPlayer.Play();
-                    cutsceneBlocker = true;
-                    return;
-                }
-                didVideoPlay = false;
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(true);
-                guyHappySprite.SetActive(false);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(false); 
-                textBubble.SetActive(true);
-                textBubbleText.text = "You will need to contact the MSU IT Team about your inquiry.";
-                matthiasTextAmount = 20;
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                fourthButton.SetActive(false);
-                numberOfDecisions++;
-                twoPathImage.SetActive(false);
-                threePathImage.SetActive(false);
-                placeHolderBackground.SetActive(false);
-                MSUITZoneImage.SetActive(true);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                linkTextText.text = "https://tech.msu.edu/help-and-support/";
-                previousPath = "B";
-                forestMusic.Stop();
-                ITAndEdTechMusic.Play();
-                if (wentBack == false)
-                {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
+                    this.prevChoiceIDHolder = this.prevChoiceID;
+                    this.prevPathList.Add(this.prevChoiceIDHolder);
                 }
                 else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 8;
-                StartCoroutine(TypeText());
-                return;
+                    this.wentBack = false;
+                this.prevChoiceID = 10;
+                this.StartCoroutine((IEnumerator)this.TypeText());
             }
-            if (numberOfDecisions == 1 && onBPath != true && fourPathActive != true)
+        }
+        else if (this.numberOfDecisions == 2 && !this.fourPathActive && !this.onBPath)
+        {
+            if (!this.didVideoPlay && !this.cutsceneBlocker)
             {
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(true);
-                guyHappySprite.SetActive(false);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(false);
-                textBubble.SetActive(true);
-                textBubbleText.text = "Were you looking for a workshop style training or a one-on-one consultation?";
-                matthiasTextAmount = 35;
-                yesButton.transform.localPosition = new Vector3(0, 240, 0);
-                noButton.transform.localPosition = new Vector3(825, -120, 0);
-                twoPathSign.SetActive(true);
-                threePathSign.SetActive(false);
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                numberOfDecisions++;
-                yesButtonText.text = "One-on-one";
-                noButtonText.text = "Workshop";
-                yesButton.SetActive(true);
-                noButton.SetActive(true);
-                thirdButton.SetActive(false);
-                fourthButton.SetActive(false);
-                thirdButton.SetActive(false);
-                twoPathImage.SetActive(true);
-                threePathImage.SetActive(false);
-                placeHolderBackground.SetActive(false);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                twoPathSign.SetActive(true);
-                yesButton.SetActive(true);
-                noButton.SetActive(true);
-                previousPath = "B";
-                if (wentBack == false)
+                Cursor.lockState = CursorLockMode.Locked;
+                this.mainCameraReference = GameObject.Find("Main Camera");
+                this.mainCameraVideoPlayer = this.mainCameraReference.GetComponent<VideoPlayer>();
+                this.mainCameraVideoPlayer.loopPointReached += new VideoPlayer.EventHandler(this.OnVideoFinished);
+                this.prevPathForVideo = "no";
+                this.mainCameraVideoPlayer.Play();
+                this.cutsceneBlocker = true;
+            }
+            else
+            {
+                this.typingTextBubbleText.text = "";
+                this.guySprite.SetActive(false);
+                this.guyHappySprite.SetActive(false);
+                this.guyCastingSprite.SetActive(false);
+                this.guyHoldingStaffSprite.SetActive(true);
+                this.textBubble.SetActive(true);
+                this.StopCurrentAudioClips();
+                this.textBubbleText.text = "Looking for workshop-style training?";
+                this.ttsClipWorkshop1.Play();
+                this.matthiasTextAmount = 29;
+                this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                this.twoPathSign.SetActive(false);
+                this.threePathSign.SetActive(false);
+                ++this.numberOfDecisions;
+                this.yesButton.SetActive(false);
+                this.noButton.SetActive(false);
+                this.thirdButton.SetActive(false);
+                this.fourthButton.SetActive(false);
+                this.thirdButton.SetActive(false);
+                this.twoPathImage.SetActive(false);
+                this.threePathImage.SetActive(false);
+                this.placeHolderBackground.SetActive(false);
+                this.CTLIZoneImage.SetActive(true);
+                this.twoPathSignFirst.SetActive(false);
+                this.twoPathSignSecond.SetActive(false);
+                this.threePathSignFirst.SetActive(false);
+                this.threePathSignSecond.SetActive(false);
+                this.threePathSignThird.SetActive(false);
+                this.linkTextText.text = "https://teachingcenter.msu.edu/consultations";
+                this.previousPath = "B";
+                this.forestMusic.Stop();
+                this.CTLIMusic.Play();
+                if (!this.wentBack)
                 {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
+                    this.prevChoiceIDHolder = this.prevChoiceID;
+                    this.prevPathList.Add(this.prevChoiceIDHolder);
                 }
                 else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 9;
-                StartCoroutine(TypeText());
-                return;
+                    this.wentBack = false;
+                this.prevChoiceID = 11;
+                this.StartCoroutine((IEnumerator)this.TypeText());
             }
-            if (numberOfDecisions == 2 && fourPathActive != true && onBPath == true)
+        }
+        else
+        {
+            if (!this.fourPathActive)
+                return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(true);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(true);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Looks like you will need to contact LTD’s D2L Specialist about your inquiry!";
+            this.ttsClipD2LB1.Play();
+            this.matthiasTextAmount = 10;
+            this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            this.currentEmailPath = "halicks@broad.msu.edu";
+            this.twoPathSign.SetActive(false);
+            this.threePathSign.SetActive(false);
+            this.yesButton.SetActive(false);
+            this.noButton.SetActive(false);
+            this.thirdButton.SetActive(false);
+            this.fourthButton.SetActive(false);
+            this.twoPathImage.SetActive(false);
+            this.threePathImage.SetActive(false);
+            this.placeHolderBackground.SetActive(false);
+            this.d2LCourseBuildHouse.SetActive(true);
+            this.accessibilityHouse.SetActive(false);
+            this.multimediaHouse.SetActive(false);
+            this.redevelopCourseHouse.SetActive(false);
+            this.twoPathSignFirst.SetActive(false);
+            this.twoPathSignSecond.SetActive(false);
+            this.threePathSignFirst.SetActive(false);
+            this.threePathSignSecond.SetActive(false);
+            this.threePathSignThird.SetActive(false);
+            this.bigTownBackground.SetActive(false);
+            this.bigTownLeftMostSign.SetActive(false);
+            this.bigTownLeftMiddleSign.SetActive(false);
+            this.bigTownRightMiddleSign.SetActive(false);
+            this.bigTownRightMostSign.SetActive(false);
+            this.bigTownLeftMostSignHover.SetActive(false);
+            this.bigTownLeftMiddleSignHover.SetActive(false);
+            this.bigTownRightMiddleSignHover.SetActive(false);
+            this.bigTownRightMostSignHover.SetActive(false);
+            ++this.numberOfDecisions;
+            this.previousPath = "B";
+            if (!this.wentBack)
             {
-                if (!didVideoPlay && !cutsceneBlocker)
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    mainCameraReference = GameObject.Find("Main Camera");
-                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
-                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "no";
-                    mainCameraVideoPlayer.Play();
-                    cutsceneBlocker = true;
-                    return;
-                }
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(false);
-                guyHappySprite.SetActive(true);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(false);
-                textBubble.SetActive(true);
-                textBubbleText.text = "Need use assistance with your teaching tool?";
-                matthiasTextAmount = 17;
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                numberOfDecisions++;
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                fourthButton.SetActive(false);
-                thirdButton.SetActive(false);
-                twoPathImage.SetActive(false);
-                threePathImage.SetActive(false);
-                placeHolderBackground.SetActive(false);
-                EdTechZoneImage.SetActive(true);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                linkTextText.text = "https://tinyurl.com/msuITEdTech";
-                previousPath = "B";
-                forestMusic.Stop();
-                ITAndEdTechMusic.Play();
-                if (wentBack == false)
-                {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
-                }
-                else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 10;
-                StartCoroutine(TypeText());
-                return;
+                this.prevChoiceIDHolder = this.prevChoiceID;
+                this.prevPathList.Add(this.prevChoiceIDHolder);
             }
-            if (numberOfDecisions == 2 && fourPathActive != true && onBPath == false)
-            {
-                if (!didVideoPlay && !cutsceneBlocker)
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    mainCameraReference = GameObject.Find("Main Camera");
-                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
-                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "no";
-                    mainCameraVideoPlayer.Play();
-                    cutsceneBlocker = true;
-                    return;
-                }
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(false);
-                guyHappySprite.SetActive(false);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(true);
-                textBubble.SetActive(true);
-                textBubbleText.text = "Looking for workshop-style training?";
-                matthiasTextAmount = 29;
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                numberOfDecisions++;
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                fourthButton.SetActive(false);
-                thirdButton.SetActive(false);
-                twoPathImage.SetActive(false);
-                threePathImage.SetActive(false);
-                placeHolderBackground.SetActive(false);
-                CTLIZoneImage.SetActive(true);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                linkTextText.text = "https://teachingcenter.msu.edu/consultations";
-                previousPath = "B";
-                forestMusic.Stop();
-                CTLIMusic.Play();
-                if (wentBack == false)
-                {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
-                }
-                else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 11;
-                StartCoroutine(TypeText());
-                return;
-            }
-            if (fourPathActive == true)
-            {
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(false);
-                guyHappySprite.SetActive(true);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(false);
-                textBubble.SetActive(true);
-                textBubbleText.text = "Looks like you will need to contact LTD’s D2L Specialist about your inquiry!";
-                matthiasTextAmount = 10;
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                currentEmailPath = "halicks@broad.msu.edu";
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                fourthButton.SetActive(false);
-                twoPathImage.SetActive(false);
-                threePathImage.SetActive(false);
-                placeHolderBackground.SetActive(false);
-                d2LCourseBuildHouse.SetActive(true);
-                accessibilityHouse.SetActive(false);
-                multimediaHouse.SetActive(false);
-                redevelopCourseHouse.SetActive(false);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                bigTownBackground.SetActive(false);
-                bigTownLeftMostSign.SetActive(false);
-                bigTownLeftMiddleSign.SetActive(false);
-                bigTownRightMiddleSign.SetActive(false);
-                bigTownRightMostSign.SetActive(false);
-                bigTownLeftMostSignHover.SetActive(false);
-                bigTownLeftMiddleSignHover.SetActive(false);
-                bigTownRightMiddleSignHover.SetActive(false);
-                bigTownRightMostSignHover.SetActive(false);
-                numberOfDecisions++;
-                previousPath = "B";
-                if (wentBack == false)
-                {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
-                }
-                else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 12;
-                StartCoroutine(TypeText());
-                return;
-            }
+            else
+                this.wentBack = false;
+            this.prevChoiceID = 12;
+            this.StartCoroutine((IEnumerator)this.TypeText());
         }
     }
 
     public void Continue()
     {
-        startButton.SetActive(false);
-        creditsButton.SetActive(false);
-        exitButton.SetActive(false);
-        backButton.SetActive(false);
-        startButtonHover.SetActive(false);
-        creditsButtonHover.SetActive(false);
-        exitButtonHover.SetActive(false);
-        backButtonHover.SetActive(false);
-        typingTextBubbleText.text = "";
-            guyHappySprite.SetActive(true);
-            textBubble.SetActive(true);
-            textBubbleText.text = "Greetings traveler!";
-            matthiasTextAmount = 0;
-            matthiasTextAmount++;
-            yesButton.transform.localPosition = new Vector3(-10, 200, 0);
-            noButton.transform.localPosition = new Vector3(615, -180, 0);
-            thirdButton.transform.localPosition = new Vector3(-265, -30, 0);
-            yesButton.transform.localRotation = Quaternion.Euler(0, 0, -16); ;
-            twoPathSign.SetActive(false);
-            yesButtonText.text = "A: Is your question about developing course content or digital accessibility?";
-            noButtonText.text = "B: Is your question about technology?";
-            thirdButtonText.text = "C: Is your question about teaching practices, exploring, student feedback, or troubleshooting?";
-            continueButton.SetActive(false);
-            twoPathImage.SetActive(false);
-            threePathImage.SetActive(true);
-            placeHolderBackground.SetActive(false);
-            twoPathSignFirst.SetActive(false);
-            twoPathSignSecond.SetActive(false);
-            threePathSignFirst.SetActive(false);
-            threePathSignSecond.SetActive(false);
-            threePathSignThird.SetActive(false);
-        noButtonText.fontSize = 13;
-        yesButtonText.fontSize = 13;
-        thirdButtonText.margin = new Vector4(0, 0, 0, 0);
-        numberOfDecisions = 0;
-        onBPath = false;
-        fourPathActive = false;
-        wentBack = false;
-        prevChoiceID = 0;
-        prevChoiceIDHolder = 0;
-        if (!forestMusic.isPlaying)
+        this.startButton.SetActive(false);
+        this.creditsButton.SetActive(false);
+        this.exitButton.SetActive(false);
+        this.backButton.SetActive(false);
+        this.startButtonHover.SetActive(false);
+        this.creditsButtonHover.SetActive(false);
+        this.exitButtonHover.SetActive(false);
+        this.backButtonHover.SetActive(false);
+        this.typingTextBubbleText.text = "";
+        this.guyHappySprite.SetActive(true);
+        this.textBubble.SetActive(true);
+        this.StopCurrentAudioClips();
+        this.textBubbleText.text = "Greetings traveler!";
+        if (!this.firstTTSClipPlayed)
         {
-            forestMusic.Play();
-            ITAndEdTechMusic.Stop();
-            CTLIMusic.Stop();
-            LTDMusic.Stop();
+            this.ttsClip1.Play();
+            this.firstTTSClipPlayed = true;
         }
-        StartCoroutine(TypeText());
+        this.matthiasTextAmount = -2;
+        ++this.matthiasTextAmount;
+        this.yesButton.transform.localPosition = new Vector3(-10f, 200f, 0.0f);
+        this.noButton.transform.localPosition = new Vector3(615f, -180f, 0.0f);
+        this.thirdButton.transform.localPosition = new Vector3(-265f, -30f, 0.0f);
+        this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, -16f);
+        this.twoPathSign.SetActive(false);
+        this.yesButtonText.text = "A: Is your question about developing course content or digital accessibility?";
+        this.noButtonText.text = "B: Is your question about technology?";
+        this.thirdButtonText.text = "C: Is your question about teaching practices, exploring, student feedback, or troubleshooting?";
+        this.continueButton.SetActive(false);
+        this.twoPathImage.SetActive(false);
+        this.threePathImage.SetActive(true);
+        this.placeHolderBackground.SetActive(false);
+        this.twoPathSignFirst.SetActive(false);
+        this.twoPathSignSecond.SetActive(false);
+        this.threePathSignFirst.SetActive(false);
+        this.threePathSignSecond.SetActive(false);
+        this.threePathSignThird.SetActive(false);
+        this.noButtonText.fontSize = 13f;
+        this.yesButtonText.fontSize = 13f;
+        this.thirdButtonText.margin = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+        this.numberOfDecisions = 0;
+        this.onBPath = false;
+        this.fourPathActive = false;
+        this.wentBack = false;
+        this.prevChoiceID = 0;
+        this.prevChoiceIDHolder = 0;
+        if (!this.forestMusic.isPlaying)
+        {
+            this.forestMusic.Play();
+            this.ITAndEdTechMusic.Stop();
+            this.CTLIMusic.Stop();
+            this.LTDMusic.Stop();
+        }
+        this.StartCoroutine((IEnumerator)this.TypeText());
     }
 
     public void Third()
     {
-        if (guySprite.activeSelf == false && guyHappySprite.activeSelf == false && guyCastingSprite.activeSelf == false && guyHoldingStaffSprite.activeSelf == false)
+        if (this.guySprite.activeSelf || this.guyHappySprite.activeSelf || this.guyCastingSprite.activeSelf || this.guyHoldingStaffSprite.activeSelf)
+            return;
+        if (this.fourPathActive)
         {
-            if (fourPathActive == true)
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(true);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(true);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Looks like you will need to contact LTD’s Multimedia Coordinator about that question!";
+            this.ttsClipMultimedia1.Play();
+            this.currentEmailPath = "basset44@msu.edu";
+            this.matthiasTextAmount = 10;
+            this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            this.twoPathSign.SetActive(false);
+            this.threePathSign.SetActive(false);
+            this.yesButton.SetActive(false);
+            this.noButton.SetActive(false);
+            this.thirdButton.SetActive(false);
+            this.fourthButton.SetActive(false);
+            this.twoPathImage.SetActive(false);
+            this.threePathImage.SetActive(false);
+            this.placeHolderBackground.SetActive(false);
+            this.d2LCourseBuildHouse.SetActive(false);
+            this.accessibilityHouse.SetActive(false);
+            this.multimediaHouse.SetActive(false);
+            this.redevelopCourseHouse.SetActive(true);
+            this.twoPathSignFirst.SetActive(false);
+            this.twoPathSignSecond.SetActive(false);
+            this.threePathSignFirst.SetActive(false);
+            this.threePathSignSecond.SetActive(false);
+            this.threePathSignThird.SetActive(false);
+            this.bigTownBackground.SetActive(false);
+            this.bigTownLeftMostSign.SetActive(false);
+            this.bigTownLeftMiddleSign.SetActive(false);
+            this.bigTownRightMiddleSign.SetActive(false);
+            this.bigTownRightMostSign.SetActive(false);
+            this.bigTownLeftMostSignHover.SetActive(false);
+            this.bigTownLeftMiddleSignHover.SetActive(false);
+            this.bigTownRightMiddleSignHover.SetActive(false);
+            this.bigTownRightMostSignHover.SetActive(false);
+            ++this.numberOfDecisions;
+            this.previousPath = "C";
+            if (!this.wentBack)
             {
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(false);
-                guyHappySprite.SetActive(true);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(false); 
-                textBubble.SetActive(true);
-                textBubbleText.text = "Looks like you will need to contact LTD’s Multimedia Coordinator about that question!";
-                currentEmailPath = "basset44@msu.edu";
-                matthiasTextAmount = 10;
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                fourthButton.SetActive(false);
-                twoPathImage.SetActive(false);
-                threePathImage.SetActive(false);
-                placeHolderBackground.SetActive(false);
-                d2LCourseBuildHouse.SetActive(false);
-                accessibilityHouse.SetActive(false);
-                multimediaHouse.SetActive(false);
-                redevelopCourseHouse.SetActive(true);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                bigTownBackground.SetActive(false);
-                bigTownLeftMostSign.SetActive(false);
-                bigTownLeftMiddleSign.SetActive(false);
-                bigTownRightMiddleSign.SetActive(false);
-                bigTownRightMostSign.SetActive(false);
-                bigTownLeftMostSignHover.SetActive(false);
-                bigTownLeftMiddleSignHover.SetActive(false);
-                bigTownRightMiddleSignHover.SetActive(false);
-                bigTownRightMostSignHover.SetActive(false);
-                numberOfDecisions++;
-                previousPath = "C";
-                if (wentBack == false)
-                {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
-                }
-                else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 13;
-                StartCoroutine(TypeText());
-                return;
+                this.prevChoiceIDHolder = this.prevChoiceID;
+                this.prevPathList.Add(this.prevChoiceIDHolder);
             }
-            if (numberOfDecisions == 0 && fourPathActive != true && onBPath != true)
+            else
+                this.wentBack = false;
+            this.prevChoiceID = 13;
+            this.StartCoroutine((IEnumerator)this.TypeText());
+        }
+        else if (this.numberOfDecisions == 0 && !this.fourPathActive && !this.onBPath)
+        {
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(true);
+            this.textBubble.SetActive(true);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "There are quite a few talents who can help with your type of question.";
+            this.ttsClipCPathStart1.Play();
+            this.matthiasTextAmount = 12;
+            this.yesButton.transform.localPosition = new Vector3(-10f, 200f, 0.0f);
+            this.noButton.transform.localPosition = new Vector3(615f, -180f, 0.0f);
+            this.thirdButton.transform.localPosition = new Vector3(-265f, -30f, 0.0f);
+            this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, -16f);
+            this.twoPathSign.SetActive(false);
+            this.threePathSign.SetActive(false);
+            this.yesButtonText.text = "A: Are you exploring new teaching practices";
+            this.noButtonText.text = "B: Are you trying to evaluate student feedback?";
+            this.thirdButtonText.text = "C: Are you trying to gain feedback on your existing course?";
+            this.yesButton.SetActive(false);
+            this.noButton.SetActive(false);
+            this.thirdButton.SetActive(false);
+            this.onBPath = false;
+            ++this.numberOfDecisions;
+            this.twoPathImage.SetActive(false);
+            this.threePathImage.SetActive(true);
+            this.placeHolderBackground.SetActive(false);
+            this.twoPathSignFirst.SetActive(false);
+            this.twoPathSignSecond.SetActive(false);
+            this.threePathSignFirst.SetActive(false);
+            this.threePathSignSecond.SetActive(false);
+            this.threePathSignThird.SetActive(false);
+            this.previousPath = "C";
+            if (!this.wentBack)
             {
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(false);
-                guyHappySprite.SetActive(false);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(true); 
-                textBubble.SetActive(true);
-                textBubbleText.text = "There are quite a few talents who can help with your type of question.";
-                matthiasTextAmount = 12;
-                yesButton.transform.localPosition = new Vector3(-10, 200, 0);
-                noButton.transform.localPosition = new Vector3(615, -180, 0);
-                thirdButton.transform.localPosition = new Vector3(-265, -30, 0);
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, -16); ;
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                yesButtonText.text = "A: Are you exploring new teaching practices";
-                noButtonText.text = "B: Are you trying to evaluate student feedback?";
-                thirdButtonText.text = "C: Are you trying to gain feedback on your existing course?";
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                onBPath = false;
-                numberOfDecisions++;
-                twoPathImage.SetActive(false);
-                threePathImage.SetActive(true);
-                placeHolderBackground.SetActive(false);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                previousPath = "C";
-                if (wentBack == false)
-                {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
-                }
-                else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 14;
-                StartCoroutine(TypeText());
-                return;
+                this.prevChoiceIDHolder = this.prevChoiceID;
+                this.prevPathList.Add(this.prevChoiceIDHolder);
             }
-            if (numberOfDecisions == 1 && fourPathActive != true && onBPath == true)
+            else
+                this.wentBack = false;
+            this.prevChoiceID = 14;
+            this.StartCoroutine((IEnumerator)this.TypeText());
+        }
+        else if (this.numberOfDecisions == 1 && !this.fourPathActive && this.onBPath)
+        {
+            if (!this.didVideoPlay && !this.cutsceneBlocker)
             {
-                if (!didVideoPlay && !cutsceneBlocker)
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    mainCameraReference = GameObject.Find("Main Camera");
-                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
-                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "third";
-                    mainCameraVideoPlayer.Play();
-                    cutsceneBlocker = true;
-                    return;
-                }
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(true);
-                guyHappySprite.SetActive(false);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(false); 
-                textBubble.SetActive(true);
-                textBubbleText.text = "You will need to contact the MSU IT Team about your concerns.";
-                matthiasTextAmount = 20;
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                fourthButton.SetActive(false);
-                numberOfDecisions++;
-                twoPathImage.SetActive(false);
-                threePathImage.SetActive(false);
-                placeHolderBackground.SetActive(false);
-                MSUITZoneImage.SetActive(true);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                linkTextText.text = "https://tech.msu.edu/help-and-support/";
-                previousPath = "C";
-                forestMusic.Stop();
-                ITAndEdTechMusic.Play();
-                if (wentBack == false)
-                {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
-                }
-                else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 15;
-                StartCoroutine(TypeText());
-                return;
+                Cursor.lockState = CursorLockMode.Locked;
+                this.mainCameraReference = GameObject.Find("Main Camera");
+                this.mainCameraVideoPlayer = this.mainCameraReference.GetComponent<VideoPlayer>();
+                this.mainCameraVideoPlayer.loopPointReached += new VideoPlayer.EventHandler(this.OnVideoFinished);
+                this.prevPathForVideo = "third";
+                this.mainCameraVideoPlayer.Play();
+                this.cutsceneBlocker = true;
             }
-            if (numberOfDecisions == 1 && fourPathActive != true && onBPath == false)
+            else
             {
-                if (!didVideoPlay && !cutsceneBlocker)
+                this.typingTextBubbleText.text = "";
+                this.guySprite.SetActive(true);
+                this.guyHappySprite.SetActive(false);
+                this.guyCastingSprite.SetActive(false);
+                this.guyHoldingStaffSprite.SetActive(false);
+                this.textBubble.SetActive(true);
+                this.StopCurrentAudioClips();
+                this.textBubbleText.text = "You will need to contact the MSU IT Team about your concerns.";
+                this.ttsClipCMSUIT1.Play();
+                this.matthiasTextAmount = 20;
+                this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                this.twoPathSign.SetActive(false);
+                this.threePathSign.SetActive(false);
+                this.yesButton.SetActive(false);
+                this.noButton.SetActive(false);
+                this.thirdButton.SetActive(false);
+                this.fourthButton.SetActive(false);
+                ++this.numberOfDecisions;
+                this.twoPathImage.SetActive(false);
+                this.threePathImage.SetActive(false);
+                this.placeHolderBackground.SetActive(false);
+                this.MSUITZoneImage.SetActive(true);
+                this.twoPathSignFirst.SetActive(false);
+                this.twoPathSignSecond.SetActive(false);
+                this.threePathSignFirst.SetActive(false);
+                this.threePathSignSecond.SetActive(false);
+                this.threePathSignThird.SetActive(false);
+                this.linkTextText.text = "https://tech.msu.edu/help-and-support/";
+                this.previousPath = "C";
+                this.forestMusic.Stop();
+                this.ITAndEdTechMusic.Play();
+                if (!this.wentBack)
                 {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    mainCameraReference = GameObject.Find("Main Camera");
-                    mainCameraVideoPlayer = mainCameraReference.GetComponent<VideoPlayer>();
-                    mainCameraVideoPlayer.loopPointReached += OnVideoFinished;
-                    prevPathForVideo = "third";
-                    mainCameraVideoPlayer.Play();
-                    cutsceneBlocker = true;
-                    return;
-                }
-                typingTextBubbleText.text = "";
-                guySprite.SetActive(false);
-                guyHappySprite.SetActive(true);
-                guyCastingSprite.SetActive(false);
-                guyHoldingStaffSprite.SetActive(false);
-                textBubble.SetActive(true);
-                textBubbleText.text = "Looking to gain feedback on your existing course?";
-                matthiasTextAmount = 32;
-                yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                fourthButton.SetActive(false);
-                numberOfDecisions++;
-                twoPathImage.SetActive(false);
-                threePathImage.SetActive(false);
-                placeHolderBackground.SetActive(false);
-                CTLIZoneImage.SetActive(true);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                linkTextText.text = "https://teachingcenter.msu.edu/consultations";
-                previousPath = "C";
-                forestMusic.Stop();
-                CTLIMusic.Play();
-                if (wentBack == false)
-                {
-                    prevChoiceIDHolder = prevChoiceID;
-                    prevPathList.Add(prevChoiceIDHolder);
+                    this.prevChoiceIDHolder = this.prevChoiceID;
+                    this.prevPathList.Add(this.prevChoiceIDHolder);
                 }
                 else
-                {
-                    wentBack = false;
-                }
-                prevChoiceID = 16;
-                StartCoroutine(TypeText());
+                    this.wentBack = false;
+                this.prevChoiceID = 15;
+                this.StartCoroutine((IEnumerator)this.TypeText());
+            }
+        }
+        else
+        {
+            if (this.numberOfDecisions != 1 || this.fourPathActive || this.onBPath)
                 return;
+            if (!this.didVideoPlay && !this.cutsceneBlocker)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                this.mainCameraReference = GameObject.Find("Main Camera");
+                this.mainCameraVideoPlayer = this.mainCameraReference.GetComponent<VideoPlayer>();
+                this.mainCameraVideoPlayer.loopPointReached += new VideoPlayer.EventHandler(this.OnVideoFinished);
+                this.prevPathForVideo = "third";
+                this.mainCameraVideoPlayer.Play();
+                this.cutsceneBlocker = true;
+            }
+            else
+            {
+                this.typingTextBubbleText.text = "";
+                this.guySprite.SetActive(false);
+                this.guyHappySprite.SetActive(true);
+                this.guyCastingSprite.SetActive(false);
+                this.guyHoldingStaffSprite.SetActive(false);
+                this.textBubble.SetActive(true);
+                this.StopCurrentAudioClips();
+                this.textBubbleText.text = "Looking to gain feedback on your existing course?";
+                this.ttsClipFeedback1.Play();
+                this.matthiasTextAmount = 32 /*0x20*/;
+                this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                this.twoPathSign.SetActive(false);
+                this.threePathSign.SetActive(false);
+                this.yesButton.SetActive(false);
+                this.noButton.SetActive(false);
+                this.thirdButton.SetActive(false);
+                this.fourthButton.SetActive(false);
+                ++this.numberOfDecisions;
+                this.twoPathImage.SetActive(false);
+                this.threePathImage.SetActive(false);
+                this.placeHolderBackground.SetActive(false);
+                this.CTLIZoneImage.SetActive(true);
+                this.twoPathSignFirst.SetActive(false);
+                this.twoPathSignSecond.SetActive(false);
+                this.threePathSignFirst.SetActive(false);
+                this.threePathSignSecond.SetActive(false);
+                this.threePathSignThird.SetActive(false);
+                this.linkTextText.text = "https://teachingcenter.msu.edu/consultations";
+                this.previousPath = "C";
+                this.forestMusic.Stop();
+                this.CTLIMusic.Play();
+                if (!this.wentBack)
+                {
+                    this.prevChoiceIDHolder = this.prevChoiceID;
+                    this.prevPathList.Add(this.prevChoiceIDHolder);
+                }
+                else
+                    this.wentBack = false;
+                this.prevChoiceID = 16 /*0x10*/;
+                this.StartCoroutine((IEnumerator)this.TypeText());
             }
         }
     }
 
     public void Fourth()
     {
-        if (guySprite.activeSelf == false && guyHappySprite.activeSelf == false && guyCastingSprite.activeSelf == false && guyHoldingStaffSprite.activeSelf == false)
-        {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(true);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false); textBubble.SetActive(true);
-            textBubbleText.text = "Looks like you will need to contact LTD’s Accessibility and Quality Matters expert about your Inquiry!";
-            currentEmailPath = "wellman9@msu.edu";
-            matthiasTextAmount = 10;
-            yesButton.transform.localRotation = Quaternion.Euler(0, 0, 0); ;
-            twoPathSign.SetActive(false);
-            threePathSign.SetActive(false);
-            yesButton.SetActive(false);
-            noButton.SetActive(false);
-            thirdButton.SetActive(false);
-            fourthButton.SetActive(false);
-            twoPathImage.SetActive(false);
-            threePathImage.SetActive(false);
-            placeHolderBackground.SetActive(false);
-            d2LCourseBuildHouse.SetActive(false);
-            accessibilityHouse.SetActive(true);
-            multimediaHouse.SetActive(false);
-            redevelopCourseHouse.SetActive(false);
-            twoPathSignFirst.SetActive(false);
-            twoPathSignSecond.SetActive(false);
-            threePathSignFirst.SetActive(false);
-            threePathSignSecond.SetActive(false);
-            threePathSignThird.SetActive(false);
-            bigTownBackground.SetActive(false);
-            bigTownLeftMostSign.SetActive(false);
-            bigTownLeftMiddleSign.SetActive(false);
-            bigTownRightMiddleSign.SetActive(false);
-            bigTownRightMostSign.SetActive(false);
-            bigTownLeftMostSignHover.SetActive(false);
-            bigTownLeftMiddleSignHover.SetActive(false);
-            bigTownRightMiddleSignHover.SetActive(false);
-            bigTownRightMostSignHover.SetActive(false);
-            numberOfDecisions++;
-            previousPath = "D";
-            if (wentBack == false)
-            {
-                prevChoiceIDHolder = prevChoiceID;
-                prevPathList.Add(prevChoiceIDHolder);
-            }
-            else
-            {
-                wentBack = false;
-            }
-            prevChoiceID = 17;
-            StartCoroutine(TypeText());
+        if (this.guySprite.activeSelf || this.guyHappySprite.activeSelf || this.guyCastingSprite.activeSelf || this.guyHoldingStaffSprite.activeSelf)
             return;
+        this.typingTextBubbleText.text = "";
+        this.guySprite.SetActive(false);
+        this.guyHappySprite.SetActive(true);
+        this.guyCastingSprite.SetActive(false);
+        this.guyHoldingStaffSprite.SetActive(false);
+        this.textBubble.SetActive(true);
+        this.StopCurrentAudioClips();
+        this.textBubbleText.text = "Looks like you will need to contact LTD’s Accessibility and Quality Matters expert about your Inquiry!";
+        this.ttsClipQM1.Play();
+        this.currentEmailPath = "wellman9@msu.edu";
+        this.matthiasTextAmount = 10;
+        this.yesButton.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+        this.twoPathSign.SetActive(false);
+        this.threePathSign.SetActive(false);
+        this.yesButton.SetActive(false);
+        this.noButton.SetActive(false);
+        this.thirdButton.SetActive(false);
+        this.fourthButton.SetActive(false);
+        this.twoPathImage.SetActive(false);
+        this.threePathImage.SetActive(false);
+        this.placeHolderBackground.SetActive(false);
+        this.d2LCourseBuildHouse.SetActive(false);
+        this.accessibilityHouse.SetActive(true);
+        this.multimediaHouse.SetActive(false);
+        this.redevelopCourseHouse.SetActive(false);
+        this.twoPathSignFirst.SetActive(false);
+        this.twoPathSignSecond.SetActive(false);
+        this.threePathSignFirst.SetActive(false);
+        this.threePathSignSecond.SetActive(false);
+        this.threePathSignThird.SetActive(false);
+        this.bigTownBackground.SetActive(false);
+        this.bigTownLeftMostSign.SetActive(false);
+        this.bigTownLeftMiddleSign.SetActive(false);
+        this.bigTownRightMiddleSign.SetActive(false);
+        this.bigTownRightMostSign.SetActive(false);
+        this.bigTownLeftMostSignHover.SetActive(false);
+        this.bigTownLeftMiddleSignHover.SetActive(false);
+        this.bigTownRightMiddleSignHover.SetActive(false);
+        this.bigTownRightMostSignHover.SetActive(false);
+        ++this.numberOfDecisions;
+        this.previousPath = "D";
+        if (!this.wentBack)
+        {
+            this.prevChoiceIDHolder = this.prevChoiceID;
+            this.prevPathList.Add(this.prevChoiceIDHolder);
         }
+        else
+            this.wentBack = false;
+        this.prevChoiceID = 17;
+        this.StartCoroutine((IEnumerator)this.TypeText());
     }
 
     public void FirstButtonHovered()
     {
-        if (guySprite.activeSelf == false && guyHappySprite.activeSelf == false && guyCastingSprite.activeSelf == false && guyHoldingStaffSprite.activeSelf == false)
+        if (this.guySprite.activeSelf || this.guyHappySprite.activeSelf || this.guyCastingSprite.activeSelf || this.guyHoldingStaffSprite.activeSelf)
+            return;
+        if (this.twoPathSign.activeSelf)
         {
-            if (twoPathSign.activeSelf == true)
-            {
-                twoPathSign.SetActive(false);
-                twoPathSignFirst.SetActive(true);
-                twoPathSignSecond.SetActive(false);
-            }
-            if (threePathSign.activeSelf == true)
-            {
-                threePathSign.SetActive(false);
-                threePathSignFirst.SetActive(true);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-            }
-            if (bigTownLeftMostSign.activeSelf == true)
-            {
-                bigTownLeftMostSign.SetActive(false);
-                bigTownLeftMostSignHover.SetActive(true);
-            }
+            this.twoPathSign.SetActive(false);
+            this.twoPathSignFirst.SetActive(true);
+            this.twoPathSignSecond.SetActive(false);
         }
+        if (this.threePathSign.activeSelf)
+        {
+            this.threePathSign.SetActive(false);
+            this.threePathSignFirst.SetActive(true);
+            this.threePathSignSecond.SetActive(false);
+            this.threePathSignThird.SetActive(false);
+        }
+        if (!this.bigTownLeftMostSign.activeSelf)
+            return;
+        this.bigTownLeftMostSign.SetActive(false);
+        this.bigTownLeftMostSignHover.SetActive(true);
     }
 
     public void SecondButtonHovered()
     {
-        if (guySprite.activeSelf == false && guyHappySprite.activeSelf == false && guyCastingSprite.activeSelf == false && guyHoldingStaffSprite.activeSelf == false)
+        if (this.guySprite.activeSelf || this.guyHappySprite.activeSelf || this.guyCastingSprite.activeSelf || this.guyHoldingStaffSprite.activeSelf)
+            return;
+        if (this.twoPathSign.activeSelf)
         {
-            if (twoPathSign.activeSelf == true)
-            {
-                twoPathSign.SetActive(false);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(true);
-            }
-            if (threePathSign.activeSelf == true)
-            {
-                threePathSign.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(true);
-                threePathSignThird.SetActive(false);
-            }
-            if (bigTownLeftMiddleSign.activeSelf == true)
-            {
-                bigTownLeftMiddleSign.SetActive(false);
-                bigTownLeftMiddleSignHover.SetActive(true);
-            }
+            this.twoPathSign.SetActive(false);
+            this.twoPathSignFirst.SetActive(false);
+            this.twoPathSignSecond.SetActive(true);
         }
+        if (this.threePathSign.activeSelf)
+        {
+            this.threePathSign.SetActive(false);
+            this.threePathSignFirst.SetActive(false);
+            this.threePathSignSecond.SetActive(true);
+            this.threePathSignThird.SetActive(false);
+        }
+        if (!this.bigTownLeftMiddleSign.activeSelf)
+            return;
+        this.bigTownLeftMiddleSign.SetActive(false);
+        this.bigTownLeftMiddleSignHover.SetActive(true);
     }
 
     public void ThirdButtonHovered()
     {
-        if (guySprite.activeSelf == false && guyHappySprite.activeSelf == false && guyCastingSprite.activeSelf == false && guyHoldingStaffSprite.activeSelf == false)
+        if (this.guySprite.activeSelf || this.guyHappySprite.activeSelf || this.guyCastingSprite.activeSelf || this.guyHoldingStaffSprite.activeSelf)
+            return;
+        if (this.threePathSign.activeSelf)
         {
-            if (threePathSign.activeSelf == true)
-            {
-                threePathSign.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(true);
-            }
-            if (bigTownRightMiddleSign.activeSelf == true)
-            {
-                bigTownRightMiddleSign.SetActive(false);
-                bigTownRightMiddleSignHover.SetActive(true);
-            }
+            this.threePathSign.SetActive(false);
+            this.threePathSignFirst.SetActive(false);
+            this.threePathSignSecond.SetActive(false);
+            this.threePathSignThird.SetActive(true);
         }
+        if (!this.bigTownRightMiddleSign.activeSelf)
+            return;
+        this.bigTownRightMiddleSign.SetActive(false);
+        this.bigTownRightMiddleSignHover.SetActive(true);
     }
 
     public void FourthButtonHovered()
     {
-        if (guySprite.activeSelf == false && guyHappySprite.activeSelf == false && guyCastingSprite.activeSelf == false && guyHoldingStaffSprite.activeSelf == false)
-        {
-            if (bigTownRightMostSign.activeSelf == true)
-            {
-                bigTownRightMostSign.SetActive(false);
-                bigTownRightMostSignHover.SetActive(true);
-            }
-        }
+        if (this.guySprite.activeSelf || this.guyHappySprite.activeSelf || this.guyCastingSprite.activeSelf || this.guyHoldingStaffSprite.activeSelf || !this.bigTownRightMostSign.activeSelf)
+            return;
+        this.bigTownRightMostSign.SetActive(false);
+        this.bigTownRightMostSignHover.SetActive(true);
     }
 
     public void ButtonDehovered()
     {
-        if (twoPathSign.activeSelf == false && (twoPathSignFirst.activeSelf == true || twoPathSignSecond.activeSelf == true))
+        if (!this.twoPathSign.activeSelf && (this.twoPathSignFirst.activeSelf || this.twoPathSignSecond.activeSelf))
         {
-            twoPathSign.SetActive(true);
-            twoPathSignFirst.SetActive(false);
-            twoPathSignSecond.SetActive(false);
+            this.twoPathSign.SetActive(true);
+            this.twoPathSignFirst.SetActive(false);
+            this.twoPathSignSecond.SetActive(false);
         }
-        if (threePathSign.activeSelf == false && (threePathSignFirst.activeSelf == true || threePathSignSecond.activeSelf == true || threePathSignThird.activeSelf == true))
+        if (!this.threePathSign.activeSelf && (this.threePathSignFirst.activeSelf || this.threePathSignSecond.activeSelf || this.threePathSignThird.activeSelf))
         {
-            threePathSign.SetActive(true);
-            threePathSignFirst.SetActive(false);
-            threePathSignSecond.SetActive(false);
-            threePathSignThird.SetActive(false);
+            this.threePathSign.SetActive(true);
+            this.threePathSignFirst.SetActive(false);
+            this.threePathSignSecond.SetActive(false);
+            this.threePathSignThird.SetActive(false);
         }
-        if (bigTownLeftMiddleSignHover.activeSelf == true || bigTownLeftMostSignHover.activeSelf == true || bigTownRightMiddleSignHover.activeSelf == true || bigTownRightMostSignHover.activeSelf == true)
-        {
-            bigTownLeftMostSign.SetActive(true);
-            bigTownLeftMostSignHover.SetActive(false);
-            bigTownLeftMiddleSign.SetActive(true);
-            bigTownLeftMiddleSignHover.SetActive(false);
-            bigTownRightMiddleSign.SetActive(true);
-            bigTownRightMiddleSignHover.SetActive(false);
-            bigTownRightMostSign.SetActive(true);
-            bigTownRightMostSignHover.SetActive(false);
-        }
+        if (!this.bigTownLeftMiddleSignHover.activeSelf && !this.bigTownLeftMostSignHover.activeSelf && !this.bigTownRightMiddleSignHover.activeSelf && !this.bigTownRightMostSignHover.activeSelf)
+            return;
+        this.bigTownLeftMostSign.SetActive(true);
+        this.bigTownLeftMostSignHover.SetActive(false);
+        this.bigTownLeftMiddleSign.SetActive(true);
+        this.bigTownLeftMiddleSignHover.SetActive(false);
+        this.bigTownRightMiddleSign.SetActive(true);
+        this.bigTownRightMiddleSignHover.SetActive(false);
+        this.bigTownRightMostSign.SetActive(true);
+        this.bigTownRightMostSignHover.SetActive(false);
     }
 
     public void ScrollHovered()
     {
-        if (scrollClosed.activeSelf == true && scrollOpened.activeSelf == false)
-        {
-            scrollClosed.SetActive(false);
-            scrollOpened.SetActive(true);
-            //linkText.SetActive(true);
-            clickHereText.SetActive(true);
-                scrollOpenSound.Play();
-        }
+        if (!this.scrollClosed.activeSelf || this.scrollOpened.activeSelf)
+            return;
+        this.scrollClosed.SetActive(false);
+        this.scrollOpened.SetActive(true);
+        this.clickHereText.SetActive(true);
+        this.scrollOpenSound.Play();
     }
 
     public void ScrollDehovered()
     {
-        if (scrollClosed.activeSelf == false && scrollOpened.activeSelf == true)
-        {
-            scrollClosed.SetActive(true);
-            scrollOpened.SetActive(false);
-            linkText.SetActive(false);
-            clickHereText.SetActive(false);
-        }
+        if (this.scrollClosed.activeSelf || !this.scrollOpened.activeSelf)
+            return;
+        this.scrollClosed.SetActive(true);
+        this.scrollOpened.SetActive(false);
+        this.linkText.SetActive(false);
+        this.clickHereText.SetActive(false);
     }
 
     public void ScrollClicked()
     {
-        OpenWebsite(linkTextText.text);
-        SendEmail(currentEmailPath);
+        this.OpenWebsite(this.linkTextText.text);
+        this.SendEmail(this.currentEmailPath);
     }
 
     public void OpenWebsite(string url)
     {
-        if (url != "")
-        {
-            Application.OpenURL(url);
-        }
+        if (!(url != ""))
+            return;
+        Application.OpenURL(url);
     }
 
     public void Credits()
     {
-        startButton.SetActive(false);
-        creditsButton.SetActive(false);
-        exitButton.SetActive(false);
-        backButton.SetActive(true);
-        creditsText.SetActive(true);
-        startButtonHover.SetActive(false);
-        creditsButtonHover.SetActive(false);
-        exitButtonHover.SetActive(false);
+        this.startButton.SetActive(false);
+        this.creditsButton.SetActive(false);
+        this.exitButton.SetActive(false);
+        this.backButton.SetActive(true);
+        this.creditsText.SetActive(true);
+        this.startButtonHover.SetActive(false);
+        this.creditsButtonHover.SetActive(false);
+        this.exitButtonHover.SetActive(false);
     }
 
     public void Back()
     {
-        startButton.SetActive(true);
-        creditsButton.SetActive(true);
-        exitButton.SetActive(true);
-        backButton.SetActive(false);
-        creditsText.SetActive(false);
-        backButtonHover.SetActive(false);
+        this.startButton.SetActive(true);
+        this.creditsButton.SetActive(true);
+        this.exitButton.SetActive(true);
+        this.backButton.SetActive(false);
+        this.creditsText.SetActive(false);
+        this.backButtonHover.SetActive(false);
     }
 
-    public void Exit()
-    {
-        Application.Quit();
-    }
+    public void Exit() => Application.Quit();
 
     public void StartHover()
     {
-        startButton.SetActive(false);
-        startButtonHover.SetActive(true);
+        this.startButton.SetActive(false);
+        this.startButtonHover.SetActive(true);
     }
 
     public void CreditsHover()
     {
-        creditsButton.SetActive(false);
-        creditsButtonHover.SetActive(true);
+        this.creditsButton.SetActive(false);
+        this.creditsButtonHover.SetActive(true);
     }
 
     public void ExitHover()
     {
-        exitButton.SetActive(false);
-        exitButtonHover.SetActive(true);
+        this.exitButton.SetActive(false);
+        this.exitButtonHover.SetActive(true);
     }
 
     public void BackHover()
     {
-        backButton.SetActive(false);
-        backButtonHover.SetActive(true);
+        this.backButton.SetActive(false);
+        this.backButtonHover.SetActive(true);
     }
 
     public void TitleButtonDehover()
     {
-        if (!creditsText.activeSelf)
-        {
-            startButton.SetActive(true);
-            creditsButton.SetActive(true);
-            exitButton.SetActive(true);
-            startButtonHover.SetActive(false);
-            creditsButtonHover.SetActive(false);
-            exitButtonHover.SetActive(false);
-        }
+        if (this.creditsText.activeSelf)
+            return;
+        this.startButton.SetActive(true);
+        this.creditsButton.SetActive(true);
+        this.exitButton.SetActive(true);
+        this.startButtonHover.SetActive(false);
+        this.creditsButtonHover.SetActive(false);
+        this.exitButtonHover.SetActive(false);
     }
 
     public void BackButtonDehover()
     {
-        if (creditsText.activeSelf)
-        {
-            backButton.SetActive(true);
-            backButtonHover.SetActive(false);
-        }
+        if (!this.creditsText.activeSelf)
+            return;
+        this.backButton.SetActive(true);
+        this.backButtonHover.SetActive(false);
     }
-
-    //public void PreviousDecision()
-    //{
-    //    if (numberOfDecisions-1 == 0)
-    //    {
-    //        numberOfDecisions--;
-    //        twoPathSign.SetActive(false);
-    //        threePathSign.SetActive(false);
-    //        yesButton.SetActive(false);
-    //        noButton.SetActive(false);
-    //        thirdButton.SetActive(false);
-    //        fourthButton.SetActive(false);
-    //        twoPathImage.SetActive(false);
-    //        threePathImage.SetActive(false);
-    //        placeHolderBackground.SetActive(false);
-    //        MSUITZoneImage.SetActive(false);
-    //        LTDZoneImage.SetActive(false);
-    //        EdTechZoneImage.SetActive(false);
-    //        CTLIZoneImage.SetActive(false);
-    //        d2LCourseBuildHouse.SetActive(false);
-    //        accessibilityHouse.SetActive(false);
-    //        multimediaHouse.SetActive(false);
-    //        redevelopCourseHouse.SetActive(false);
-    //        twoPathSignFirst.SetActive(false);
-    //        twoPathSignSecond.SetActive(false);
-    //        threePathSignFirst.SetActive(false);
-    //        threePathSignSecond.SetActive(false);
-    //        threePathSignThird.SetActive(false);
-    //        bigTownBackground.SetActive(false);
-    //        bigTownLeftMostSign.SetActive(false);
-    //        bigTownLeftMiddleSign.SetActive(false);
-    //        bigTownRightMiddleSign.SetActive(false);
-    //        bigTownRightMostSign.SetActive(false);
-    //        bigTownLeftMostSignHover.SetActive(false);
-    //        bigTownLeftMiddleSignHover.SetActive(false);
-    //        bigTownRightMiddleSignHover.SetActive(false);
-    //        bigTownRightMostSignHover.SetActive(false);
-    //        scrollClosed.SetActive(false);
-    //        fourPathActive = false;
-    //        onBPath = false;
-    //        Continue();
-    //        return;
-    //    }
-    //    if (previousPath == "A" && numberOfDecisions > 0)
-    //    {
-    //        numberOfDecisions-= 2;
-    //        twoPathSign.SetActive(false);
-    //        threePathSign.SetActive(false);
-    //        yesButton.SetActive(false);
-    //        noButton.SetActive(false);
-    //        thirdButton.SetActive(false);
-    //        fourthButton.SetActive(false);
-    //        twoPathImage.SetActive(false);
-    //        threePathImage.SetActive(false);
-    //        placeHolderBackground.SetActive(false);
-    //        MSUITZoneImage.SetActive(false);
-    //        LTDZoneImage.SetActive(false);
-    //        EdTechZoneImage.SetActive(false);
-    //        CTLIZoneImage.SetActive(false);
-    //        d2LCourseBuildHouse.SetActive(false);
-    //        accessibilityHouse.SetActive(false);
-    //        multimediaHouse.SetActive(false);
-    //        redevelopCourseHouse.SetActive(false);
-    //        twoPathSignFirst.SetActive(false);
-    //        twoPathSignSecond.SetActive(false);
-    //        threePathSignFirst.SetActive(false);
-    //        threePathSignSecond.SetActive(false);
-    //        threePathSignThird.SetActive(false);
-    //        bigTownBackground.SetActive(false);
-    //        bigTownLeftMostSign.SetActive(false);
-    //        bigTownLeftMiddleSign.SetActive(false);
-    //        bigTownRightMiddleSign.SetActive(false);
-    //        bigTownRightMostSign.SetActive(false);
-    //        bigTownLeftMostSignHover.SetActive(false);
-    //        bigTownLeftMiddleSignHover.SetActive(false);
-    //        bigTownRightMiddleSignHover.SetActive(false);
-    //        bigTownRightMostSignHover.SetActive(false);
-    //        scrollClosed.SetActive(false);
-    //        if (onBPath)
-    //        {
-    //            No();
-    //        }
-    //        else
-    //        {
-    //            Yes();
-    //        }
-    //        return;
-    //    }
-    //    if (previousPath == "B" && numberOfDecisions > 0)
-    //    {
-    //        numberOfDecisions-= 2;
-    //        twoPathSign.SetActive(false);
-    //        threePathSign.SetActive(false);
-    //        yesButton.SetActive(false);
-    //        noButton.SetActive(false);
-    //        thirdButton.SetActive(false);
-    //        fourthButton.SetActive(false);
-    //        twoPathImage.SetActive(false);
-    //        threePathImage.SetActive(false);
-    //        placeHolderBackground.SetActive(false);
-    //        d2LCourseBuildHouse.SetActive(false);
-    //        MSUITZoneImage.SetActive(false);
-    //        LTDZoneImage.SetActive(false);
-    //        EdTechZoneImage.SetActive(false);
-    //        CTLIZoneImage.SetActive(false);
-    //        accessibilityHouse.SetActive(false);
-    //        multimediaHouse.SetActive(false);
-    //        redevelopCourseHouse.SetActive(false);
-    //        twoPathSignFirst.SetActive(false);
-    //        twoPathSignSecond.SetActive(false);
-    //        threePathSignFirst.SetActive(false);
-    //        threePathSignSecond.SetActive(false);
-    //        threePathSignThird.SetActive(false);
-    //        bigTownBackground.SetActive(false);
-    //        bigTownLeftMostSign.SetActive(false);
-    //        bigTownLeftMiddleSign.SetActive(false);
-    //        bigTownRightMiddleSign.SetActive(false);
-    //        bigTownRightMostSign.SetActive(false);
-    //        bigTownLeftMostSignHover.SetActive(false);
-    //        bigTownLeftMiddleSignHover.SetActive(false);
-    //        bigTownRightMiddleSignHover.SetActive(false);
-    //        bigTownRightMostSignHover.SetActive(false);
-    //        scrollClosed.SetActive(false);
-    //        if (fourPathActive)
-    //        {
-    //            Yes();
-    //        }
-    //        else
-    //        {
-    //            No();
-    //        }
-    //        return;
-    //    }
-    //    if (previousPath == "C" && numberOfDecisions > 0)
-    //    {
-    //        numberOfDecisions -= 2;
-    //        twoPathSign.SetActive(false);
-    //        threePathSign.SetActive(false);
-    //        yesButton.SetActive(false);
-    //        noButton.SetActive(false);
-    //        thirdButton.SetActive(false);
-    //        fourthButton.SetActive(false);
-    //        twoPathImage.SetActive(false);
-    //        threePathImage.SetActive(false);
-    //        placeHolderBackground.SetActive(false);
-    //        MSUITZoneImage.SetActive(false);
-    //        LTDZoneImage.SetActive(false);
-    //        EdTechZoneImage.SetActive(false);
-    //        CTLIZoneImage.SetActive(false);
-    //        d2LCourseBuildHouse.SetActive(false);
-    //        accessibilityHouse.SetActive(false);
-    //        multimediaHouse.SetActive(false);
-    //        redevelopCourseHouse.SetActive(false);
-    //        twoPathSignFirst.SetActive(false);
-    //        twoPathSignSecond.SetActive(false);
-    //        threePathSignFirst.SetActive(false);
-    //        threePathSignSecond.SetActive(false);
-    //        threePathSignThird.SetActive(false);
-    //        bigTownBackground.SetActive(false);
-    //        bigTownLeftMostSign.SetActive(false);
-    //        bigTownLeftMiddleSign.SetActive(false);
-    //        bigTownRightMiddleSign.SetActive(false);
-    //        bigTownRightMostSign.SetActive(false);
-    //        bigTownLeftMostSignHover.SetActive(false);
-    //        bigTownLeftMiddleSignHover.SetActive(false);
-    //        bigTownRightMiddleSignHover.SetActive(false);
-    //        bigTownRightMostSignHover.SetActive(false);
-    //        scrollClosed.SetActive(false);
-    //        if (onBPath)
-    //        {
-    //            No();
-    //        }
-    //        if (fourPathActive)
-    //        {
-    //            Yes();
-    //        }
-    //        else
-    //        {
-    //            Third();
-    //        }
-    //        return;
-    //    }
-    //    if (previousPath == "D" && numberOfDecisions > 0)
-    //    {
-    //        numberOfDecisions -= 2;
-    //        twoPathSign.SetActive(false);
-    //        threePathSign.SetActive(false);
-    //        yesButton.SetActive(false);
-    //        noButton.SetActive(false);
-    //        thirdButton.SetActive(false);
-    //        fourthButton.SetActive(false);
-    //        twoPathImage.SetActive(false);
-    //        threePathImage.SetActive(false);
-    //        placeHolderBackground.SetActive(false);
-    //        MSUITZoneImage.SetActive(false);
-    //        LTDZoneImage.SetActive(false);
-    //        EdTechZoneImage.SetActive(false);
-    //        CTLIZoneImage.SetActive(false);
-    //        d2LCourseBuildHouse.SetActive(false);
-    //        accessibilityHouse.SetActive(false);
-    //        multimediaHouse.SetActive(false);
-    //        redevelopCourseHouse.SetActive(false);
-    //        twoPathSignFirst.SetActive(false);
-    //        twoPathSignSecond.SetActive(false);
-    //        threePathSignFirst.SetActive(false);
-    //        threePathSignSecond.SetActive(false);
-    //        threePathSignThird.SetActive(false);
-    //        bigTownBackground.SetActive(false);
-    //        bigTownLeftMostSign.SetActive(false);
-    //        bigTownLeftMiddleSign.SetActive(false);
-    //        bigTownRightMiddleSign.SetActive(false);
-    //        bigTownRightMostSign.SetActive(false);
-    //        bigTownLeftMostSignHover.SetActive(false);
-    //        bigTownLeftMiddleSignHover.SetActive(false);
-    //        bigTownRightMiddleSignHover.SetActive(false);
-    //        bigTownRightMostSignHover.SetActive(false);
-    //        scrollClosed.SetActive(false);
-    //        Yes();
-    //        return;
-    //    }
-    //    if (previousPath == null)
-    //    {
-    //        return;
-    //    }
-    //}
 
     public void GoBack()
     {
-        if (guySprite.activeSelf == false && guyHappySprite.activeSelf == false && guyCastingSprite.activeSelf == false && guyHoldingStaffSprite.activeSelf == false)
+        if (this.guySprite.activeSelf || this.guyHappySprite.activeSelf || this.guyCastingSprite.activeSelf || this.guyHoldingStaffSprite.activeSelf || this.numberOfDecisions == 0)
+            return;
+        this.currentEmailPath = "FailSafePlaceholder@example.com";
+        this.twoPathSign.SetActive(false);
+        this.threePathSign.SetActive(false);
+        this.yesButton.SetActive(false);
+        this.noButton.SetActive(false);
+        this.thirdButton.SetActive(false);
+        this.fourthButton.SetActive(false);
+        this.twoPathImage.SetActive(false);
+        this.threePathImage.SetActive(false);
+        this.placeHolderBackground.SetActive(false);
+        this.MSUITZoneImage.SetActive(false);
+        this.LTDZoneImage.SetActive(false);
+        this.EdTechZoneImage.SetActive(false);
+        this.CTLIZoneImage.SetActive(false);
+        this.d2LCourseBuildHouse.SetActive(false);
+        this.accessibilityHouse.SetActive(false);
+        this.multimediaHouse.SetActive(false);
+        this.redevelopCourseHouse.SetActive(false);
+        this.twoPathSignFirst.SetActive(false);
+        this.twoPathSignSecond.SetActive(false);
+        this.threePathSignFirst.SetActive(false);
+        this.threePathSignSecond.SetActive(false);
+        this.threePathSignThird.SetActive(false);
+        this.bigTownBackground.SetActive(false);
+        this.bigTownLeftMostSign.SetActive(false);
+        this.bigTownLeftMiddleSign.SetActive(false);
+        this.bigTownRightMiddleSign.SetActive(false);
+        this.bigTownRightMostSign.SetActive(false);
+        this.bigTownLeftMostSignHover.SetActive(false);
+        this.bigTownLeftMiddleSignHover.SetActive(false);
+        this.bigTownRightMiddleSignHover.SetActive(false);
+        this.bigTownRightMostSignHover.SetActive(false);
+        this.scrollClosed.SetActive(false);
+        this.wentBack = true;
+        if (this.prevPathList.Count > 0)
         {
-            if (numberOfDecisions != 0)
+            int prevPath = this.prevPathList[this.prevPathList.Count - 1];
+            this.prevPathList.RemoveAt(this.prevPathList.Count - 1);
+            switch (prevPath)
             {
-                currentEmailPath = "FailSafePlaceholder@example.com";
-                twoPathSign.SetActive(false);
-                threePathSign.SetActive(false);
-                yesButton.SetActive(false);
-                noButton.SetActive(false);
-                thirdButton.SetActive(false);
-                fourthButton.SetActive(false);
-                twoPathImage.SetActive(false);
-                threePathImage.SetActive(false);
-                placeHolderBackground.SetActive(false);
-                MSUITZoneImage.SetActive(false);
-                LTDZoneImage.SetActive(false);
-                EdTechZoneImage.SetActive(false);
-                CTLIZoneImage.SetActive(false);
-                d2LCourseBuildHouse.SetActive(false);
-                accessibilityHouse.SetActive(false);
-                multimediaHouse.SetActive(false);
-                redevelopCourseHouse.SetActive(false);
-                twoPathSignFirst.SetActive(false);
-                twoPathSignSecond.SetActive(false);
-                threePathSignFirst.SetActive(false);
-                threePathSignSecond.SetActive(false);
-                threePathSignThird.SetActive(false);
-                bigTownBackground.SetActive(false);
-                bigTownLeftMostSign.SetActive(false);
-                bigTownLeftMiddleSign.SetActive(false);
-                bigTownRightMiddleSign.SetActive(false);
-                bigTownRightMostSign.SetActive(false);
-                bigTownLeftMostSignHover.SetActive(false);
-                bigTownLeftMiddleSignHover.SetActive(false);
-                bigTownRightMiddleSignHover.SetActive(false);
-                bigTownRightMostSignHover.SetActive(false);
-                scrollClosed.SetActive(false);
-                wentBack = true;
-            }
-            else
-            {
-                return;
-            }
-            if (prevPathList.Count > 0)
-            {
-                int lastValue = prevPathList[prevPathList.Count - 1];
-                prevPathList.RemoveAt(prevPathList.Count - 1);
-                switch (lastValue)
-                {
-                    case 0:
-                        Continue();
+                case 0:
+                    this.Continue();
+                    this.YesSkip();
+                    break;
+                case 1:
+                    this.numberOfDecisions = 0;
+                    this.onBPath = false;
+                    this.Yes();
+                    break;
+                case 2:
+                    this.numberOfDecisions = 1;
+                    this.onBPath = true;
+                    this.fourPathActive = false;
+                    this.Yes();
+                    if (this.forestMusic.isPlaying)
                         break;
-                    case 1:
-                        numberOfDecisions = 0;
-                        onBPath = false;
-                        Yes();
+                    this.forestMusic.Play();
+                    this.ITAndEdTechMusic.Stop();
+                    this.CTLIMusic.Stop();
+                    this.LTDMusic.Stop();
+                    break;
+                case 3:
+                    this.numberOfDecisions = 1;
+                    this.onBPath = false;
+                    this.fourPathActive = false;
+                    this.Yes();
+                    if (this.forestMusic.isPlaying)
                         break;
-                    case 2:
-                        numberOfDecisions = 1;
-                        onBPath = true;
-                        fourPathActive = false;
-                        Yes();
-                        if (!forestMusic.isPlaying)
-                        {
-                            forestMusic.Play();
-                            ITAndEdTechMusic.Stop();
-                            CTLIMusic.Stop();
-                            LTDMusic.Stop();
-                        }
+                    this.forestMusic.Play();
+                    this.ITAndEdTechMusic.Stop();
+                    this.CTLIMusic.Stop();
+                    this.LTDMusic.Stop();
+                    break;
+                case 4:
+                    this.numberOfDecisions = 2;
+                    this.onBPath = true;
+                    this.fourPathActive = false;
+                    this.Yes();
+                    if (this.forestMusic.isPlaying)
                         break;
-                    case 3:
-                        numberOfDecisions = 1;
-                        onBPath = false;
-                        fourPathActive = false;
-                        Yes();
-                        if (!forestMusic.isPlaying)
-                        {
-                            forestMusic.Play();
-                            ITAndEdTechMusic.Stop();
-                            CTLIMusic.Stop();
-                            LTDMusic.Stop();
-                        }
+                    this.forestMusic.Play();
+                    this.ITAndEdTechMusic.Stop();
+                    this.CTLIMusic.Stop();
+                    this.LTDMusic.Stop();
+                    break;
+                case 5:
+                    this.numberOfDecisions = 2;
+                    this.onBPath = false;
+                    this.fourPathActive = false;
+                    this.Yes();
+                    if (this.forestMusic.isPlaying)
                         break;
-                    case 4:
-                        numberOfDecisions = 2;
-                        onBPath = true;
-                        fourPathActive = false;
-                        Yes();
-                        if (!forestMusic.isPlaying)
-                        {
-                            forestMusic.Play();
-                            ITAndEdTechMusic.Stop();
-                            CTLIMusic.Stop();
-                            LTDMusic.Stop();
-                        }
+                    this.forestMusic.Play();
+                    this.ITAndEdTechMusic.Stop();
+                    this.CTLIMusic.Stop();
+                    this.LTDMusic.Stop();
+                    break;
+                case 6:
+                    this.numberOfDecisions = 2;
+                    this.fourPathActive = true;
+                    this.Yes();
+                    break;
+                case 7:
+                    this.numberOfDecisions = 0;
+                    this.fourPathActive = false;
+                    this.No();
+                    if (this.forestMusic.isPlaying)
                         break;
-                    case 5:
-                        numberOfDecisions = 2;
-                        onBPath = false;
-                        fourPathActive = false;
-                        Yes();
-                        if (!forestMusic.isPlaying)
-                        {
-                            forestMusic.Play();
-                            ITAndEdTechMusic.Stop();
-                            CTLIMusic.Stop();
-                            LTDMusic.Stop();
-                        }
+                    this.forestMusic.Play();
+                    this.ITAndEdTechMusic.Stop();
+                    this.CTLIMusic.Stop();
+                    this.LTDMusic.Stop();
+                    break;
+                case 8:
+                    this.numberOfDecisions = 1;
+                    this.onBPath = true;
+                    this.fourPathActive = false;
+                    this.No();
+                    if (this.forestMusic.isPlaying)
                         break;
-                    case 6:
-                        numberOfDecisions = 2;
-                        fourPathActive = true;
-                        Yes();
+                    this.forestMusic.Play();
+                    this.ITAndEdTechMusic.Stop();
+                    this.CTLIMusic.Stop();
+                    this.LTDMusic.Stop();
+                    break;
+                case 9:
+                    this.numberOfDecisions = 1;
+                    this.onBPath = false;
+                    this.fourPathActive = false;
+                    this.No();
+                    if (this.forestMusic.isPlaying)
                         break;
-                    case 7:
-                        numberOfDecisions = 0;
-                        fourPathActive = false;
-                        No();
-                        if (!forestMusic.isPlaying)
-                        {
-                            forestMusic.Play();
-                            ITAndEdTechMusic.Stop();
-                            CTLIMusic.Stop();
-                            LTDMusic.Stop();
-                        }
+                    this.forestMusic.Play();
+                    this.ITAndEdTechMusic.Stop();
+                    this.CTLIMusic.Stop();
+                    this.LTDMusic.Stop();
+                    break;
+                case 10:
+                    this.numberOfDecisions = 2;
+                    this.onBPath = true;
+                    this.fourPathActive = false;
+                    this.No();
+                    if (this.forestMusic.isPlaying)
                         break;
-                    case 8:
-                        numberOfDecisions = 1;
-                        onBPath = true;
-                        fourPathActive = false;
-                        No();
-                        if (!forestMusic.isPlaying)
-                        {
-                            forestMusic.Play();
-                            ITAndEdTechMusic.Stop();
-                            CTLIMusic.Stop();
-                            LTDMusic.Stop();
-                        }
+                    this.forestMusic.Play();
+                    this.ITAndEdTechMusic.Stop();
+                    this.CTLIMusic.Stop();
+                    this.LTDMusic.Stop();
+                    break;
+                case 11:
+                    this.numberOfDecisions = 2;
+                    this.onBPath = false;
+                    this.fourPathActive = false;
+                    this.No();
+                    if (this.forestMusic.isPlaying)
                         break;
-                    case 9:
-                        numberOfDecisions = 1;
-                        onBPath = false;
-                        fourPathActive = false;
-                        No();
-                        if (!forestMusic.isPlaying)
-                        {
-                            forestMusic.Play();
-                            ITAndEdTechMusic.Stop();
-                            CTLIMusic.Stop();
-                            LTDMusic.Stop();
-                        }
+                    this.forestMusic.Play();
+                    this.ITAndEdTechMusic.Stop();
+                    this.CTLIMusic.Stop();
+                    this.LTDMusic.Stop();
+                    break;
+                case 12:
+                    this.numberOfDecisions = 2;
+                    this.fourPathActive = true;
+                    this.No();
+                    break;
+                case 13:
+                    this.numberOfDecisions = 2;
+                    this.fourPathActive = true;
+                    this.Third();
+                    break;
+                case 14:
+                    this.numberOfDecisions = 0;
+                    this.onBPath = false;
+                    this.fourPathActive = false;
+                    this.Third();
+                    if (this.forestMusic.isPlaying)
                         break;
-                    case 10:
-                        numberOfDecisions = 2;
-                        onBPath = true;
-                        fourPathActive = false;
-                        No();
-                        if (!forestMusic.isPlaying)
-                        {
-                            forestMusic.Play();
-                            ITAndEdTechMusic.Stop();
-                            CTLIMusic.Stop();
-                            LTDMusic.Stop();
-                        }
+                    this.forestMusic.Play();
+                    this.ITAndEdTechMusic.Stop();
+                    this.CTLIMusic.Stop();
+                    this.LTDMusic.Stop();
+                    break;
+                case 15:
+                    this.numberOfDecisions = 1;
+                    this.onBPath = true;
+                    this.fourPathActive = false;
+                    this.Third();
+                    if (this.forestMusic.isPlaying)
                         break;
-                    case 11:
-                        numberOfDecisions = 2;
-                        onBPath = false;
-                        fourPathActive = false;
-                        No();
-                        if (!forestMusic.isPlaying)
-                        {
-                            forestMusic.Play();
-                            ITAndEdTechMusic.Stop();
-                            CTLIMusic.Stop();
-                            LTDMusic.Stop();
-                        }
+                    this.forestMusic.Play();
+                    this.ITAndEdTechMusic.Stop();
+                    this.CTLIMusic.Stop();
+                    this.LTDMusic.Stop();
+                    break;
+                case 16 /*0x10*/:
+                    this.numberOfDecisions = 1;
+                    this.onBPath = false;
+                    this.fourPathActive = false;
+                    this.Third();
+                    if (this.forestMusic.isPlaying)
                         break;
-                    case 12:
-                        numberOfDecisions = 2;
-                        fourPathActive = true;
-                        No();
-                        break;
-                    case 13:
-                        numberOfDecisions = 2;
-                        fourPathActive = true;
-                        Third();
-                        break;
-                    case 14:
-                        numberOfDecisions = 0;
-                        onBPath = false;
-                        fourPathActive = false;
-                        Third();
-                        if (!forestMusic.isPlaying)
-                        {
-                            forestMusic.Play();
-                            ITAndEdTechMusic.Stop();
-                            CTLIMusic.Stop();
-                            LTDMusic.Stop();
-                        }
-                        break;
-                    case 15:
-                        numberOfDecisions = 1;
-                        onBPath = true;
-                        fourPathActive = false;
-                        Third();
-                        if (!forestMusic.isPlaying)
-                        {
-                            forestMusic.Play();
-                            ITAndEdTechMusic.Stop();
-                            CTLIMusic.Stop();
-                            LTDMusic.Stop();
-                        }
-                        break;
-                    case 16:
-                        numberOfDecisions = 1;
-                        onBPath = false;
-                        fourPathActive = false;
-                        Third();
-                        if (!forestMusic.isPlaying)
-                        {
-                            forestMusic.Play();
-                            ITAndEdTechMusic.Stop();
-                            CTLIMusic.Stop();
-                            LTDMusic.Stop();
-                        }
-                        break;
-                    case 17:
-                        numberOfDecisions = 2;
-                        Fourth();
-                        break;
-                    default:
-                        Debug.LogWarning("Unknown backtrack value: " + lastValue);
-                        break;
-                }
-            }
-            else
-            {
-                Debug.LogWarning("Tried to GoBack() but prevPathList is empty.");
+                    this.forestMusic.Play();
+                    this.ITAndEdTechMusic.Stop();
+                    this.CTLIMusic.Stop();
+                    this.LTDMusic.Stop();
+                    break;
+                case 17:
+                    this.numberOfDecisions = 2;
+                    this.Fourth();
+                    break;
+                default:
+                    Debug.LogWarning((object)("Unknown backtrack value: " + prevPath.ToString()));
+                    break;
             }
         }
+        else
+            Debug.LogWarning((object)"Tried to GoBack() but prevPathList is empty.");
     }
 
     public void PreviousDecisionButtonHovered()
     {
-        prevButton.SetActive(false);
-        prevButtonHover.SetActive(true);
+        this.prevButton.SetActive(false);
+        this.prevButtonHover.SetActive(true);
     }
 
     public void PreviousDecisionButtonDehovered()
     {
-        prevButton.SetActive(true);
-        prevButtonHover.SetActive(false);
+        this.prevButton.SetActive(true);
+        this.prevButtonHover.SetActive(false);
+    }
+
+    public void YesSkip()
+    {
+        this.textBoxYesNo.SetActive(false);
+        this.matthiasTextAmount = 6;
+        this.UpdateMatthiasText();
+        this.yesSkipButton.SetActive(false);
+        this.yesSkipButtonHover.SetActive(false);
+        this.noSkipButton.SetActive(false);
+        this.noSkipButtonHover.SetActive(false);
+        this.threePathSign.SetActive(true);
+        this.yesButton.SetActive(true);
+        this.noButton.SetActive(true);
+        this.thirdButton.SetActive(true);
+        this.textBoxYesNo.SetActive(false);
+    }
+
+    public void NoSkip()
+    {
+        this.matthiasTextAmount = 1;
+        this.UpdateMatthiasText();
+        this.yesSkipButton.SetActive(false);
+        this.yesSkipButtonHover.SetActive(false);
+        this.noSkipButton.SetActive(false);
+        this.noSkipButtonHover.SetActive(false);
+    }
+
+    public void YesSkipHovered()
+    {
+        this.yesSkipButton.SetActive(false);
+        this.yesSkipButtonHover.SetActive(true);
+    }
+
+    public void NoSkipHovered()
+    {
+        this.noSkipButton.SetActive(false);
+        this.noSkipButtonHover.SetActive(true);
+    }
+
+    public void YesSkipDehovered()
+    {
+        this.yesSkipButton.SetActive(true);
+        this.yesSkipButtonHover.SetActive(false);
+    }
+
+    public void NoSkipDehovered()
+    {
+        this.noSkipButton.SetActive(true);
+        this.noSkipButtonHover.SetActive(false);
     }
 
     public void UpdateMatthiasText()
     {
-        if (matthiasTextAmount == 1)
+        if (this.matthiasTextAmount == -1)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(true);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "My name is Matthias, and I will be your guide, an Educational Support Wizard, if you will.";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(true);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Have we met before?";
+            this.ttsClip2.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 2)
+        else if (this.matthiasTextAmount == 0)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(true);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "I am here to help you find where you need to go!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "";
+            this.yesSkipButton.SetActive(true);
+            this.noSkipButton.SetActive(true);
+            this.textBoxYesNo.SetActive(true);
+            this.textBubble.SetActive(false);
         }
-        if (matthiasTextAmount == 3)
+        else if (this.matthiasTextAmount == 1)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(true);
-            textBubbleText.text = "Think about your inquiry that you need supporting and follow the path to which your concerns best align with!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(true);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(true);
+            this.textBoxYesNo.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "My name is Matthias, and I will be your guide, an Educational Support Wizard, if you will.";
+            this.ttsClip3.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 4)
+        else if (this.matthiasTextAmount == 2)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(true);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "I will get you to a team or individual that will be able to help you on your journey.";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(true);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "I am here to help you find where you need to go!";
+            this.ttsClip4.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 5)
+        else if (this.matthiasTextAmount == 3)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(true);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            threePathSign.SetActive(true);
-            yesButton.SetActive(true);
-            noButton.SetActive(true);
-            thirdButton.SetActive(true);
-            textBubbleText.text = "Click which sign best aligns with your inquiry.";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(true);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Think about your inquiry that you need supporting and follow the path to which your concerns best align with!";
+            this.ttsClip5.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 6)
+        else if (this.matthiasTextAmount == 4)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubble.SetActive(false);
-            textBubbleText.text = "";
-            matthiasTextAmount++;
-            prevButton.SetActive(true);
-            forestMusic.volume = .6f;
-            CTLIMusic.volume = .6f;
-            ITAndEdTechMusic.volume = .6f;
-            LTDMusic.volume = .6f;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(true);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "I will get you to a team or individual that will be able to help you on your journey.";
+            this.ttsClip6.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 7)
+        else if (this.matthiasTextAmount == 5)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(true);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "You’ve come to the right place!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(true);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.threePathSign.SetActive(true);
+            this.yesButton.SetActive(true);
+            this.noButton.SetActive(true);
+            this.thirdButton.SetActive(true);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Click which sign best aligns with your inquiry.";
+            this.ttsClip7.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 8)
+        else if (this.matthiasTextAmount == 6)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(true);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "Which of the following does your question best align to?";
-            bigTownLeftMostSign.SetActive(true);
-            bigTownLeftMiddleSign.SetActive(true);
-            bigTownRightMiddleSign.SetActive(true);
-            bigTownRightMostSign.SetActive(true);
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "";
+            ++this.matthiasTextAmount;
+            this.prevButton.SetActive(true);
+            this.forestMusic.volume = 0.6f;
+            this.CTLIMusic.volume = 0.6f;
+            this.ITAndEdTechMusic.volume = 0.6f;
+            this.LTDMusic.volume = 0.6f;
         }
-        if (matthiasTextAmount == 9)
+        else if (this.matthiasTextAmount == 7)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubble.SetActive(false);
-            textBubbleText.text = "";
-            yesButton.SetActive(true);
-            noButton.SetActive(true);
-            thirdButton.SetActive(true);
-            fourthButton.SetActive(true);
-            matthiasTextAmount++;
-            forestMusic.volume = .6f;
-            CTLIMusic.volume = .6f;
-            ITAndEdTechMusic.volume = .6f;
-            LTDMusic.volume = .6f;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(true);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "You’ve come to the right place!";
+            this.ttsClipA2.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 10)
+        else if (this.matthiasTextAmount == 8)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(true);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "Click on the scroll to be sent to their contact information!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(true);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Which of the following does your question best align to?";
+            this.ttsClipA3.Play();
+            this.bigTownLeftMostSign.SetActive(true);
+            this.bigTownLeftMiddleSign.SetActive(true);
+            this.bigTownRightMiddleSign.SetActive(true);
+            this.bigTownRightMostSign.SetActive(true);
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 11)
+        else if (this.matthiasTextAmount == 9)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            guySprite.SetActive(false);
-            textBubble.SetActive(false);
-            textBubbleText.text = "";
-            matthiasTextAmount++;
-            scrollClosed.SetActive(true);
-            forestMusic.volume = .6f;
-            CTLIMusic.volume = .6f;
-            ITAndEdTechMusic.volume = .6f;
-            LTDMusic.volume = .6f;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "";
+            this.yesButton.SetActive(true);
+            this.noButton.SetActive(true);
+            this.thirdButton.SetActive(true);
+            this.fourthButton.SetActive(true);
+            ++this.matthiasTextAmount;
+            this.forestMusic.volume = 0.6f;
+            this.CTLIMusic.volume = 0.6f;
+            this.ITAndEdTechMusic.volume = 0.6f;
+            this.LTDMusic.volume = 0.6f;
         }
-        if (matthiasTextAmount == 12)
+        else if (this.matthiasTextAmount == 10)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(true);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "But we can get more specific!";
-            threePathSign.SetActive(true);
-            yesButton.SetActive(true);
-            noButton.SetActive(true);
-            thirdButton.SetActive(true);
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(true);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Click on the scroll to be sent to their contact information!";
+            this.ttsClipRedev2.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 13)
+        else if (this.matthiasTextAmount == 11)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubble.SetActive(false);
-            textBubbleText.text = "";
-            matthiasTextAmount++;
-            forestMusic.volume = .6f;
-            CTLIMusic.volume = .6f;
-            ITAndEdTechMusic.volume = .6f;
-            LTDMusic.volume = .6f;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.guySprite.SetActive(false);
+            this.textBubble.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "";
+            ++this.matthiasTextAmount;
+            this.scrollClosed.SetActive(true);
+            this.forestMusic.volume = 0.6f;
+            this.CTLIMusic.volume = 0.6f;
+            this.ITAndEdTechMusic.volume = 0.6f;
+            this.LTDMusic.volume = 0.6f;
         }
-        if (matthiasTextAmount == 14)
+        else if (this.matthiasTextAmount == 12)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(true);
-            textBubbleText.text = "Look no further than the Learning Technology and Development Team!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(true);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "But we can get more specific!";
+            this.ttsClipB2.Play();
+            this.threePathSign.SetActive(true);
+            this.yesButton.SetActive(true);
+            this.noButton.SetActive(true);
+            this.thirdButton.SetActive(true);
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 15)
+        else if (this.matthiasTextAmount == 13)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(true);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "Click the scroll to be taken to their contacts!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "";
+            ++this.matthiasTextAmount;
+            this.forestMusic.volume = 0.6f;
+            this.CTLIMusic.volume = 0.6f;
+            this.ITAndEdTechMusic.volume = 0.6f;
+            this.LTDMusic.volume = 0.6f;
         }
-        if (matthiasTextAmount == 16)
+        else if (this.matthiasTextAmount == 14)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubble.SetActive(false);
-            textBubbleText.text = "";
-            matthiasTextAmount++;
-            scrollClosed.SetActive(true);
-            forestMusic.volume = .6f;
-            CTLIMusic.volume = .6f;
-            ITAndEdTechMusic.volume = .6f;
-            LTDMusic.volume = .6f;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(true);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Look no further than the Learning Technology and Development Team!";
+            this.ttsClipHelp2.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 17)
+        else if (this.matthiasTextAmount == 15)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(true);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "Look no further than MSU EdTech!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(true);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Click the scroll to be taken to their contacts!";
+            this.ttsClipHelp3.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 18)
+        else if (this.matthiasTextAmount == 16 /*0x10*/)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(true);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "Click the scroll to be taken to their contacts!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "";
+            ++this.matthiasTextAmount;
+            this.scrollClosed.SetActive(true);
+            this.forestMusic.volume = 0.6f;
+            this.CTLIMusic.volume = 0.6f;
+            this.ITAndEdTechMusic.volume = 0.6f;
+            this.LTDMusic.volume = 0.6f;
         }
-        if (matthiasTextAmount == 19)
+        else if (this.matthiasTextAmount == 17)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubble.SetActive(false);
-            textBubbleText.text = "";
-            matthiasTextAmount++;
-            scrollClosed.SetActive(true);
-            forestMusic.volume = .6f;
-            CTLIMusic.volume = .6f;
-            ITAndEdTechMusic.volume = .6f;
-            LTDMusic.volume = .6f;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(true);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Look no further than MSU EdTech!";
+            this.ttsClipAssistance2.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 20)
+        else if (this.matthiasTextAmount == 18)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(true);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "I can get you to their website!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(true);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Click the scroll to be taken to their contacts!";
+            this.ttsClipAssistance3.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 21)
+        else if (this.matthiasTextAmount == 19)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(true);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "Click the scroll to be sent to their contacts!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "";
+            ++this.matthiasTextAmount;
+            this.scrollClosed.SetActive(true);
+            this.forestMusic.volume = 0.6f;
+            this.CTLIMusic.volume = 0.6f;
+            this.ITAndEdTechMusic.volume = 0.6f;
+            this.LTDMusic.volume = 0.6f;
         }
-        if (matthiasTextAmount == 22)
+        else if (this.matthiasTextAmount == 20)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubble.SetActive(false);
-            textBubbleText.text = "";
-            matthiasTextAmount++;
-            scrollClosed.SetActive(true);
-            forestMusic.volume = .6f;
-            CTLIMusic.volume = .6f;
-            ITAndEdTechMusic.volume = .6f;
-            LTDMusic.volume = .6f;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(true);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "I can get you to their website!";
+            this.ttsClipBMSUIT2.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 23)
+        else if (this.matthiasTextAmount == 21)
         {
-            typingTextBubbleText.text = "";
-            textBubbleText.text = "Look no further than the Center for Teaching and Learning Innovation!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(true);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Click the scroll to be sent to their contacts!";
+            this.ttsClipHelp3.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 24)
+        else if (this.matthiasTextAmount == 22)
         {
-            typingTextBubbleText.text = "";
-            textBubbleText.text = "Click the scroll to be sent to their contacts!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "";
+            ++this.matthiasTextAmount;
+            this.scrollClosed.SetActive(true);
+            this.forestMusic.volume = 0.6f;
+            this.CTLIMusic.volume = 0.6f;
+            this.ITAndEdTechMusic.volume = 0.6f;
+            this.LTDMusic.volume = 0.6f;
         }
-        if (matthiasTextAmount == 25)
+        else if (this.matthiasTextAmount == 23)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubble.SetActive(false);
-            textBubbleText.text = "";
-            matthiasTextAmount++;
-            scrollClosed.SetActive(true);
-            forestMusic.volume = .6f;
-            CTLIMusic.volume = .6f;
-            ITAndEdTechMusic.volume = .6f;
-            LTDMusic.volume = .6f;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Look no further than the Center for Teaching and Learning Innovation!";
+            this.ttsClipWorkshop2.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 26)
+        else if (this.matthiasTextAmount == 24)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(true);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "Look no further than the Learning Technology and Development Team!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Click the scroll to be sent to their contacts!";
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 27)
+        else if (this.matthiasTextAmount == 25)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(true);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "Click the scroll to be taken to their contacts!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "";
+            ++this.matthiasTextAmount;
+            this.scrollClosed.SetActive(true);
+            this.forestMusic.volume = 0.6f;
+            this.CTLIMusic.volume = 0.6f;
+            this.ITAndEdTechMusic.volume = 0.6f;
+            this.LTDMusic.volume = 0.6f;
         }
-        if (matthiasTextAmount == 28)
+        else if (this.matthiasTextAmount == 26)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubble.SetActive(false);
-            textBubbleText.text = "";
-            matthiasTextAmount++;
-            scrollClosed.SetActive(true);
-            forestMusic.volume = .6f;
-            CTLIMusic.volume = .6f;
-            ITAndEdTechMusic.volume = .6f;
-            LTDMusic.volume = .6f;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(true);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Look no further than the Learning Technology and Development Team!";
+            this.ttsClipHelp2.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 29)
+        else if (this.matthiasTextAmount == 27)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(true);
-            textBubbleText.text = "Look no further than the Center for Teaching and Learning Innovation!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(true);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Click the scroll to be taken to their contacts!";
+            this.ttsClipHelp3.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 30)
+        else if (this.matthiasTextAmount == 28)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(true);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "Click the scroll to be taken to their contacts!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "";
+            ++this.matthiasTextAmount;
+            this.scrollClosed.SetActive(true);
+            this.forestMusic.volume = 0.6f;
+            this.CTLIMusic.volume = 0.6f;
+            this.ITAndEdTechMusic.volume = 0.6f;
+            this.LTDMusic.volume = 0.6f;
         }
-        if (matthiasTextAmount == 31)
+        else if (this.matthiasTextAmount == 29)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubble.SetActive(false);
-            textBubbleText.text = "";
-            matthiasTextAmount++;
-            scrollClosed.SetActive(true);
-            forestMusic.volume = .6f;
-            CTLIMusic.volume = .6f;
-            ITAndEdTechMusic.volume = .6f;
-            LTDMusic.volume = .6f;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(true);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Look no further than the Center for Teaching and Learning Innovation!";
+            this.ttsClipWorkshop2.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 32)
+        else if (this.matthiasTextAmount == 30)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(true);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "Look no further than the Center for Teaching and Learning Innovation!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(true);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Click the scroll to be taken to their contacts!";
+            this.ttsClipHelp3.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 33)
+        else if (this.matthiasTextAmount == 31 /*0x1F*/)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(true);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubbleText.text = "Click the scroll to be taken to their contacts!";
-            StartCoroutine(TypeText());
-            matthiasTextAmount++;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "";
+            ++this.matthiasTextAmount;
+            this.scrollClosed.SetActive(true);
+            this.forestMusic.volume = 0.6f;
+            this.CTLIMusic.volume = 0.6f;
+            this.ITAndEdTechMusic.volume = 0.6f;
+            this.LTDMusic.volume = 0.6f;
         }
-        if (matthiasTextAmount == 34)
+        else if (this.matthiasTextAmount == 32 /*0x20*/)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubble.SetActive(false);
-            textBubbleText.text = "";
-            matthiasTextAmount++;
-            scrollClosed.SetActive(true);
-            forestMusic.volume = .6f;
-            CTLIMusic.volume = .6f;
-            ITAndEdTechMusic.volume = .6f;
-            LTDMusic.volume = .6f;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(true);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Look no further than the Center for Teaching and Learning Innovation!";
+            this.ttsClipWorkshop2.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
         }
-        if (matthiasTextAmount == 35) // Where all one-liners go
+        else if (this.matthiasTextAmount == 33)
         {
-            typingTextBubbleText.text = "";
-            guySprite.SetActive(false);
-            guyHappySprite.SetActive(false);
-            guyCastingSprite.SetActive(false);
-            guyHoldingStaffSprite.SetActive(false);
-            textBubble.SetActive(false);
-            textBubbleText.text = "";
-            matthiasTextAmount++;
-            forestMusic.volume = .6f;
-            CTLIMusic.volume = .6f;
-            ITAndEdTechMusic.volume = .6f;
-            LTDMusic.volume = .6f;
-            return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(true);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "Click the scroll to be taken to their contacts!";
+            this.ttsClipHelp3.Play();
+            this.StartCoroutine((IEnumerator)this.TypeText());
+            ++this.matthiasTextAmount;
+        }
+        else if (this.matthiasTextAmount == 34)
+        {
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "";
+            ++this.matthiasTextAmount;
+            this.scrollClosed.SetActive(true);
+            this.forestMusic.volume = 0.6f;
+            this.CTLIMusic.volume = 0.6f;
+            this.ITAndEdTechMusic.volume = 0.6f;
+            this.LTDMusic.volume = 0.6f;
+        }
+        else
+        {
+            if (this.matthiasTextAmount != 35)
+                return;
+            this.typingTextBubbleText.text = "";
+            this.guySprite.SetActive(false);
+            this.guyHappySprite.SetActive(false);
+            this.guyCastingSprite.SetActive(false);
+            this.guyHoldingStaffSprite.SetActive(false);
+            this.textBubble.SetActive(false);
+            this.StopCurrentAudioClips();
+            this.textBubbleText.text = "";
+            ++this.matthiasTextAmount;
+            this.forestMusic.volume = 0.6f;
+            this.CTLIMusic.volume = 0.6f;
+            this.ITAndEdTechMusic.volume = 0.6f;
+            this.LTDMusic.volume = 0.6f;
         }
     }
 
     public void SendEmail(string emailEntered)
     {
-        string subject = Uri.EscapeDataString("Your Subject Here");
-        string body = Uri.EscapeDataString("Hello, this is the body of the email.");
+        string str1 = Uri.EscapeDataString("Your Subject Here");
+        string str2 = Uri.EscapeDataString("Hello, this is the body of the email.");
         if (emailEntered == "basset44@msu.edu")
         {
-            subject = Uri.EscapeDataString("Support Request: Audio/Video Assistance");
-            body = Uri.EscapeDataString("Hello, \r\n\r\nMy name is (insert name here). I selected the “Audio/Video” path in the Educational Support Wizard game on the LTD website; and would like your help creating video or audio content. Here some information about what I wish to do: \r\n\r\nWhat is this content for? [e.g., ENG 302: Advanced Composition, a podcast featuring my colleges, etc] \r\n\r\nDelivery Format: [e.g., Fully online, hybrid, asynchronous, etc.] \r\n\r\nI would like this by: [e.g., Fall 2025] \r\n\r\nCourse Link (if applicable): [Insert link to D2L or LMS shared site] \r\n\r\n \r\n\r\nI am curious if you could help me with... \r\n [ ] Recording audio/video \r\n\r\n [ ] Creating interactive modules for students/users \r\n [ ] Edit existing content \r\n [ ] Exploring content options (i.e.; animated videos, slides, interactive modules, etc) \r\n [ ] Other: [briefly describe] \r\n\r\nLet me know what next steps you'd recommend and what information you might need from me. I’d also be happy to set up a meeting with you, if that would help. \r\n\r\nThank you so much! \r\n\r\n \r\n [Faculty Name] \r\n [Department or Program] \r\n [Contact Info, if needed] ");
+            str1 = Uri.EscapeDataString("Support Request: Audio/Video Assistance");
+            str2 = Uri.EscapeDataString("Hello, \r\n\r\nMy name is (insert name here). I selected the “Audio/Video” path in the Educational Support Wizard game on the LTD website; and would like your help creating video or audio content. Here some information about what I wish to do: \r\n\r\nWhat is this content for? [e.g., ENG 302: Advanced Composition, a podcast featuring my colleges, etc] \r\n\r\nDelivery Format: [e.g., Fully online, hybrid, asynchronous, etc.] \r\n\r\nI would like this by: [e.g., Fall 2025] \r\n\r\nCourse Link (if applicable): [Insert link to D2L or LMS shared site] \r\n\r\n \r\n\r\nI am curious if you could help me with... \r\n [ ] Recording audio/video \r\n\r\n [ ] Creating interactive modules for students/users \r\n [ ] Edit existing content \r\n [ ] Exploring content options (i.e.; animated videos, slides, interactive modules, etc) \r\n [ ] Other: [briefly describe] \r\n\r\nLet me know what next steps you'd recommend and what information you might need from me. I’d also be happy to set up a meeting with you, if that would help. \r\n\r\nThank you so much! \r\n\r\n \r\n [Faculty Name] \r\n [Department or Program] \r\n [Contact Info, if needed] ");
         }
         if (emailEntered == "wellman9@msu.edu")
         {
-            subject = Uri.EscapeDataString("Support Request: Course Quality Review Assistance ");
-            body = Uri.EscapeDataString("Hello, \r\n\r\nMy name is (insert name here). I selected the “course quality” path in the Educational Support Wizard game on the LTD website; and would like your help reviewing a finished course. Here some information about the course: \r\n\r\nCourse Title and Code: [e.g., ENG 302: Advanced Composition] \r\n\r\nDelivery Format: [e.g., Fully online, hybrid, asynchronous, etc.] \r\n\r\nSemester/Term: [e.g., Fall 2025] \r\n\r\nCourse Link (if available): [Insert link to D2L or LMS shared site] \r\n\r\n \r\n\r\nI am curious if you could help me with... \r\n [ ] A general course quality review \r\n [ ] Alignment with [QM / internal rubric / accessibility standards] \r\n [ ] Suggestions before an external review \r\n [ ] Specific section(s) (e.g., assessments, alignment, accessibility) \r\n [ ] Other: [briefly describe] \r\n\r\nLet me know what next steps you'd recommend and what information you might need from me. I’d also be happy to set up a meeting with you, if that would help. \r\n\r\nThank you so much! \r\n\r\n[Faculty Name]  \r\n[Department or Program]  \r\n[Contact Info, if needed] ");
+            str1 = Uri.EscapeDataString("Support Request: Course Quality Review Assistance ");
+            str2 = Uri.EscapeDataString("Hello, \r\n\r\nMy name is (insert name here). I selected the “course quality” path in the Educational Support Wizard game on the LTD website; and would like your help reviewing a finished course. Here some information about the course: \r\n\r\nCourse Title and Code: [e.g., ENG 302: Advanced Composition] \r\n\r\nDelivery Format: [e.g., Fully online, hybrid, asynchronous, etc.] \r\n\r\nSemester/Term: [e.g., Fall 2025] \r\n\r\nCourse Link (if available): [Insert link to D2L or LMS shared site] \r\n\r\n \r\n\r\nI am curious if you could help me with... \r\n [ ] A general course quality review \r\n [ ] Alignment with [QM / internal rubric / accessibility standards] \r\n [ ] Suggestions before an external review \r\n [ ] Specific section(s) (e.g., assessments, alignment, accessibility) \r\n [ ] Other: [briefly describe] \r\n\r\nLet me know what next steps you'd recommend and what information you might need from me. I’d also be happy to set up a meeting with you, if that would help. \r\n\r\nThank you so much! \r\n\r\n[Faculty Name]  \r\n[Department or Program]  \r\n[Contact Info, if needed] ");
         }
         if (emailEntered == "benne784@broad.msu.edu")
         {
-            subject = Uri.EscapeDataString("Support Request: Interest Course Development");
-            body = Uri.EscapeDataString("Hello, \r\n\r\nMy name is (insert name here). I selected the “Course Redevelopment” path in the Educational Support Wizard game on the LTD website; and would like your help in developing my course on D2L. Here some information about the course: \r\n\r\nCourse Title and Code? [e.g., ENG 302: Advanced Composition, a podcast featuring my colleges, etc] \r\n\r\nDelivery Format: [e.g., Fully online, hybrid, asynchronous, etc.] \r\n\r\nCourse start: [e.g., Fall 2025] \r\n\r\nCourse Link (if applicable): [Insert link to D2L or LMS shared site] \r\n\r\n \r\n\r\nI am curious if you could help me with... \r\n [ ] Interest Selecting/Learning about tools \r\n\r\n [ ] Interest in D2L training \r\n [ ] Exploring course material \r\n [ ] Other: [briefly describe] \r\n\r\nLet me know what next steps you'd recommend and what information you might need from me. I’d also be happy to set up a meeting with you, if that would help. \r\n\r\nThank you so much! \r\n\r\n[Faculty Name]  \r\n[Department or Program]  \r\n[Contact Info, if needed] ");
+            str1 = Uri.EscapeDataString("Support Request: Interest Course Development");
+            str2 = Uri.EscapeDataString("Hello, \r\n\r\nMy name is (insert name here). I selected the “Course Redevelopment” path in the Educational Support Wizard game on the LTD website; and would like your help in developing my course on D2L. Here some information about the course: \r\n\r\nCourse Title and Code? [e.g., ENG 302: Advanced Composition, a podcast featuring my colleges, etc] \r\n\r\nDelivery Format: [e.g., Fully online, hybrid, asynchronous, etc.] \r\n\r\nCourse start: [e.g., Fall 2025] \r\n\r\nCourse Link (if applicable): [Insert link to D2L or LMS shared site] \r\n\r\n \r\n\r\nI am curious if you could help me with... \r\n [ ] Interest Selecting/Learning about tools \r\n\r\n [ ] Interest in D2L training \r\n [ ] Exploring course material \r\n [ ] Other: [briefly describe] \r\n\r\nLet me know what next steps you'd recommend and what information you might need from me. I’d also be happy to set up a meeting with you, if that would help. \r\n\r\nThank you so much! \r\n\r\n[Faculty Name]  \r\n[Department or Program]  \r\n[Contact Info, if needed] ");
         }
         if (emailEntered == "halicks@broad.msu.edu")
         {
-            subject = Uri.EscapeDataString("Support Request: D2L Assistance");
-            body = Uri.EscapeDataString("My name is (insert name here). I selected the “D2L” path in the Educational Support Wizard game on the LTD website; and would like D2L support. Here some information about the course(s) I am currently working on: \r\n\r\nCourse Title and Code: [e.g., ENG 302: Advanced Composition] \r\n\r\nDelivery Format: [e.g., Fully online, hybrid, asynchronous, etc.] \r\n\r\nSemester/Term: [e.g., Fall 2025] \r\n\r\nCourse Link (if available): [Insert link to D2L or LMS shared site] \r\n\r\n \r\n\r\nI am curious if you could help me with... \r\n [ ] Building this course in D2L \r\n\r\n [ ] Embedding a video into my D2L page \r\n [ ] Adding specific widgets to my pre-existing course \r\n [ ] Suggestions for my D2L page \r\n [ ] Other: [briefly describe] \r\n\r\nLet me know what next steps you'd recommend and what information you might need from me. I’d also be happy to set up a meeting with you, if that would help. \r\n\r\nThank you so much! \r\n\r\n[Faculty Name]  \r\n[Department or Program]  \r\n[Contact Info, if needed] ");
+            str1 = Uri.EscapeDataString("Support Request: D2L Assistance");
+            str2 = Uri.EscapeDataString("My name is (insert name here). I selected the “D2L” path in the Educational Support Wizard game on the LTD website; and would like D2L support. Here some information about the course(s) I am currently working on: \r\n\r\nCourse Title and Code: [e.g., ENG 302: Advanced Composition] \r\n\r\nDelivery Format: [e.g., Fully online, hybrid, asynchronous, etc.] \r\n\r\nSemester/Term: [e.g., Fall 2025] \r\n\r\nCourse Link (if available): [Insert link to D2L or LMS shared site] \r\n\r\n \r\n\r\nI am curious if you could help me with... \r\n [ ] Building this course in D2L \r\n\r\n [ ] Embedding a video into my D2L page \r\n [ ] Adding specific widgets to my pre-existing course \r\n [ ] Suggestions for my D2L page \r\n [ ] Other: [briefly describe] \r\n\r\nLet me know what next steps you'd recommend and what information you might need from me. I’d also be happy to set up a meeting with you, if that would help. \r\n\r\nThank you so much! \r\n\r\n[Faculty Name]  \r\n[Department or Program]  \r\n[Contact Info, if needed] ");
         }
-
-        string mailto = $"mailto:{"ltd.broad@msu.edu"}?subject={subject}&body={body}";
-
-        if (subject != Uri.EscapeDataString("Your Subject Here"))
-        {
-            Application.OpenURL(mailto);
-        }
+        string url = $"mailto:ltd.broad@msu.edu?subject={str1}&body={str2}";
+        if (!(str1 != Uri.EscapeDataString("Your Subject Here")))
+            return;
+        Application.OpenURL(url);
     }
 
     public IEnumerator TypeText()
     {
-        isTyping = true;
-        voiceClip.Play();
-        forestMusic.volume = .3f;
-        CTLIMusic.volume = .3f;
-        ITAndEdTechMusic.volume = .3f;
-        LTDMusic.volume = .3f;
-        for (int i = 0; i < textBubbleText.text.Length; i++)
+        this.isTyping = true;
+        this.forestMusic.volume = 0.3f;
+        this.CTLIMusic.volume = 0.3f;
+        this.ITAndEdTechMusic.volume = 0.3f;
+        this.LTDMusic.volume = 0.3f;
+        for (int i = 0; i < this.textBubbleText.text.Length; ++i)
         {
-            typingTextBubbleText.text = textBubbleText.text.Substring(0, i + 1);
-            yield return new WaitForSeconds(typingSpeed);
+            this.typingTextBubbleText.text = this.textBubbleText.text.Substring(0, i + 1);
+            yield return (object)new WaitForSeconds(this.typingSpeed);
         }
-        voiceClip.Stop();
-        isTyping = false;
+        this.isTyping = false;
     }
 
     public void SkipTyping()
     {
-        StopAllCoroutines();     // Yeah, yeah.  This is bad.  I'll stop specific coroutines if I end up using more than one.
-                                 // If some other developer is seeing this and needs to add more coroutines, then just do this:
-                                 // typingCoroutine = StartCoroutine(TypeText());  The variable is already set above for use.
-                                 // Then, to stop it, do StopCoroutine(typingCoroutine);
-        typingTextBubbleText.text = textBubbleText.text;
-        voiceClip.Stop();
-        isTyping = false;
+        this.StopAllCoroutines();
+        this.typingTextBubbleText.text = this.textBubbleText.text;
+        this.isTyping = false;
+    }
+
+    public void StopCurrentAudioClips()
+    {
+        if (this.ttsClip1.isPlaying)
+            this.ttsClip1.Stop();
+        if (this.ttsClip2.isPlaying)
+            this.ttsClip2.Stop();
+        if (this.ttsClip3.isPlaying)
+            this.ttsClip3.Stop();
+        if (this.ttsClip4.isPlaying)
+            this.ttsClip4.Stop();
+        if (this.ttsClip5.isPlaying)
+            this.ttsClip5.Stop();
+        if (this.ttsClip6.isPlaying)
+            this.ttsClip6.Stop();
+        if (this.ttsClip7.isPlaying)
+            this.ttsClip7.Stop();
+        if (this.ttsClipA1.isPlaying)
+            this.ttsClipA1.Stop();
+        if (this.ttsClipA2.isPlaying)
+            this.ttsClipA2.Stop();
+        if (this.ttsClipA3.isPlaying)
+            this.ttsClipA3.Stop();
+        if (this.ttsClipRedev1.isPlaying)
+            this.ttsClipRedev1.Stop();
+        if (this.ttsClipRedev2.isPlaying)
+            this.ttsClipRedev2.Stop();
+        if (this.ttsClipD2LB1.isPlaying)
+            this.ttsClipD2LB1.Stop();
+        if (this.ttsClipD2LB2.isPlaying)
+            this.ttsClipD2LB2.Stop();
+        if (this.ttsClipMultimedia1.isPlaying)
+            this.ttsClipMultimedia1.Stop();
+        if (this.ttsClipQM1.isPlaying)
+            this.ttsClipQM1.Stop();
+        if (this.ttsClipB1.isPlaying)
+            this.ttsClipB1.Stop();
+        if (this.ttsClipB2.isPlaying)
+            this.ttsClipB2.Stop();
+        if (this.ttsClipATool1.isPlaying)
+            this.ttsClipATool1.Stop();
+        if (this.ttsClipHelp1.isPlaying)
+            this.ttsClipHelp1.Stop();
+        if (this.ttsClipHelp2.isPlaying)
+            this.ttsClipHelp2.Stop();
+        if (this.ttsClipHelp3.isPlaying)
+            this.ttsClipHelp3.Stop();
+        if (this.ttsClipAssistance1.isPlaying)
+            this.ttsClipAssistance1.Stop();
+        if (this.ttsClipAssistance2.isPlaying)
+            this.ttsClipAssistance2.Stop();
+        if (this.ttsClipAssistance3.isPlaying)
+            this.ttsClipAssistance3.Stop();
+        if (this.ttsClipBMSUIT1.isPlaying)
+            this.ttsClipBMSUIT1.Stop();
+        if (this.ttsClipBMSUIT2.isPlaying)
+            this.ttsClipBMSUIT2.Stop();
+        if (this.ttsClipCMSUIT1.isPlaying)
+            this.ttsClipCMSUIT1.Stop();
+        if (this.ttsClipCPathStart1.isPlaying)
+            this.ttsClipCPathStart1.Stop();
+        if (this.ttsClipABTraining1.isPlaying)
+            this.ttsClipABTraining1.Stop();
+        if (this.ttsClipOneOnOne1.isPlaying)
+            this.ttsClipOneOnOne1.Stop();
+        if (this.ttsClipWorkshop1.isPlaying)
+            this.ttsClipWorkshop1.Stop();
+        if (this.ttsClipWorkshop2.isPlaying)
+            this.ttsClipWorkshop2.Stop();
+        if (!this.ttsClipFeedback1.isPlaying)
+            return;
+        this.ttsClipFeedback1.Stop();
     }
 }
